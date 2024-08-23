@@ -1,12 +1,15 @@
 {
-  "item.pseudo.graphite": "Graphite",
+  "item.pseudo.graphite_dust": "Graphite Dust",
+  "item.pseudo.raw_graphite": "Raw Graphite",
+  "item.pseudo.refined_graphite": "Refined Graphite",
   "item.pseudo.graphene_sheet": "Graphene Sheet",
-  "item.pseudo.graphene_sheet": "Graphene Mesh",
+  "item.pseudo.graphene_mesh": "Graphene Mesh",
 
   "item.pseudo.chainsaw": "Chainsaw",
 
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
-  "block.pseudo.graphite_block": "Block of Graphite",
+  "block.pseudo.raw_graphite_block": "Block of Refined Graphite",
+  "block.pseudo.refined_graphite_block": "Block of Raw Graphite",
   "block.pseudo.mesh_block": "Block of Graphene Mesh",
 
   "itemGroup.pseudo.pseudo_tab": "Pseudo"

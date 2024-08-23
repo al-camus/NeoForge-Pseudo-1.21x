@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pseudo:block/raw_graphite_block"
+    }
+  }
+}

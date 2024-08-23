@@ -14,15 +14,19 @@ import java.util.function.Supplier;
 public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Pseudo.MODID);
 
-    public static final Supplier<CreativeModeTab> PSEUDO_TAB = CREATIVE_MODE_TABS.register("pseudo_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_tab")).icon(() -> new ItemStack(ModItems.GRAPHITE.get())).displayItems((pParameters, pOutput) -> {
-        pOutput.accept(ModItems.GRAPHITE);
+    public static final Supplier<CreativeModeTab> PSEUDO_TAB = CREATIVE_MODE_TABS.register("pseudo_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_tab")).icon(() -> new ItemStack(ModItems.RAW_GRAPHITE.get())).displayItems((pParameters, pOutput) -> {
+        pOutput.accept(ModItems.COAL_DUST);
+        pOutput.accept(ModItems.GRAPHITE_DUST);
+        pOutput.accept(ModItems.RAW_GRAPHITE);
+        pOutput.accept(ModItems.REFINED_GRAPHITE);
         pOutput.accept(ModItems.GRAPHENE_SHEET);
         pOutput.accept(ModItems.GRAPHENE_MESH);
 
         pOutput.accept(ModItems.CHAINSAW);
 
         pOutput.accept(ModBlocks.NETHER_GRAPHITE_ORE);
-        pOutput.accept(ModBlocks.GRAPHITE_BLOCK);
+        pOutput.accept(ModBlocks.RAW_GRAPHITE_BLOCK);
+        pOutput.accept(ModBlocks.REFINED_GRAPHITE_BLOCK);
         pOutput.accept(ModBlocks.MESH_BLOCK);
     }).build());
 

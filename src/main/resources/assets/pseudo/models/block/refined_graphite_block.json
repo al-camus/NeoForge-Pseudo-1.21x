@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pseudo:block/graphite_block"
+    "all": "pseudo:block/refined_graphite_block"
   }
 }
