@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key":
+  {
+    "I": { "item": "pseudo:graphite" }
+  },
+  "pattern":
+  [
+    "III",
+    "III",
+    "III"
+  ],
+
+  "result": { "count": 1, "id": "pseudo:graphite_block" }
+}

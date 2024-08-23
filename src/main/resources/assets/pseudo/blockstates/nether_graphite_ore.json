@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pseudo:block/nether_graphite_ore"
+    }
+  }
+}

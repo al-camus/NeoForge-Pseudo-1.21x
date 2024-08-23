@@ -1,0 +1,13 @@
+{
+  "item.pseudo.graphite": "Graphite",
+  "item.pseudo.graphene_sheet": "Graphene Sheet",
+  "item.pseudo.graphene_sheet": "Graphene Mesh",
+
+  "item.pseudo.chainsaw": "Chainsaw",
+
+  "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
+  "block.pseudo.graphite_block": "Block of Graphite",
+  "block.pseudo.mesh_block": "Block of Graphene Mesh",
+
+  "itemGroup.pseudo.pseudo_tab": "Pseudo"
+}
