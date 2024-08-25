@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 1600,
+  "experience": 0.8,
+  "group": "pseudo:raw_graphite",
+  "ingredient": {
+    "item": "minecraft:coal"
+  },
+  "result": {
+    "count": 1,
+    "id": "pseudo:raw_graphite"
+  }
+}

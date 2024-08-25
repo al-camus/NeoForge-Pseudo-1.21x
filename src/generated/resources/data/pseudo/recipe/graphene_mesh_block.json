@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pseudo:mesh_block",
+  "key": {
+    "#": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_block"
+  }
+}

@@ -26,7 +26,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MESH_BLOCK = registerBlock("mesh_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 10000f).requiresCorrectToolForDrops()));
 
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;

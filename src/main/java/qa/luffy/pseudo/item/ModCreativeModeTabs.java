@@ -30,7 +30,7 @@ public class ModCreativeModeTabs {
         pOutput.accept(ModBlocks.MESH_BLOCK);
     }).build());
 
-    public static void register (IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }
 }
