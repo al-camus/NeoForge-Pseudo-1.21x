@@ -1,5 +1,6 @@
 package qa.luffy.pseudo;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -72,5 +73,9 @@ public class Pseudo  {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
         }
+    }
+
+    public static ResourceLocation resource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

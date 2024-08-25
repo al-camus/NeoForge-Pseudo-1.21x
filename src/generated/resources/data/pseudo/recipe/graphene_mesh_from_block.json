@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pseudo:graphene_mesh",
+  "ingredients": [
+    {
+      "item": "pseudo:mesh_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "pseudo:graphene_mesh"
+  }
+}

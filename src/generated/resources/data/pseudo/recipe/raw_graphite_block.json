@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pseudo:raw_graphite_block",
+  "key": {
+    "#": {
+      "item": "pseudo:raw_graphite"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:raw_graphite_block"
+  }
+}
