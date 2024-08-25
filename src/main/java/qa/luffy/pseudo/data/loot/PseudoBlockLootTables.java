@@ -31,6 +31,8 @@ public class PseudoBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.MESH_BLOCK.get());
         dropSelf(ModBlocks.REFINED_GRAPHITE_BLOCK.get());
 
+        dropSelf(ModBlocks.CAPACITOR_BLOCK.get());
+
         add(ModBlocks.NETHER_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, ModItems.RAW_GRAPHITE.get()));
     }
 

@@ -25,6 +25,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> REFINED_GRAPHITE_BLOCK = registerBlock("refined_graphite_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MESH_BLOCK = registerBlock("mesh_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 10000f).requiresCorrectToolForDrops()));
 
+    //Base Block Entities
+    public static final DeferredBlock<Block> CAPACITOR_BLOCK = registerBlock("capacitor",
+            () -> new CapacitorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

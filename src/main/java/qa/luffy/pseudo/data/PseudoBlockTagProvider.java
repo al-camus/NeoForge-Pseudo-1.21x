@@ -22,6 +22,7 @@ public class PseudoBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RAW_GRAPHITE_BLOCK.get())
                 .add(ModBlocks.REFINED_GRAPHITE_BLOCK.get())
                 .add(ModBlocks.MESH_BLOCK.get())
-                .add(ModBlocks.NETHER_GRAPHITE_ORE.get());
+                .add(ModBlocks.NETHER_GRAPHITE_ORE.get())
+                .add(ModBlocks.CAPACITOR_BLOCK.get());
     }
 }

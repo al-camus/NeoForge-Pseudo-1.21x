@@ -28,6 +28,8 @@ public class ModCreativeModeTabs {
         pOutput.accept(ModBlocks.RAW_GRAPHITE_BLOCK);
         pOutput.accept(ModBlocks.REFINED_GRAPHITE_BLOCK);
         pOutput.accept(ModBlocks.MESH_BLOCK);
+
+        pOutput.accept(ModBlocks.CAPACITOR_BLOCK);
     }).build());
 
     public static void register(IEventBus eventBus) {
