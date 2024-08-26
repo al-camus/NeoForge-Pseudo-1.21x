@@ -1,0 +1,7 @@
+// 1.21	2024-08-25T19:57:50.4946254	World Gen
+d217e5f30c2a0b366260d7b629f279eeca4f1486 data/pseudo/neoforge/biome_modifier/add_nether_graphite_ore.json
+d4e69560d8d8790b8d847c70c60de7d9d294d2ab data/pseudo/neoforge/biome_modifier/add_overworld_graphite_ore.json
+d4fae0f3234ca534dc1e8fc6556b2a8e6129f769 data/pseudo/worldgen/configured_feature/nether_graphite_ore_key.json
+33a8f7695b203fab67d0a3e21a390bd7b5654173 data/pseudo/worldgen/configured_feature/overworld_graphite_ore_key.json
+92c5a7d1638ed3fabe42dd6e448a1cdfaccc6030 data/pseudo/worldgen/placed_feature/nether_graphite_ore_placed.json
+eedcbdc53256023d680289f740f3d0c0b570ffcf data/pseudo/worldgen/placed_feature/overworld_graphite_ore_placed.json
