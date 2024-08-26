@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pseudo:graphite_dust_block",
+  "key": {
+    "#": {
+      "item": "pseudo:graphite_dust"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:graphite_dust_block"
+  }
+}

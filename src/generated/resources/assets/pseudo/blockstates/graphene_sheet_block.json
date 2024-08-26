@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pseudo:block/graphene_sheet_block"
+    }
+  }
+}

@@ -1,8 +1,12 @@
 {
   "values": [
+    "pseudo:deepslate_graphite_ore",
+    "pseudo:nether_graphite_ore",
     "pseudo:raw_graphite_block",
+    "pseudo:graphite_dust_block",
     "pseudo:refined_graphite_block",
-    "pseudo:mesh_block",
-    "pseudo:nether_graphite_ore"
+    "pseudo:refined_graphite_brick",
+    "pseudo:graphene_sheet_block",
+    "pseudo:capacitor"
   ]
 }

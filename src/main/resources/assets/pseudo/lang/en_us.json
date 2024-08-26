@@ -5,12 +5,20 @@
   "item.pseudo.graphene_sheet": "Graphene Sheet",
   "item.pseudo.graphene_mesh": "Graphene Mesh",
 
-  "item.pseudo.chainsaw": "Chainsaw",
+  "item.pseudo.iron_gear": "Iron Gear",
+  "item.pseudo.chainsaw": "Mesh Chainsaw",
 
+  "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
-  "block.pseudo.raw_graphite_block": "Block of Refined Graphite",
-  "block.pseudo.refined_graphite_block": "Block of Raw Graphite",
+  "block.pseudo.raw_graphite_block": "Block of Raw Graphite",
+  "block.pseudo.graphite_dust_block": "Block of Graphite Dust",
+  "block.pseudo.refined_graphite_block": "Block of Refined Graphite",
+  "block.pseudo.refined_graphite_brick": "Refined Graphite Brick",
+  "block.pseudo.graphene_sheet_block": "Block of Graphene Sheet",
   "block.pseudo.mesh_block": "Block of Graphene Mesh",
 
-  "itemGroup.pseudo.pseudo_tab": "Pseudo"
+  "block.pseudo.capacitor": "Capacitor",
+
+  "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",
+  "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks"
 }

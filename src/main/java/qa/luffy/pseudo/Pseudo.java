@@ -1,8 +1,6 @@
 package qa.luffy.pseudo;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import org.slf4j.Logger;
@@ -21,11 +19,11 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import qa.luffy.pseudo.block.ModBlocks;
-import qa.luffy.pseudo.block.entity.ModBlockEntities;
+import qa.luffy.pseudo.block.PseudoBlocks;
+import qa.luffy.pseudo.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.block.entity.energy.EnergyStorageBlock;
-import qa.luffy.pseudo.item.ModCreativeModeTabs;
-import qa.luffy.pseudo.item.ModItems;
+import qa.luffy.pseudo.init.PseudoCreativeTabs;
+import qa.luffy.pseudo.item.PseudoItems;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Pseudo.MODID)
@@ -41,11 +39,11 @@ public class Pseudo  {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        ModCreativeModeTabs.register(modEventBus);
+        PseudoCreativeTabs.register(modEventBus);
 
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-        ModBlockEntities.register(modEventBus);
+        PseudoItems.register(modEventBus);
+        PseudoBlocks.register(modEventBus);
+        PseudoBlockEntities.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
@@ -72,7 +70,7 @@ public class Pseudo  {
 
     public void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.CAPACITOR_TYPE.get(),
+                PseudoBlockEntities.CAPACITOR_TYPE.get(),
                 (entity, direction) -> ((EnergyStorageBlock) entity).getEnergyStorage(direction));
     }
 

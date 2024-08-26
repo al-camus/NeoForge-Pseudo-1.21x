@@ -6,8 +6,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.energy.EmptyEnergyStorage;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.block.entity.energy.EnergyStorageBlock;
@@ -23,7 +21,7 @@ public class CapacitorBlockEntity extends BlockEntity implements EnergyStorageBl
     };
 
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
+        super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
     }
 
     public EnergyStorage getEnergyStorage(@Nullable Direction direction) {

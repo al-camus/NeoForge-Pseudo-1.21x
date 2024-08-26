@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pseudo:refined_graphite",
+  "ingredients": [
+    {
+      "item": "pseudo:refined_graphite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "pseudo:refined_graphite"
+  }
+}

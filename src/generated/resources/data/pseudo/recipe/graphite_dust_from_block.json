@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pseudo:graphite_dust",
+  "ingredients": [
+    {
+      "item": "pseudo:graphite_dust_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "pseudo:graphite_dust"
+  }
+}
