@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.data;
+package qa.luffy.pseudo.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;

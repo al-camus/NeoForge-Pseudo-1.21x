@@ -3,6 +3,16 @@
   "config": {
     "discard_chance_on_air_exposure": 0.0,
     "size": 8,
-    "targets": []
+    "targets": [
+      {
+        "state": {
+          "Name": "pseudo:deepslate_graphite_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
+        }
+      }
+    ]
   }
 }

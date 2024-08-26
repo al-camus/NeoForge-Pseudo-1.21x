@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.neoforge.common.Tags;
 import qa.luffy.pseudo.Pseudo;
-import qa.luffy.pseudo.block.ModBlocks;
+import qa.luffy.pseudo.block.PseudoBlocks;
 
 import java.util.List;
 
@@ -25,13 +25,13 @@ public class PseudoConfiguredFeatures {
         RuleTest netherReplaceables = new TagMatchTest(Tags.Blocks.NETHERRACKS);
 
         List<OreConfiguration.TargetBlockState> overworldGraphiteOres = List.of(
-                //OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_GRAPHITE_ORE.get())
+                OreConfiguration.target(deepslateReplaceables, PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get().defaultBlockState())
         );
 
         register(context, OVERWORLD_GRAPHITE_ORE_KEY, Feature.ORE,
                 new OreConfiguration(overworldGraphiteOres, 8));
         register(context, NETHER_GRAPHITE_ORE_KEY, Feature.ORE,
-                new OreConfiguration(netherReplaceables, ModBlocks.NETHER_GRAPHITE_ORE.get().defaultBlockState(), 12));
+                new OreConfiguration(netherReplaceables, PseudoBlocks.NETHER_GRAPHITE_ORE.get().defaultBlockState(), 12));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String key) {
