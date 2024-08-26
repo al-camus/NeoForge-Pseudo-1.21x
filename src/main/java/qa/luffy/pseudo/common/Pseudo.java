@@ -1,8 +1,10 @@
 package qa.luffy.pseudo.common;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.WorldlyContainer;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -71,6 +73,11 @@ public class Pseudo  {
     }
 
     public void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        //Item Block Entities
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
+                PseudoBlockEntities.CAPACITOR_TYPE.get(),
+                (entity, direction) -> new SidedInvWrapper((WorldlyContainer) entity, direction));
+        //Energy Block Entities
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 PseudoBlockEntities.CAPACITOR_TYPE.get(),
                 (entity, direction) -> ((EnergyStorageBlock) entity).getEnergyStorage(direction));

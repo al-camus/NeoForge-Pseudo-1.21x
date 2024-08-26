@@ -3,16 +3,20 @@ package qa.luffy.pseudo.common.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import org.jetbrains.annotations.Nullable;
+import qa.luffy.pseudo.common.block.entity.util.ImplementedInventory;
 import qa.luffy.pseudo.common.block.entity.util.energy.EnergyStorageBlock;
 import qa.luffy.pseudo.common.block.entity.util.energy.ModEnergyStorage;
 
-public class CapacitorBlockEntity extends BlockEntity implements EnergyStorageBlock {
+public class CapacitorBlockEntity extends BlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
+    private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
     private ModEnergyStorage energyStorage = new ModEnergyStorage(64000, 256 ,256) {
         @Override
         public void setEnergyChanged() {
@@ -22,10 +26,6 @@ public class CapacitorBlockEntity extends BlockEntity implements EnergyStorageBl
 
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
-    }
-
-    public EnergyStorage getEnergyStorage(@Nullable Direction direction) {
-        return energyStorage;
     }
 
     @Override
@@ -40,5 +40,14 @@ public class CapacitorBlockEntity extends BlockEntity implements EnergyStorageBl
         super.loadAdditional(tag, registries);
         energyStorage.setEnergy(tag.getInt("energy"));
         energyStorage.deserializeNBT(registries, tag);
+    }
+
+    @Override
+    public NonNullList<ItemStack> getItems() {
+        return items;
+    }
+
+    public EnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        return energyStorage;
     }
 }
