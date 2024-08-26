@@ -3,6 +3,7 @@
     "pseudo:raw_graphite_block",
     "pseudo:refined_graphite_block",
     "pseudo:mesh_block",
-    "pseudo:nether_graphite_ore"
+    "pseudo:nether_graphite_ore",
+    "pseudo:capacitor"
   ]
 }

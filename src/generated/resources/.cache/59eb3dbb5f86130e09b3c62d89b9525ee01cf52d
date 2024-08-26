@@ -1,4 +1,5 @@
-// 1.21	2024-08-25T16:57:34.1676078	Loot Tables
+// 1.21	2024-08-25T19:45:02.5157161	Loot Tables
+d014bf668cfec0addbff9fb5bc057050e78e0b0e data/pseudo/loot_table/blocks/capacitor.json
 13779c7a6c0da2cde61f16d57890880c099bbf09 data/pseudo/loot_table/blocks/mesh_block.json
 153f3bc3056f39984862bfe36e4abefac54735e5 data/pseudo/loot_table/blocks/nether_graphite_ore.json
 8e89f7576c79928bdf62fc41aa984e9b1178e5a3 data/pseudo/loot_table/blocks/raw_graphite_block.json

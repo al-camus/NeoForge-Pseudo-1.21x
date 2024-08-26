@@ -14,7 +14,7 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_GRAPHITE = ITEMS.registerSimpleItem("raw_graphite");
     public static final DeferredItem<Item> REFINED_GRAPHITE = ITEMS.registerSimpleItem("refined_graphite");
     public static final DeferredItem<Item> GRAPHENE_SHEET = ITEMS.registerSimpleItem("graphene_sheet");
-    public static final DeferredItem<Item> GRAPHENE_MESH = ITEMS.registerSimpleItem("graphene_mesh");
+    public static final DeferredItem<Item> GRAPHENE_MESH = ITEMS.registerSimpleItem("graphene_mesh", new Item.Properties().fireResistant());
 
     public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().durability(32));
 

@@ -25,5 +25,4 @@ public class CapacitorBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new CapacitorBlockEntity(blockPos, blockState);
     }
-
 }

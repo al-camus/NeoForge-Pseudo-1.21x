@@ -26,6 +26,7 @@ public class PseudoDataGenerators {
         generator.addProvider(event.includeServer(), new PseudoLootTableProvider(packOutput, registries));
         generator.addProvider(event.includeServer(), blockTagProvider);
         generator.addProvider(event.includeServer(), new PseudoItemTagProvider(packOutput, registries, blockTagProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new PseudoWorldGenProvider(packOutput, registries));
 
         generator.addProvider(event.includeClient(), new PseudoItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new PseudoBlockStateProvider(packOutput, existingFileHelper));
