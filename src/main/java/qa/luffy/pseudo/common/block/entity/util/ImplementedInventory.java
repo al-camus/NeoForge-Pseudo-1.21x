@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+//Taken from Stellaris CC BY-NC-SA 4.0
 @FunctionalInterface
 public interface ImplementedInventory extends WorldlyContainer {
 
@@ -32,7 +33,6 @@ public interface ImplementedInventory extends WorldlyContainer {
     static ImplementedInventory ofSize(int size) {
         return of(NonNullList.withSize(size, ItemStack.EMPTY));
     }
-
 
 
     @Override
@@ -100,7 +100,6 @@ public interface ImplementedInventory extends WorldlyContainer {
         }
         setChanged();
     }
-
 
     @Override
     default void setChanged() {
