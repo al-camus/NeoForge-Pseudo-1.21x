@@ -25,18 +25,13 @@ public class PseudoRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH.get())
-                .define('I', PseudoItems.GRAPHENE_SHEET.get())
-                .pattern("II")
-                .pattern("II")
-                .unlockedBy(getHasName(PseudoItems.GRAPHENE_SHEET.get()), has(PseudoItems.GRAPHENE_SHEET.get()))
-                .save(recipeOutput, Pseudo.resource("graphene_mesh"));
+        twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH.get(), PseudoItems.GRAPHENE_SHEET.get(), 1, "graphene_mesh_from_sheets");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET.get())
                 .define('I', PseudoItems.REFINED_GRAPHITE.get())
                 .pattern("III")
                 .unlockedBy(getHasName(PseudoItems.RAW_GRAPHITE.get()), has(PseudoItems.RAW_GRAPHITE.get()))
-                .save(recipeOutput, Pseudo.resource("graphene_sheet"));
+                .save(recipeOutput, Pseudo.resource("graphene_sheet_from_refined_graphite"));
 
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
@@ -44,7 +39,7 @@ public class PseudoRecipes extends RecipeProvider {
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET, "graphene_sheet_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHENE_SHEET_BLOCK, "graphene_sheet_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH, "graphene_mesh_from_block", RecipeCategory.MISC, PseudoBlocks.MESH_BLOCK, "graphene_mesh_block");
 
-        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK);
+        twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK, 4, "refined_graphite_brick_from_block");
 
         blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
         blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
@@ -52,6 +47,35 @@ public class PseudoRecipes extends RecipeProvider {
 
     protected static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
         return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike));
+    }
+
+    /**
+     * Equivalent to twoByTwoPacker, with the Pseudo namespace
+     * @param recipeOutput
+     * @param category
+     * @param unpacked
+     */
+    protected static void twoByTwo(RecipeOutput recipeOutput, RecipeCategory category, ItemLike packed, ItemLike unpacked, int count, String name) {
+        ShapedRecipeBuilder.shaped(category, packed, count)
+                .define('#', unpacked)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy(getHasName(unpacked), has(unpacked))
+                .save(recipeOutput, Pseudo.resource(name));
+    }
+
+    /**
+     * Reverse of twoByTwoPacker, with the Pseudo namespace
+     * @param recipeOutput
+     * @param category
+     * @param packed
+     * @param unpacked
+     */
+    protected static void twoByTwoUnpack(RecipeOutput recipeOutput, RecipeCategory category, ItemLike packed, ItemLike unpacked, String name) {
+        ShapelessRecipeBuilder.shapeless(category, unpacked, 4)
+                .requires(packed)
+                .unlockedBy(getHasName(packed), has(packed))
+                .save(recipeOutput, Pseudo.resource(name));
     }
 
     /**
