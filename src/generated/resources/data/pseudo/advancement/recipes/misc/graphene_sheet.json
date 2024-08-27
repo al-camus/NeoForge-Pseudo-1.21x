@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_refined_graphite_block": {
+    "has_raw_graphite": {
       "conditions": {
         "items": [
           {
-            "items": "pseudo:refined_graphite_block"
+            "items": "pseudo:raw_graphite"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pseudo:refined_graphite_brick_from_block"
+        "recipe": "pseudo:graphene_sheet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_refined_graphite_block"
+      "has_raw_graphite"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pseudo:refined_graphite_brick_from_block"
+      "pseudo:graphene_sheet"
     ]
   }
 }

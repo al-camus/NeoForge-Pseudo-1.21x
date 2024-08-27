@@ -63,7 +63,6 @@ public class CapacitorMenu extends AbstractContainerMenu {
 
         return newStack;
     }
-
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
@@ -71,7 +70,6 @@ public class CapacitorMenu extends AbstractContainerMenu {
             }
         }
     }
-
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 200));

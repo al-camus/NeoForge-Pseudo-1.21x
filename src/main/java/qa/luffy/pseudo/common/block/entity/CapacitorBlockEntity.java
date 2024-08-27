@@ -17,6 +17,7 @@ import qa.luffy.pseudo.common.block.entity.util.ImplementedInventory;
 import qa.luffy.pseudo.common.block.entity.util.energy.EnergyStorageBlock;
 import qa.luffy.pseudo.common.block.entity.util.energy.ModEnergyStorage;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
+import qa.luffy.pseudo.common.menu.PseudoMenus;
 
 public class CapacitorBlockEntity extends BaseContainerBlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
