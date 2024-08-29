@@ -6,6 +6,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -14,6 +15,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.item.PseudoItems;
+import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeBuilder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -43,6 +45,11 @@ public class PseudoRecipes extends RecipeProvider {
 
         blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
         blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
+
+        energizing(recipeOutput, Ingredient.of(Items.OAK_LOG, Items.DARK_OAK_LOG), 100, new ItemStack(Items.CHARCOAL, 4)); //TEST RECIPE
+        energizing(recipeOutput, Ingredient.of(Items.ACACIA_LOG, Items.BIRCH_LOG), 50, new ItemStack(Items.CHARCOAL, 2)); //TEST RECIPE
+
+
     }
 
     protected static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
@@ -153,5 +160,17 @@ public class PseudoRecipes extends RecipeProvider {
                     .save(recipeOutput, Pseudo.resource(getItemName(result) + suffix + "_" + getItemName(itemlike)));
         }
 
+    }
+
+    /**
+     * Recipes for the Capacitor
+     * @param recipeOutput
+     * @param input
+     * @param energy in FE
+     * @param result
+     */
+    protected static void energizing(RecipeOutput recipeOutput, Ingredient input, int energy, ItemStack result) {
+        new CapacitorRecipeBuilder(result, energy, input)
+                .save(recipeOutput, Pseudo.resource(getItemName(result.getItem())+ "_energizing"));
     }
 }

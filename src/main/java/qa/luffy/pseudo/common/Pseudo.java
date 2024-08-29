@@ -27,6 +27,8 @@ import qa.luffy.pseudo.common.block.entity.util.energy.EnergyStorageBlock;
 import qa.luffy.pseudo.common.init.PseudoCreativeTabs;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
+import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
+import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Pseudo.MODID)
@@ -44,6 +46,9 @@ public class Pseudo  {
 
         PseudoCreativeTabs.register(modEventBus);
         PseudoMenus.register(modEventBus);
+
+        PseudoRecipeTypes.register(modEventBus);
+        PseudoRecipeSerializers.register(modEventBus);
 
         PseudoItems.register(modEventBus);
         PseudoBlocks.register(modEventBus);
