@@ -12,11 +12,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
+import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
 
 public class CapacitorBlock extends BaseEntityBlock {
@@ -53,5 +56,12 @@ public class CapacitorBlock extends BaseEntityBlock {
             serverPlayer.openMenu(state.getMenuProvider(level, pos));
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return level.isClientSide ? null : createTickerHelper(blockEntityType,PseudoBlockEntities.CAPACITOR_TYPE.get(),
+                (level1, blockPos, blockState, blockEntity) -> ((CapacitorBlockEntity) blockEntity).tick());
     }
 }

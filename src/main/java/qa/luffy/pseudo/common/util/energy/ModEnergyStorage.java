@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.common.block.entity.util.energy;
+package qa.luffy.pseudo.common.util.energy;
 
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.energy.EnergyStorage;

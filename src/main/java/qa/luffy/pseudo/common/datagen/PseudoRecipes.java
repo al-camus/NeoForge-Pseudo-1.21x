@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.item.PseudoItems;
@@ -46,8 +47,8 @@ public class PseudoRecipes extends RecipeProvider {
         blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
         blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
 
-        energizing(recipeOutput, Ingredient.of(Items.OAK_LOG, Items.DARK_OAK_LOG), 100, new ItemStack(Items.CHARCOAL, 4)); //TEST RECIPE
-        energizing(recipeOutput, Ingredient.of(Items.ACACIA_LOG, Items.BIRCH_LOG), 50, new ItemStack(Items.CHARCOAL, 2)); //TEST RECIPE
+        energizing(recipeOutput, Ingredient.of(Items.OAK_LOG, Items.DARK_OAK_LOG), 100, new ItemStack(Items.CHARCOAL, 4), null); //TEST RECIPE
+        energizing(recipeOutput, Ingredient.of(Items.ACACIA_LOG, Items.BIRCH_LOG), 50, new ItemStack(Items.CHARCOAL, 2), "lower_output"); //TEST RECIPE
 
 
     }
@@ -168,9 +169,12 @@ public class PseudoRecipes extends RecipeProvider {
      * @param input
      * @param energy in FE
      * @param result
+     * @param suffix
      */
-    protected static void energizing(RecipeOutput recipeOutput, Ingredient input, int energy, ItemStack result) {
+    protected static void energizing(RecipeOutput recipeOutput, Ingredient input, int energy, ItemStack result, @Nullable String suffix) {
+        if (suffix == null) suffix = "";
+        else suffix = "_" + suffix;
         new CapacitorRecipeBuilder(result, energy, input)
-                .save(recipeOutput, Pseudo.resource(getItemName(result.getItem())+ "_energizing"));
+                .save(recipeOutput, Pseudo.resource(getItemName(result.getItem()) + suffix + "_energizing"));
     }
 }

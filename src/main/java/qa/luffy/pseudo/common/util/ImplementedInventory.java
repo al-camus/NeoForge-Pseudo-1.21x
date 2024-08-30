@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.common.block.entity.util;
+package qa.luffy.pseudo.common.util;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

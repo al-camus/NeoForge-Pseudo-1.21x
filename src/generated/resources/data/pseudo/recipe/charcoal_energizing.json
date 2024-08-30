@@ -1,0 +1,16 @@
+{
+  "type": "pseudo:capacitor",
+  "energy": 100,
+  "ingredient": [
+    {
+      "item": "minecraft:oak_log"
+    },
+    {
+      "item": "minecraft:dark_oak_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:charcoal"
+  }
+}

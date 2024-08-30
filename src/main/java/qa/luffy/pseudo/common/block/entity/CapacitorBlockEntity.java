@@ -9,21 +9,26 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import org.jetbrains.annotations.Nullable;
-import qa.luffy.pseudo.common.block.entity.util.ImplementedInventory;
-import qa.luffy.pseudo.common.block.entity.util.energy.EnergyStorageBlock;
-import qa.luffy.pseudo.common.block.entity.util.energy.ModEnergyStorage;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
-import qa.luffy.pseudo.common.menu.PseudoMenus;
+import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
+import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipe;
+import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeInput;
+import qa.luffy.pseudo.common.util.ImplementedInventory;
+import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
+import qa.luffy.pseudo.common.util.energy.ModEnergyStorage;
+
+import java.util.Optional;
 
 public class CapacitorBlockEntity extends BaseContainerBlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
     private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
-
-    private ModEnergyStorage energyStorage = new ModEnergyStorage(64000, 256 ,256) {
+    private final ModEnergyStorage energyStorage = new ModEnergyStorage(64000, 256 ,256) {
         @Override
         public void setEnergyChanged() {
             setChanged();
@@ -32,6 +37,14 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
 
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
+    }
+
+    public void tick() {
+        RecipeManager recipes = this.level.getRecipeManager();
+        Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = recipes.getRecipeFor(
+                PseudoRecipeTypes.CAPACITOR.get(),
+                new CapacitorRecipeInput(energyStorage.getEnergyStored(),
+                        getItem(0)), level);
     }
 
     @Override
