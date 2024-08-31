@@ -9,8 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
@@ -35,16 +34,38 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
         }
     };
 
+    private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());;
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
     }
 
+    private int energyPerTick = 1;
+    private int processTime;
     public void tick() {
-        RecipeManager recipes = this.level.getRecipeManager();
-        Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = recipes.getRecipeFor(
-                PseudoRecipeTypes.CAPACITOR.get(),
-                new CapacitorRecipeInput(energyStorage.getEnergyStored(),
-                        getItem(0)), level);
+        Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
+                new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
+        if (optionalRecipes.isPresent()) {
+            CapacitorRecipe recipe = optionalRecipes.get().value();
+            if (!isProcessing()) {
+                processTime = getProcessTimeForEnergy(recipe.getInputEnergy());
+            }
+            if (isProcessing()) {
+                energyStorage.setEnergy(energyStorage.getEnergyStored()-energyPerTick);
+                if (--processTime == 0) {
+                    setItem(0, ItemStack.EMPTY);
+                    setItem(1, recipe.getResult());
+                }
+            }
+        }
+
+    }
+
+    private int getProcessTimeForEnergy(int energy) {
+        return Math.round( (float) energy / energyPerTick );
+    }
+
+    private boolean isProcessing() {
+        return processTime > 0;
     }
 
     @Override
