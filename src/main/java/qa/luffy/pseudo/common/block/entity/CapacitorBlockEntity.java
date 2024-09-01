@@ -59,11 +59,9 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
         }
 
     }
-
     private int getProcessTimeForEnergy(int energy) {
         return Math.round( (float) energy / energyPerTick );
     }
-
     private boolean isProcessing() {
         return processTime > 0;
     }

@@ -3,7 +3,9 @@ package qa.luffy.pseudo.common.item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -11,6 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.energy.ComponentEnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import org.apache.commons.lang3.math.Fraction;
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
@@ -58,7 +61,8 @@ public class ChainsawItem extends Item implements EnergyStorageItem {
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        return Math.round(13.0F - (float) getEnergy(stack).getEnergyStored() * 13.0F / (float) this.getEnergy(stack).getMaxEnergyStored()); //TODO fix this
+        IEnergyStorage energy = getEnergy(stack);
+        return Math.round(((float) energy.getEnergyStored() / energy.getMaxEnergyStored())*13f);
     }
 
     @Override
