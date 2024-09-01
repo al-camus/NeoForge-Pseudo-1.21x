@@ -35,7 +35,6 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
             setChanged();
         }
     };
-
     ContainerData data = new ContainerData() {
         @Override
         public int get(int index) {
@@ -65,8 +64,8 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
             return 4;
         }
     };
-
     private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());
+
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
     }
@@ -104,14 +103,14 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putInt("energy", energyStorage.getEnergyStored());
-        energyStorage.serializeNBT(registries);
+        //energyStorage.serializeNBT(registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         energyStorage.setEnergy(tag.getInt("energy"));
-        energyStorage.deserializeNBT(registries, tag);
+        //energyStorage.deserializeNBT(registries, tag);
     }
 
     @Override

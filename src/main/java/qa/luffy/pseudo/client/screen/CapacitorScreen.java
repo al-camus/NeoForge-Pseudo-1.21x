@@ -50,6 +50,7 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         guiGraphics.blitSprite(ENERGY_SPRITE, textureWidth, textureHeight, 0, textureHeight - i, this.leftPos + 126, this.topPos + 19 + textureHeight - i, textureWidth, i);
 
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+        menu.sendAllDataToRemote();
     }
     float getProgress(int amount, int capacity) {
         return Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F);
