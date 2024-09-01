@@ -39,18 +39,13 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
     ContainerData data = new ContainerData() {
         @Override
         public int get(int index) {
-            switch (index) {
-                case 0:
-                    return energyStorage.getMaxEnergyStored();
-                case 1:
-                    return energyStorage.getEnergyStored();
-                case 2:
-                    return totalProcessTime;
-                case 3:
-                    return processTime;
-                default:
-                    return 0;
-            }
+            return switch (index) {
+                case 0 -> energyStorage.getMaxEnergyStored();
+                case 1 -> energyStorage.getEnergyStored();
+                case 2 -> totalProcessTime;
+                case 3 -> processTime;
+                default -> 0;
+            };
         }
 
         @Override
@@ -136,7 +131,7 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
 
     @Override
     protected Component getDefaultName() {
-        return Component.empty();
+        return Component.translatable("block.pseudo.capacitor");
     }
 
     public EnergyStorage getEnergyStorage(@Nullable Direction direction) {
