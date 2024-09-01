@@ -52,8 +52,4 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         return amount != 0 && capacity != 0 ? Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F) : 0.0F;
     }
 
-    @Override
-    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
-        super.renderTooltip(guiGraphics, x, y);
-    }
 }
