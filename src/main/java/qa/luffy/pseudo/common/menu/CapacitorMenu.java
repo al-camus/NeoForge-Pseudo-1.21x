@@ -20,8 +20,8 @@ public class CapacitorMenu extends AbstractContainerMenu {
         super(PseudoMenus.CAPACITOR_MENU_TYPE.get(), containerId);
         this.inventory = container;
 
-        this.addSlot(new Slot(inventory, 0, 39 , 26)); //TODO change slot placement according to screen texture
-        this.addSlot(new Slot(inventory, 1, 39 , 51)); //TODO change slot placement according to screen texture
+        this.addSlot(new Slot(inventory, 0, 37, 21));
+        this.addSlot(new Slot(inventory, 1, 37 , 47));
 
         this.addDataSlots(containerData);
         this.data = containerData;

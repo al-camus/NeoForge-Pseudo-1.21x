@@ -25,7 +25,7 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
-        this.inventoryLabelY = this.imageHeight - 92;
+        this.inventoryLabelY = this.imageHeight - 94;
     }
 
     @Override
@@ -43,13 +43,17 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         //will be moved to another class for convenience
         int textureWidth = 15;
         int textureHeight = 46;
-        int energyAmount = this.getMenu().getData().get(1);
+        int energyAmount = 16000; //this.getMenu().getData().get(1);
         int energyTotalAmount = this.getMenu().getData().get(0);
         int i = Mth.ceil(getProgress(energyAmount, energyTotalAmount) * (textureHeight-1));
         guiGraphics.blitSprite(ENERGY_SPRITE, textureWidth, textureHeight, 0, textureHeight - i, this.leftPos + 124, this.topPos + 23 + textureHeight - i, textureWidth, i);
     }
-
     float getProgress(int amount, int capacity) {
         return amount != 0 && capacity != 0 ? Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F) : 0.0F;
+    }
+
+    @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
+        super.renderTooltip(guiGraphics, x, y);
     }
 }
