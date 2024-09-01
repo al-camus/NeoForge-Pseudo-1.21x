@@ -23,6 +23,7 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.GRAPHENE_MESH.get());
         basicItem(PseudoItems.IRON_GEAR.get());
         basicItem(PseudoItems.CHAINSAW.get());
+        basicItem(PseudoItems.DRILL.get());
     }
 
     public ItemModelBuilder generatedItem(ResourceLocation item) {
