@@ -16,7 +16,7 @@ public class PseudoItems {
     public static final DeferredItem<Item> GRAPHENE_MESH = ITEMS.registerSimpleItem("graphene_mesh");
     public static final DeferredItem<Item> MESH_GEAR = ITEMS.registerSimpleItem("mesh_gear");
     public static final DeferredItem<Item> DRILL = ITEMS.registerItem("drill", DrillItem::new, new Item.Properties().stacksTo(1));
-
+    public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().stacksTo(1));
 
     public static void register(IEventBus eventBus){

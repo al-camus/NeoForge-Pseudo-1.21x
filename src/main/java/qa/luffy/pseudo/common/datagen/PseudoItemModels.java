@@ -24,6 +24,7 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.MESH_GEAR.get());
         basicItem(PseudoItems.CHAINSAW.get());
         basicItem(PseudoItems.DRILL.get());
+        basicItem(PseudoItems.TOOLBOX.get());
     }
 
     public ItemModelBuilder generatedItem(ResourceLocation item) {
