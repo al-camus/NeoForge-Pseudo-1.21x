@@ -39,17 +39,20 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         //will be moved to another class for convenience
         int textureWidth = 15;
         int textureHeight = 46;
-        int energyAmount = this.getMenu().getData().get(1);
-        int energyTotalAmount = this.getMenu().getData().get(0);
+        int energyAmount = this.menu.getData(1);
+        int energyTotalAmount = this.menu.getData(0);
         int i = Mth.ceil(getProgress(energyAmount, energyTotalAmount) * (textureHeight-1));
         guiGraphics.blitSprite(ENERGY_SPRITE, textureWidth, textureHeight, 0, textureHeight - i, this.leftPos + 126, this.topPos + 19 + textureHeight - i, textureWidth, i);
+
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
     float getProgress(int amount, int capacity) {
-        return amount != 0 && capacity != 0 ? Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F) : 0.0F;
+        return Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F);
     }
 
 }

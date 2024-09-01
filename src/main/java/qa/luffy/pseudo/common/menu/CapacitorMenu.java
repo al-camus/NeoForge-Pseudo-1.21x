@@ -23,6 +23,7 @@ public class CapacitorMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(inventory, 0, 37, 21));
         this.addSlot(new Slot(inventory, 1, 37 , 47));
 
+        checkContainerDataCount(containerData, 4);
         this.addDataSlots(containerData);
         this.data = containerData;
 
@@ -35,8 +36,8 @@ public class CapacitorMenu extends AbstractContainerMenu {
         return this.inventory.stillValid(player);
     }
 
-    public ContainerData getData() {
-        return data;
+    public int getData(int index) {
+        return this.data.get(index);
     }
 
     //Taken from Stellaris CC BY-NC-SA 4.0
