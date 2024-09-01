@@ -17,7 +17,7 @@ public class PseudoItems {
     public static final DeferredItem<Item> IRON_GEAR = ITEMS.registerSimpleItem("iron_gear");
     public static final DeferredItem<Item> DRILL = ITEMS.registerSimpleItem("drill", new Item.Properties().stacksTo(1));
 
-    public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().durability(32));
+    public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().stacksTo(1));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -23,12 +23,14 @@ import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
-import qa.luffy.pseudo.common.block.entity.util.energy.EnergyStorageBlock;
+import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.init.PseudoCreativeTabs;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
+import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
+import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Pseudo.MODID)
@@ -50,6 +52,7 @@ public class Pseudo  {
         PseudoRecipeTypes.register(modEventBus);
         PseudoRecipeSerializers.register(modEventBus);
 
+        PseudoDataComponents.register(modEventBus);
         PseudoItems.register(modEventBus);
         PseudoBlocks.register(modEventBus);
         PseudoBlockEntities.register(modEventBus);
@@ -86,6 +89,13 @@ public class Pseudo  {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 PseudoBlockEntities.CAPACITOR_TYPE.get(),
                 (entity, direction) -> ((EnergyStorageBlock) entity).getEnergyStorage(direction));
+        //Energy Items
+        event.registerItem(Capabilities.EnergyStorage.ITEM, (itemStack, context) -> {
+            if(itemStack.getItem() instanceof EnergyStorageItem energyStorageItem){
+                return energyStorageItem.getEnergy(itemStack);
+            }
+            return null;
+        }, PseudoItems.CHAINSAW.get());
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

@@ -3,7 +3,10 @@ package qa.luffy.pseudo.common.recipe.capacitor;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
@@ -22,7 +25,7 @@ public class CapacitorRecipe implements Recipe<CapacitorRecipeInput> {
 
     @Override
     public boolean matches(CapacitorRecipeInput input, Level level) {
-        return this.inputItem.test(input.stack()) && ((Integer)this.inputEnergy).equals((Integer)input.energy());
+        return this.inputItem.test(input.stack()) && this.inputEnergy >= input.energy();
     }
 
     @Override
