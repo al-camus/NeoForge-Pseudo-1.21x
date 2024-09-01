@@ -8,8 +8,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
@@ -27,10 +29,45 @@ import java.util.Optional;
 public class CapacitorBlockEntity extends BaseContainerBlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
     private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
-    private final qa.luffy.pseudo.common.util.energy.PseudoEnergyStorage energyStorage = new PseudoEnergyStorage(64000, 256 ,256) {
+    private final PseudoEnergyStorage energyStorage = new PseudoEnergyStorage(64000, 256 ,256) {
         @Override
         public void setEnergyChanged() {
             setChanged();
+        }
+    };
+
+    ContainerData data = new ContainerData() {
+        @Override
+        public int get(int index) {
+            switch (index) {
+                case 0:
+                    return energyStorage.getMaxEnergyStored();
+                case 1:
+                    return energyStorage.getEnergyStored();
+                case 2:
+                    return totalProcessTime;
+                case 3:
+                    return processTime;
+                default:
+                    return 0;
+            }
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 1:
+                     energyStorage.setEnergy(value);
+                case 2:
+                     totalProcessTime = value;
+                case 3:
+                     processTime = value;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
         }
     };
 
@@ -41,13 +78,15 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
 
     private int energyPerTick = 1;
     private int processTime;
+    private int totalProcessTime;
     public void tick() {
         Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
                 new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
         if (optionalRecipes.isPresent()) {
             CapacitorRecipe recipe = optionalRecipes.get().value();
             if (!isProcessing()) {
-                processTime = getProcessTimeForEnergy(recipe.getInputEnergy());
+                totalProcessTime = getProcessTimeForEnergy(recipe.getInputEnergy());
+                processTime = totalProcessTime;
             }
             if (isProcessing()) {
                 energyStorage.setEnergy(energyStorage.getEnergyStored()-energyPerTick);
@@ -92,12 +131,12 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
 
     @Override
     protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
-        return new CapacitorMenu(containerId, inventory, this);
+        return new CapacitorMenu(containerId, inventory, this, data);
     }
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.pseudo.capacitor");
+        return Component.empty();
     }
 
     public EnergyStorage getEnergyStorage(@Nullable Direction direction) {

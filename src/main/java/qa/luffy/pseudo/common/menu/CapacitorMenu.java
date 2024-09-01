@@ -4,24 +4,27 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 
 public class CapacitorMenu extends AbstractContainerMenu {
 
     private final Container inventory;
+    private final ContainerData data;
 
     public CapacitorMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new SimpleContainer(2));
+        this(containerId, playerInventory, new SimpleContainer(2), new SimpleContainerData(4));
     }
 
-    public CapacitorMenu(int containerId, Inventory playerInventory, Container container) {
+    public CapacitorMenu(int containerId, Inventory playerInventory, Container container, ContainerData containerData) {
         super(PseudoMenus.CAPACITOR_MENU_TYPE.get(), containerId);
         this.inventory = container;
 
-        this.addSlot(new Slot(inventory, 0, 50 , 50)); //TODO change slot placement according to screen texture
-        this.addSlot(new Slot(inventory, 1, 60 , 60)); //TODO change slot placement according to screen texture
+        this.addSlot(new Slot(inventory, 0, 39 , 26)); //TODO change slot placement according to screen texture
+        this.addSlot(new Slot(inventory, 1, 39 , 51)); //TODO change slot placement according to screen texture
+
+        this.addDataSlots(containerData);
+        this.data = containerData;
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -32,11 +35,9 @@ public class CapacitorMenu extends AbstractContainerMenu {
         return this.inventory.stillValid(player);
     }
 
-    @Override
-    protected Slot addSlot(Slot slot) {
-        return super.addSlot(slot);
+    public ContainerData getData() {
+        return data;
     }
-
 
     //Taken from Stellaris CC BY-NC-SA 4.0
     @Override
@@ -66,13 +67,13 @@ public class CapacitorMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, (84 + i * 18) + 58));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, (84 + i * 18)));
             }
         }
     }
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 200));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }
