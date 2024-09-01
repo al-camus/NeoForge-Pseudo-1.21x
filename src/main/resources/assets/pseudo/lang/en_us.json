@@ -5,9 +5,9 @@
   "item.pseudo.graphene_sheet": "Graphene Sheet",
   "item.pseudo.graphene_mesh": "Graphene Mesh",
 
-  "item.pseudo.iron_gear": "Iron Gear",
+  "item.pseudo.mesh_gear": "Mesh Gear",
   "item.pseudo.chainsaw": "Mesh Chainsaw",
-  "item.pseudo.drill": "Drill",
+  "item.pseudo.drill": "Mesh Drill",
 
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",

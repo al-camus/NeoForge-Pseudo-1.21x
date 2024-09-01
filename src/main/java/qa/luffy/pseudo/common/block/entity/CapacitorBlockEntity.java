@@ -20,21 +20,21 @@ import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipe;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeInput;
 import qa.luffy.pseudo.common.util.ImplementedInventory;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
-import qa.luffy.pseudo.common.util.energy.ModEnergyStorage;
+import qa.luffy.pseudo.common.util.energy.PseudoEnergyStorage;
 
 import java.util.Optional;
 
 public class CapacitorBlockEntity extends BaseContainerBlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
     private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
-    private final ModEnergyStorage energyStorage = new ModEnergyStorage(64000, 256 ,256) {
+    private final qa.luffy.pseudo.common.util.energy.PseudoEnergyStorage energyStorage = new PseudoEnergyStorage(64000, 256 ,256) {
         @Override
         public void setEnergyChanged() {
             setChanged();
         }
     };
 
-    private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());;
+    private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
     }

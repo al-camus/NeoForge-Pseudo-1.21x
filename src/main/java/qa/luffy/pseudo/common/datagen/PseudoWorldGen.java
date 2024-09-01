@@ -14,13 +14,13 @@ import qa.luffy.pseudo.common.world.PseudoPlacedFeatures;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class PseudoWorldGenProvider extends DatapackBuiltinEntriesProvider {
+public class PseudoWorldGen extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, PseudoConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, PseudoPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, PseudoBiomeModifiers::bootstrap);
 
-    public PseudoWorldGenProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+    public PseudoWorldGen(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
         super(packOutput, registries, BUILDER, Set.of(Pseudo.MODID));
     }
 
