@@ -3,21 +3,21 @@ package qa.luffy.pseudo.common.util.energy;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.energy.EnergyStorage;
 
-public abstract class ModEnergyStorage extends EnergyStorage {
+public abstract class PseudoEnergyStorage extends EnergyStorage {
 
-    public ModEnergyStorage(int capacity) {
+    public PseudoEnergyStorage(int capacity) {
         this(capacity, capacity, capacity, 0);
     }
 
-    public ModEnergyStorage(int capacity, int maxTransfer) {
+    public PseudoEnergyStorage(int capacity, int maxTransfer) {
         this(capacity, maxTransfer, maxTransfer, 0);
     }
 
-    public ModEnergyStorage(int capacity, int maxReceive, int maxExtract) {
+    public PseudoEnergyStorage(int capacity, int maxReceive, int maxExtract) {
         this(capacity, maxReceive, maxExtract, 0);
     }
 
-    public ModEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
+    public PseudoEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
         super(capacity, maxReceive, maxExtract, energy);
     }
 

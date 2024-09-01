@@ -21,7 +21,7 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.REFINED_GRAPHITE.get());
         basicItem(PseudoItems.GRAPHENE_SHEET.get());
         basicItem(PseudoItems.GRAPHENE_MESH.get());
-        basicItem(PseudoItems.IRON_GEAR.get());
+        basicItem(PseudoItems.MESH_GEAR.get());
         basicItem(PseudoItems.CHAINSAW.get());
         basicItem(PseudoItems.DRILL.get());
     }

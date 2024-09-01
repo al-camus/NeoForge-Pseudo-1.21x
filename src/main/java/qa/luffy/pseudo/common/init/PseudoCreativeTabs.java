@@ -23,7 +23,7 @@ public class PseudoCreativeTabs {
         pOutput.accept(PseudoItems.REFINED_GRAPHITE);
         pOutput.accept(PseudoItems.GRAPHENE_SHEET);
         pOutput.accept(PseudoItems.GRAPHENE_MESH);
-        pOutput.accept(PseudoItems.IRON_GEAR);
+        pOutput.accept(PseudoItems.MESH_GEAR);
         //advanced items
         pOutput.accept(PseudoItems.CHAINSAW);
         pOutput.accept(PseudoItems.DRILL);
