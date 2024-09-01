@@ -36,6 +36,42 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.RAW_GRAPHITE.get()), has(PseudoItems.RAW_GRAPHITE.get()))
                 .save(recipeOutput, Pseudo.resource("graphene_sheet_from_refined_graphite"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MOLE_MITTS.get())
+                .define('F', Items.FLINT)
+                .define('L', Items.LEATHER)
+                .pattern("FFF")
+                .pattern("FLL")
+                .pattern(" LF")
+                .unlockedBy(getHasName(Items.FLINT), has(Items.FLINT))
+                .save(recipeOutput, Pseudo.resource("mole_mitts_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MOLE_MITTS.get())
+                .define('F', Items.FLINT)
+                .define('L', Items.LEATHER)
+                .pattern("FFF")
+                .pattern("LLF")
+                .pattern("FL ")
+                .unlockedBy(getHasName(Items.FLINT), has(Items.FLINT))
+                .save(recipeOutput, Pseudo.resource("mole_mitts_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_MITTS.get())
+                .define('I', Items.IRON_INGOT)
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("III")
+                .pattern("IMM")
+                .pattern(" MI")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_mitts_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_MITTS.get())
+                .define('I', Items.IRON_INGOT)
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("III")
+                .pattern("MMI")
+                .pattern("IM ")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_mitts_right"));
+
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");

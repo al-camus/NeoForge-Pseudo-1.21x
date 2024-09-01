@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "LLF",
+    "FL "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mole_mitts"
+  }
+}

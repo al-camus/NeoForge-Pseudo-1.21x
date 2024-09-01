@@ -8,6 +8,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
+import qa.luffy.pseudo.common.util.PseudoTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,5 +32,11 @@ public class PseudoBlockTags extends BlockTagsProvider {
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get())
                 .add(PseudoBlocks.NETHER_GRAPHITE_ORE.get());
+
+        this.tag(PseudoTags.Blocks.MITTS_MINEABLE)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
     }
+
 }

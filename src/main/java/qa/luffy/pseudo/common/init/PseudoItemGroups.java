@@ -13,7 +13,7 @@ import qa.luffy.pseudo.common.item.PseudoItems;
 
 import java.util.function.Supplier;
 
-public class PseudoCreativeTabs {
+public class PseudoItemGroups {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Pseudo.MODID);
 
     public static final Supplier<CreativeModeTab> PSEUDO_ITEMS_TAB = CREATIVE_MODE_TABS.register("pseudo_items_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_items_tab")).icon(() -> new ItemStack(PseudoItems.RAW_GRAPHITE.get())).displayItems((pParameters, pOutput) -> {
@@ -27,6 +27,8 @@ public class PseudoCreativeTabs {
         //advanced items
         pOutput.accept(PseudoItems.CHAINSAW);
         pOutput.accept(PseudoItems.DRILL);
+        pOutput.accept(PseudoItems.MOLE_MITTS);
+        pOutput.accept(PseudoItems.MESH_MITTS);
         pOutput.accept(PseudoItems.TOOLBOX);
     }).build());
 

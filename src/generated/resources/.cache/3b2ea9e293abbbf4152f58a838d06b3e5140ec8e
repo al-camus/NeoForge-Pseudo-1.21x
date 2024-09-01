@@ -1,3 +1,4 @@
-// 1.21	2024-08-25T22:12:47.5219516	Tags for minecraft:block mod id pseudo
+// 1.21	2024-09-01T18:26:20.5253288	Tags for minecraft:block mod id pseudo
 050f92b475545973c1c965259427347b2c773323 data/minecraft/tags/block/mineable/pickaxe.json
 31436a92c96857cac1774a1ab5210aaae9aa3211 data/minecraft/tags/block/needs_stone_tool.json
+82362cfbd1836db13c7e9d36c8712821e795ac55 data/pseudo/tags/block/mineable/mitts.json

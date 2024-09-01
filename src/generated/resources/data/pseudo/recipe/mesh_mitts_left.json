@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    "III",
+    "IMM",
+    " MI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_mitts"
+  }
+}
