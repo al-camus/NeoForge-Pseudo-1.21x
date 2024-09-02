@@ -2,11 +2,12 @@ package qa.luffy.pseudo.common.item;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.init.PseudoToolTiers;
 
 public class PseudoItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Pseudo.MODID);
@@ -25,6 +26,7 @@ public class PseudoItems {
 
     public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().stacksTo(1));
 
+    public static final DeferredItem<Item> WIND_KNOTS = ITEMS.register("wind_knots", () -> new WindKnotsItem(new Item.Properties().setNoRepair().durability(3).fireResistant().rarity(Rarity.RARE)));
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

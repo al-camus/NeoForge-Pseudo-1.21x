@@ -16,6 +16,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.apache.commons.lang3.math.Fraction;
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
+import qa.luffy.pseudo.common.init.PseudoTags;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class ChainsawItem extends Item implements EnergyStorageItem {
 
         if(!level.isClientSide()) {
             IEnergyStorage energy = getEnergy(pContext.getItemInHand());
-            if(level.getBlockState(pContext.getClickedPos()).is(BlockTags.LOGS) && energy!=null && energy.getEnergyStored()>=200) {
+            if(level.getBlockState(pContext.getClickedPos()).is(PseudoTags.Blocks.CHAINSAW_MINEABLE) && energy!=null && energy.getEnergyStored()>=200) {
                 level.destroyBlock(pContext.getClickedPos(), true, pContext.getPlayer());
 
                 getEnergy(pContext.getItemInHand()).extractEnergy(200, false);

@@ -12,6 +12,8 @@
   "item.pseudo.mesh_mitts": "Mesh Mitts",
   "item.pseudo.toolbox": "Mesh Toolbox",
 
+  "item.pseudo.wind_knots": "Wind Knots",
+
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
   "block.pseudo.raw_graphite_block": "Block of Raw Graphite",
@@ -24,5 +26,16 @@
   "block.pseudo.capacitor": "Capacitor",
 
   "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",
-  "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks"
+  "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks",
+
+  "tooltip.pseudo.hold_shift_for_info": "Hold §e§oSHIFT §r§7for info",
+  "tooltip.pseudo.uses_left": "%s Uses Left",
+  "tooltip.pseudo.one_use_left": "1 Use Left",
+  "tooltip.pseudo.unlimited_uses": "Unlimited Uses",
+  "tooltip.pseudo.hold_ctrl_for_tags": "Hold CTRL to see tags",
+  "tooltip.pseudo.hold_alt_for_nbt": "Hold ALT to see NBT",
+  "tooltip.pseudo.failed_to_load_nbt": "Failed to load NBT",
+  "tooltip.pseudo.block_tags": "Block Tags:",
+  "tooltip.pseudo.item_tags": "Item Tags:",
+  "tooltip.pseudo.not_yet_implemented": "Not Yet Implemented"
 }

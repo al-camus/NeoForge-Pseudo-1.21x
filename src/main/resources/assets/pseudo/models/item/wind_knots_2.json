@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "pseudo:item/wind_knots_2"
+  }
+}

@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.common.util;
+package qa.luffy.pseudo.common.init;
 
 
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +12,8 @@ public class PseudoTags {
         public static final TagKey<Block> INCORRECT_FOR_MESH_TOOL = createTag("incorrect_for_mesh_tool.json");
         public static final TagKey<Block> NEEDS_MESH_TOOL = createTag("needs_mesh_tool");
 
+        public static final TagKey<Block> CHAINSAW_MINEABLE = createTag("mineable/chainsaw");
+        public static final TagKey<Block> DRILL_MINEABLE = createTag("mineable/drill");
         public static final TagKey<Block> MITTS_MINEABLE = createTag("mineable/mitts");
         public static final TagKey<Block> SCYTHE_MINEABLE = createTag("mineable/scythe");
 
