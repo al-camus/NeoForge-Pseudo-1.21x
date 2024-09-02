@@ -27,6 +27,8 @@ public class PseudoItems {
     public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().stacksTo(1));
 
     public static final DeferredItem<Item> WIND_KNOTS = ITEMS.register("wind_knots", () -> new WindKnotsItem(new Item.Properties().setNoRepair().durability(3).fireResistant().rarity(Rarity.RARE)));
+
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
