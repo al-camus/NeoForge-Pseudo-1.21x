@@ -2,7 +2,7 @@ package qa.luffy.pseudo.common.util;
 
 import net.minecraft.ChatFormatting;
 
-public class Tooltip extends qa.luffy.pseudo.util.Localizable {
+public class Tooltip extends Localizable {
     public Tooltip(String key) {
         super(key, ChatFormatting.GRAY);
     }

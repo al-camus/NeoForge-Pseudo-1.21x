@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.util;
+package qa.luffy.pseudo.common.util;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
