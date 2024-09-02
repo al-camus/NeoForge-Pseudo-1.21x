@@ -60,6 +60,8 @@ public class WindKnotsItem extends Item {
             throwableEntity.push(0, 3, 0);
             this.gust(4f, player, throwableEntity);
         }
+        //durability fix needed
+        //player.getItemInHand(hand).hurtAndBreak(1, ((ServerLevel) level, ((ServerPlayer) player), item -> Objects.requireNonNull(player).onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.HORSE_BREATHE, SoundSource.WEATHER, 2F, 0.4F);
         player.getCooldowns().addCooldown(this, 20);
         return InteractionResultHolder.pass(player.getItemInHand(hand));
