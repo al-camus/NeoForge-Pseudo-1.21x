@@ -80,11 +80,25 @@ public class PseudoRecipes extends RecipeProvider {
 
         twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK, 4, "refined_graphite_brick_from_block");
 
-        blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
-        blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 1600, PseudoItems.RAW_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.NETHER_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.GRAPHITE_DUST_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.RAW_GRAPHITE_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
+
+        blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 400, PseudoItems.RAW_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 400, PseudoItems.RAW_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoBlocks.NETHER_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoBlocks.GRAPHITE_DUST_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 200, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
+        blasting(recipeOutput, List.of(PseudoBlocks.RAW_GRAPHITE_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 200, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
 
         energizing(recipeOutput, Ingredient.of(Items.OAK_LOG, Items.DARK_OAK_LOG), 100, new ItemStack(Items.CHARCOAL, 4), null); //TEST RECIPE
         energizing(recipeOutput, Ingredient.of(Items.ACACIA_LOG, Items.BIRCH_LOG), 50, new ItemStack(Items.CHARCOAL, 2), "lower_output"); //TEST RECIPE
+        energizing(recipeOutput, Ingredient.of(Items.REDSTONE_ORE), 200, new ItemStack(Items.STONE, 1), "lower_output"); //TEST RECIPE
 
 
     }

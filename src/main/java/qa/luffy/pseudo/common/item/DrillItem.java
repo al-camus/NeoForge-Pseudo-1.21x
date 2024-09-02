@@ -29,7 +29,7 @@ public class DrillItem extends Item implements EnergyStorageItem {
         Level level = pContext.getLevel();
 
         if(!level.isClientSide()) {
-            if(level.getBlockState(pContext.getClickedPos()).is(PseudoTags.Blocks.DRILL_MINEABLE)) {
+            if(level.getBlockState(pContext.getClickedPos()).is(PseudoTags.Blocks.DRILL_MINEABLE) && !level.getBlockState(pContext.getClickedPos()).is(BlockTags.NEEDS_DIAMOND_TOOL)) {
                 IEnergyStorage energy = getEnergy(pContext.getItemInHand());
                 if (pContext.getPlayer().isCreative()) level.destroyBlock(pContext.getClickedPos(), true, pContext.getPlayer());
                 else if (energy != null && energy.getEnergyStored() >= 200) {

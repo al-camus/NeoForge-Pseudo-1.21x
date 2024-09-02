@@ -31,7 +31,6 @@ public class PseudoItemModels extends ItemModelProvider {
         handheldItem(PseudoItems.MESH_MITTS);
         handheldItem(PseudoItems.CHAINSAW);
         handheldItem(PseudoItems.DRILL);
-        handheldItem(PseudoItems.WIND_KNOTS);
     }
 
     public ItemModelBuilder generatedItem(ResourceLocation item) {

@@ -33,6 +33,12 @@ public class PseudoBlockTags extends BlockTagsProvider {
                 .add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get())
                 .add(PseudoBlocks.NETHER_GRAPHITE_ORE.get());
 
+        this.tag(PseudoTags.Blocks.INCORRECT_FOR_MOLE_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+        this.tag(PseudoTags.Blocks.INCORRECT_FOR_MESH_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
         this.tag(PseudoTags.Blocks.CHAINSAW_MINEABLE)
                 .addTag(BlockTags.MINEABLE_WITH_HOE)
                 .addTag(BlockTags.MINEABLE_WITH_AXE);
@@ -44,7 +50,11 @@ public class PseudoBlockTags extends BlockTagsProvider {
                 .addTag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .addTag(BlockTags.SWORD_EFFICIENT);
-        this.tag(PseudoTags.Blocks.MITTS_MINEABLE)
+        this.tag(PseudoTags.Blocks.MOLE_MITTS_MINEABLE)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
+        this.tag(PseudoTags.Blocks.MESH_MITTS_MINEABLE)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(BlockTags.MINEABLE_WITH_SHOVEL);

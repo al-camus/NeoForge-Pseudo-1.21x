@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 0.8,
+  "group": "pseudo:refined_graphite",
+  "ingredient": {
+    "item": "pseudo:raw_graphite"
+  },
+  "result": {
+    "count": 1,
+    "id": "pseudo:refined_graphite"
+  }
+}

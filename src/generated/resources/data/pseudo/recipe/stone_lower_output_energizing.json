@@ -1,0 +1,11 @@
+{
+  "type": "pseudo:capacitor",
+  "energy": 200,
+  "ingredient": {
+    "item": "minecraft:redstone_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:stone"
+  }
+}
