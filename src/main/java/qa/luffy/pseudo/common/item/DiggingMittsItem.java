@@ -1,8 +1,7 @@
 package qa.luffy.pseudo.common.item;
 
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
-import qa.luffy.pseudo.common.util.PseudoTags;
+import qa.luffy.pseudo.common.init.PseudoTags;
 
 public class DiggingMittsItem extends DiggerItem {
 

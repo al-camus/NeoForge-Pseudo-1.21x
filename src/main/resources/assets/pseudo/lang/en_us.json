@@ -12,6 +12,8 @@
   "item.pseudo.mesh_mitts": "Mesh Mitts",
   "item.pseudo.toolbox": "Mesh Toolbox",
 
+  "item.pseudo.wind_knots": "Wind Knots",
+
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
   "block.pseudo.raw_graphite_block": "Block of Raw Graphite",
