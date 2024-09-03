@@ -76,9 +76,12 @@ public class PseudoRecipes extends RecipeProvider {
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET, "graphene_sheet_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHENE_SHEET_BLOCK, "graphene_sheet_block");
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH, "graphene_mesh_from_block", RecipeCategory.MISC, PseudoBlocks.MESH_BLOCK, "graphene_mesh_block");
+        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH, "graphene_mesh_from_block", RecipeCategory.MISC, PseudoBlocks.MESH_BLOCK, "mesh_block");
 
         twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK, 4, "refined_graphite_brick_from_block");
+
+        pressurePlate(recipeOutput, PseudoBlocks.MESH_PRESSURE_PLATE.get(), PseudoBlocks.MESH_BLOCK.get());
+        buttonBuilder(PseudoBlocks.MESH_BUTTON.get(), Ingredient.of(PseudoBlocks.MESH_BLOCK.get())).group("graphene_mesh_block").unlockedBy("has_mesh_block", has(PseudoBlocks.MESH_BLOCK.get())).save(recipeOutput);
 
         smelting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
         smelting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 400, PseudoItems.REFINED_GRAPHITE.getRegisteredName());

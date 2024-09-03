@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "pseudo:block/mesh_pressure_plate"
+    },
+    "powered=true": {
+      "model": "pseudo:block/mesh_pressure_plate_down"
+    }
+  }
+}

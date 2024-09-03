@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "graphene_mesh_block",
+  "ingredients": [
+    {
+      "item": "pseudo:mesh_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_button"
+  }
+}

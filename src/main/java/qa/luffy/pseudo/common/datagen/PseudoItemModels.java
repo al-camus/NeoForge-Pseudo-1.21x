@@ -3,12 +3,15 @@ package qa.luffy.pseudo.common.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.item.PseudoItems;
 
 public class PseudoItemModels extends ItemModelProvider {
@@ -31,6 +34,13 @@ public class PseudoItemModels extends ItemModelProvider {
         handheldItem(PseudoItems.MESH_MITTS);
         handheldItem(PseudoItems.CHAINSAW);
         handheldItem(PseudoItems.DRILL);
+        //misc
+        buttonItem(PseudoBlocks.MESH_BUTTON, PseudoBlocks.MESH_BLOCK);
+    }
+
+    public void buttonItem(DeferredBlock block, DeferredBlock<Block> baseBlock){
+        this.withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))
+                .texture("texture", ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "block/" + baseBlock.getId().getPath()));
     }
 
     public ItemModelBuilder generatedItem(ResourceLocation item) {
@@ -39,7 +49,8 @@ public class PseudoItemModels extends ItemModelProvider {
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()));
     }
 
-    private ItemModelBuilder handheldItem(DeferredItem<Item> item) {
+    public ItemModelBuilder handheldItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld")).texture("layer0", ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "item/" + item.getId().getPath()));
-        }
+    }
+
 }

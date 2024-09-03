@@ -44,6 +44,8 @@ public class PseudoItemGroups {
         pOutput.accept(PseudoBlocks.GRAPHENE_SHEET_BLOCK);
         pOutput.accept(PseudoBlocks.MESH_BLOCK);
         //advanced blocks
+        pOutput.accept(PseudoBlocks.MESH_BUTTON);
+        pOutput.accept(PseudoBlocks.MESH_PRESSURE_PLATE);
         pOutput.accept(PseudoBlocks.CAPACITOR_BLOCK);
     }).build());
 

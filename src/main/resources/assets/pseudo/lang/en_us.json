@@ -23,6 +23,8 @@
   "block.pseudo.graphene_sheet_block": "Block of Graphene Sheet",
   "block.pseudo.mesh_block": "Block of Graphene Mesh",
 
+  "block.pseudo.mesh_button": "Mesh Button",
+  "block.pseudo.mesh_pressure_plate": "Mesh Pressure Plate",
   "block.pseudo.capacitor": "Capacitor",
 
   "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",

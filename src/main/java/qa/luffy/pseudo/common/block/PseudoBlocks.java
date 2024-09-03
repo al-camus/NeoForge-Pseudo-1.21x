@@ -3,11 +3,9 @@ package qa.luffy.pseudo.common.block;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -25,9 +23,11 @@ public class PseudoBlocks {
     public static final DeferredBlock<Block> GRAPHITE_DUST_BLOCK = registerBlock("graphite_dust_block", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SAND).strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> REFINED_GRAPHITE_BLOCK = registerBlock("refined_graphite_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> REFINED_GRAPHITE_BRICK = registerBlock("refined_graphite_brick", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> GRAPHENE_SHEET_BLOCK = registerBlock("graphene_sheet_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 4f)));
+    public static final DeferredBlock<Block> GRAPHENE_SHEET_BLOCK = registerBlock("graphene_sheet_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MESH_BLOCK = registerBlock("mesh_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f, 10000f)));
     //block entities new Block(Block.Settings.copy(Blocks.OBSIDIAN)));
+    public static final DeferredBlock<Block> MESH_PRESSURE_PLATE = registerBlock("mesh_pressure_plate", () -> new PressurePlateBlock(BlockSetType.GOLD, BlockBehaviour.Properties.of().strength(4f, 10000f)));
+    public static final DeferredBlock<Block> MESH_BUTTON = registerBlock("mesh_button", () -> new ButtonBlock(BlockSetType.GOLD, 5, BlockBehaviour.Properties.of().strength(4f, 10000f).noCollission()));
     public static final DeferredBlock<Block> CAPACITOR_BLOCK = registerBlock("capacitor",
             () -> new CapacitorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 

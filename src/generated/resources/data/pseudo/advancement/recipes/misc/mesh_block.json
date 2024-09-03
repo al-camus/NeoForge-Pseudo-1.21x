@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pseudo:graphene_mesh_block"
+        "recipe": "pseudo:mesh_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pseudo:graphene_mesh_block"
+      "pseudo:mesh_block"
     ]
   }
 }

@@ -34,6 +34,8 @@ public class  PseudoBlockLootTables extends BlockLootSubProvider {
         dropSelf(PseudoBlocks.GRAPHENE_SHEET_BLOCK.get());
         dropSelf(PseudoBlocks.MESH_BLOCK.get());
         //advanced blocks
+        dropSelf(PseudoBlocks.MESH_BUTTON.get());
+        dropSelf(PseudoBlocks.MESH_PRESSURE_PLATE.get());
         dropSelf(PseudoBlocks.CAPACITOR_BLOCK.get());
         //ore
         add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
