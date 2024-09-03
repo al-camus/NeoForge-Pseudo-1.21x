@@ -25,9 +25,9 @@ public class PseudoBlocks {
     public static final DeferredBlock<Block> REFINED_GRAPHITE_BRICK = registerBlock("refined_graphite_brick", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> GRAPHENE_SHEET_BLOCK = registerBlock("graphene_sheet_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MESH_BLOCK = registerBlock("mesh_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f, 10000f)));
-    //block entities new Block(Block.Settings.copy(Blocks.OBSIDIAN)));
     public static final DeferredBlock<Block> MESH_PRESSURE_PLATE = registerBlock("mesh_pressure_plate", () -> new PressurePlateBlock(BlockSetType.GOLD, BlockBehaviour.Properties.of().strength(4f, 10000f)));
     public static final DeferredBlock<Block> MESH_BUTTON = registerBlock("mesh_button", () -> new ButtonBlock(BlockSetType.GOLD, 5, BlockBehaviour.Properties.of().strength(4f, 10000f).noCollission()));
+    //block entities
     public static final DeferredBlock<Block> CAPACITOR_BLOCK = registerBlock("capacitor",
             () -> new CapacitorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 

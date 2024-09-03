@@ -24,13 +24,16 @@ public class PseudoItemGroups {
         pOutput.accept(PseudoItems.GRAPHENE_SHEET);
         pOutput.accept(PseudoItems.GRAPHENE_MESH);
         pOutput.accept(PseudoItems.MESH_GEAR);
-        //advanced items
+        //tools
         pOutput.accept(PseudoItems.CHAINSAW);
         pOutput.accept(PseudoItems.DRILL);
         pOutput.accept(PseudoItems.MOLE_MITTS);
         pOutput.accept(PseudoItems.MESH_MITTS);
+        //advanced-craftable
         pOutput.accept(PseudoItems.TOOLBOX);
+        //advanced-findable
         pOutput.accept(PseudoItems.WIND_KNOTS);
+        pOutput.accept(PseudoItems.SKULK_FRUIT);
     }).build());
 
     public static final Supplier<CreativeModeTab> PSEUDO_BLOCKS_TAB = CREATIVE_MODE_TABS.register("pseudo_blocks_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_blocks_tab")).icon(() -> new ItemStack(PseudoBlocks.RAW_GRAPHITE_BLOCK)).withTabsBefore(ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "pseudo_items_tab")).displayItems((pParameters, pOutput) -> {
@@ -44,9 +47,9 @@ public class PseudoItemGroups {
         pOutput.accept(PseudoBlocks.GRAPHENE_SHEET_BLOCK);
         pOutput.accept(PseudoBlocks.MESH_BLOCK);
         //advanced blocks
-        pOutput.accept(PseudoBlocks.MESH_BUTTON);
-        pOutput.accept(PseudoBlocks.MESH_PRESSURE_PLATE);
         pOutput.accept(PseudoBlocks.CAPACITOR_BLOCK);
+        pOutput.accept(PseudoBlocks.MESH_PRESSURE_PLATE);
+        pOutput.accept(PseudoBlocks.MESH_BUTTON);
     }).build());
 
     public static void register(IEventBus eventBus) {
