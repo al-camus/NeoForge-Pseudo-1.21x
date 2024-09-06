@@ -1,29 +1,36 @@
 package qa.luffy.pseudo.common.menu;
 
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 
 public class CapacitorMenu extends AbstractContainerMenu {
 
     private final Container inventory;
     private final ContainerData data;
 
-    public CapacitorMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new SimpleContainer(2), new SimpleContainerData(4));
+    public CapacitorBlockEntity entity;
+
+    public CapacitorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buf) {
+        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buf.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CapacitorMenu(int containerId, Inventory playerInventory, Container container, ContainerData containerData) {
+    public CapacitorMenu(int containerId, Inventory playerInventory, BlockEntity entity, ContainerData containerData) {
         super(PseudoMenus.CAPACITOR_MENU_TYPE.get(), containerId);
-        this.inventory = container;
-
+        this.inventory = (Container) entity;
+        checkContainerSize(this.inventory, 2);
+        this.entity = (CapacitorBlockEntity) entity;
         this.addSlot(new Slot(inventory, 0, 37, 21));
         this.addSlot(new Slot(inventory, 1, 37 , 47));
 
-        checkContainerDataCount(containerData, 4);
+        checkContainerDataCount(containerData, 2);
         this.addDataSlots(containerData);
         this.data = containerData;
 
@@ -34,10 +41,6 @@ public class CapacitorMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return this.inventory.stillValid(player);
-    }
-
-    public int getData(int index) {
-        return this.data.get(index);
     }
 
     //Taken from Stellaris CC BY-NC-SA 4.0
@@ -65,6 +68,7 @@ public class CapacitorMenu extends AbstractContainerMenu {
 
         return newStack;
     }
+
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
@@ -72,6 +76,7 @@ public class CapacitorMenu extends AbstractContainerMenu {
             }
         }
     }
+
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));

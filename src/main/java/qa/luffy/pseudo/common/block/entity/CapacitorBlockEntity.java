@@ -15,8 +15,12 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.network.IContainerFactory;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
+import qa.luffy.pseudo.common.networking.packet.EnergyData;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipe;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeInput;
@@ -33,60 +37,60 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
         @Override
         public void setEnergyChanged() {
             setChanged();
+            PacketDistributor.sendToAllPlayers(new EnergyData(this.energy, getBlockPos()));
         }
     };
-    ContainerData data = new ContainerData() {
-        @Override
-        public int get(int index) {
-            return switch (index) {
-                case 0 -> energyStorage.getMaxEnergyStored();
-                case 1 -> energyStorage.getEnergyStored();
-                case 2 -> totalProcessTime;
-                case 3 -> processTime;
-                default -> 0;
-            };
-        }
-
-        @Override
-        public void set(int index, int value) {
-            switch (index) {
-                case 1:
-                     energyStorage.setEnergy(value);
-                case 2:
-                     totalProcessTime = value;
-                case 3:
-                     processTime = value;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 4;
-        }
-    };
+    protected final ContainerData data;
     private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());
 
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
+        data = new ContainerData() {
+            @Override
+            public int get(int index) {
+                return switch (index) {
+                    case 0 -> totalProcessTime;
+                    case 1 -> processTime;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int index, int value) {
+                switch (index) {
+                    case 0:
+                        totalProcessTime = value;
+                    case 1:
+                        processTime = value;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        };
     }
 
     private int energyPerTick = 1;
     private int processTime;
     private int totalProcessTime;
     public void tick() {
-        Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
-                new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
-        if (optionalRecipes.isPresent()) {
-            CapacitorRecipe recipe = optionalRecipes.get().value();
-            if (!isProcessing()) {
-                totalProcessTime = getProcessTimeForEnergy(recipe.getInputEnergy());
-                processTime = totalProcessTime;
-            }
-            if (isProcessing()) {
-                energyStorage.setEnergy(energyStorage.getEnergyStored()-energyPerTick);
-                if (--processTime == 0) {
-                    setItem(0, ItemStack.EMPTY);
-                    setItem(1, recipe.getResult());
+        if(!level.isClientSide()) {
+            Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
+                    new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
+            if (optionalRecipes.isPresent()) {
+                CapacitorRecipe recipe = optionalRecipes.get().value();
+                if (!isProcessing()) {
+                    totalProcessTime = getProcessTimeForEnergy(recipe.getInputEnergy());
+                    processTime = totalProcessTime;
+                }
+                if (isProcessing()) {
+                    energyStorage.setEnergy(energyStorage.getEnergyStored() - energyPerTick);
+                    if (--processTime == 0) {
+                        setItem(0, ItemStack.EMPTY);
+                        setItem(1, recipe.getResult());
+                    }
                 }
             }
         }
@@ -133,7 +137,7 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
         return Component.translatable("block.pseudo.capacitor");
     }
 
-    public EnergyStorage getEnergyStorage(@Nullable Direction direction) {
+    public PseudoEnergyStorage getEnergyStorage(@Nullable Direction direction) {
         return energyStorage;
     }
 }

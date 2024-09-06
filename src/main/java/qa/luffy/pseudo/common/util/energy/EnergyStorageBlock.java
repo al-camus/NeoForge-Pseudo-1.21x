@@ -6,5 +6,5 @@ import org.jetbrains.annotations.Nullable;
 
 @FunctionalInterface
 public interface EnergyStorageBlock {
-    EnergyStorage getEnergyStorage(@Nullable Direction direction);
+    PseudoEnergyStorage getEnergyStorage(@Nullable Direction direction);
 }

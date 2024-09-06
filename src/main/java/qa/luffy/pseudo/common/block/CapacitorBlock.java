@@ -1,7 +1,9 @@
 package qa.luffy.pseudo.common.block;
 
 import com.mojang.serialization.MapCodec;
+import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -16,11 +18,15 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.common.extensions.IPlayerExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
+import qa.luffy.pseudo.common.menu.PseudoMenus;
+
+import java.awt.*;
 
 public class CapacitorBlock extends BaseEntityBlock {
 
@@ -44,16 +50,11 @@ public class CapacitorBlock extends BaseEntityBlock {
         return new CapacitorBlockEntity(blockPos, blockState);
     }
 
-    @Nullable
-    @Override
-    protected MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
-        return new SimpleMenuProvider((containerId, playerInventory, player) -> new CapacitorMenu(containerId, playerInventory), Component.translatable("block.pseudo.capacitor"));
-    }
-
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-            serverPlayer.openMenu(state.getMenuProvider(level, pos));
+            player.openMenu(state.getMenuProvider(level, pos), pos);
+
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }

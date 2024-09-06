@@ -10,6 +10,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.energy.EnergyStorage;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
 
@@ -35,23 +36,26 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         guiGraphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
         //will be moved to another class for convenience
         int textureWidth = 15;
         int textureHeight = 46;
-        int energyAmount = this.menu.getData(1);
-        int energyTotalAmount = this.menu.getData(0);
-        int i = Mth.ceil(getProgress(energyAmount, energyTotalAmount) * (textureHeight-1));
-        guiGraphics.blitSprite(ENERGY_SPRITE, textureWidth, textureHeight, 0, textureHeight - i, this.leftPos + 126, this.topPos + 19 + textureHeight - i, textureWidth, i);
+        if (this.menu.entity == null) return;
+        EnergyStorage energyStorage = this.menu.entity.getEnergyStorage(null);
+        if (energyStorage != null) {
+            int energyAmount = energyStorage.getEnergyStored();
+            int energyTotalAmount = energyStorage.getMaxEnergyStored();
+            int i = Mth.ceil(getProgress(energyAmount, energyTotalAmount) * (textureHeight - 1));
+            guiGraphics.blitSprite(ENERGY_SPRITE, textureWidth, textureHeight, 0, textureHeight - i, this.leftPos + 126, this.topPos + 19 + textureHeight - i, textureWidth, i);
+        }
 
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
-        menu.sendAllDataToRemote();
     }
+
+//    @Override
+//    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+//        super.render(guiGraphics, mouseX, mouseY, partialTick);
+//        this.renderTooltip(guiGraphics, mouseX, mouseY);
+//    }
+
     float getProgress(int amount, int capacity) {
         return Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F);
     }

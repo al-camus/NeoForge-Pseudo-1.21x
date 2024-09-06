@@ -19,6 +19,11 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handlers.ClientPayloadHandler;
+import net.neoforged.neoforge.network.handling.ClientPayloadContext;
+import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
@@ -27,6 +32,7 @@ import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.init.PseudoItemGroups;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
+import qa.luffy.pseudo.common.networking.packet.EnergyData;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
@@ -65,8 +71,11 @@ public class Pseudo  {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        //Register capabilities
+        // Register capabilities
         modEventBus.addListener(this::onRegisterCapabilities);
+
+        // Register payloads
+        modEventBus.addListener(this::registerPayloads);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -96,6 +105,15 @@ public class Pseudo  {
             }
             return null;
         }, PseudoItems.CHAINSAW.get());
+    }
+
+    public void registerPayloads(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("1");
+        registrar.playToClient(
+                EnergyData.TYPE,
+                EnergyData.STREAM_CODEC,
+                EnergyData::handleData
+        );
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
