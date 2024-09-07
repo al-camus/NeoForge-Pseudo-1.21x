@@ -1,7 +1,6 @@
 {
 	"credit": "Made by Lucid with Blockbench",
 	"texture_size": [64, 64],
-	"parent": "item/handheld",
 	"textures": {
 		"0": "pseudo:item/mole_mitts",
 		"particle": "pseudo:item/mole_mitts"
