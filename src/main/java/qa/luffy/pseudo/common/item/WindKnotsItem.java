@@ -7,6 +7,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -56,9 +57,11 @@ public class WindKnotsItem extends Item {
             throwableEntity.push(0, 3, 0);
             this.gust(4f, player, throwableEntity);
         }
-        //durability fix needed
-        //player.getItemInHand(hand).hurtAndBreak(1, ((ServerLevel) level, ((ServerPlayer) player), item -> Objects.requireNonNull(player).onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
-        level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.HORSE_BREATHE, SoundSource.WEATHER, 2F, 0.4F);
+        if (hand.name().equals("MAIN_HAND"))
+            player.getItemInHand(hand).hurtAndBreak(1, (LivingEntity) player, EquipmentSlot.MAINHAND);
+        else if (hand.name().equals("OFF_HAND"))
+            player.getItemInHand(hand).hurtAndBreak(1, (LivingEntity) player, EquipmentSlot.OFFHAND);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WIND_CHARGE_BURST, SoundSource.WEATHER, 2F, 0.4F);
         player.getCooldowns().addCooldown(this, 20);
         return InteractionResultHolder.pass(player.getItemInHand(hand));
     }

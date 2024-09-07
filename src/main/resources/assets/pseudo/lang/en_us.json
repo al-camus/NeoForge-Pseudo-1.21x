@@ -18,6 +18,7 @@
 
   "item.pseudo.wind_knots": "Wind Knots",
   "item.pseudo.skulk_fruit": "Skulk Fruit",
+  "item.pseudo.skulk_tome": "Skulk Tome",
 
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
@@ -35,7 +36,7 @@
   "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",
   "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks",
 
-  "tooltip.pseudo.hold_shift_for_info": "Hold §e§oSHIFT §r§7for info",
+  "tooltip.pseudo.hold_shift_for_info": "Hold §eSHIFT §r§7for info",
   "tooltip.pseudo.uses_left": "%s Uses Left",
   "tooltip.pseudo.one_use_left": "1 Use Left",
   "tooltip.pseudo.unlimited_uses": "Unlimited Uses",
@@ -44,5 +45,8 @@
   "tooltip.pseudo.failed_to_load_nbt": "Failed to load NBT",
   "tooltip.pseudo.block_tags": "Block Tags:",
   "tooltip.pseudo.item_tags": "Item Tags:",
-  "tooltip.pseudo.not_yet_implemented": "Not Yet Implemented"
+  "tooltip.pseudo.not_yet_implemented": "Not Yet Implemented",
+  "tooltip.pseudo.stored_xp": "%1$s/%2$s XP stored",
+  "tooltip.pseudo.store.previous": "Sneak + right-click to store one level of XP",
+  "tooltip.pseudo.retrieve.next": "Right-click to retrieve one level of XP"
 }

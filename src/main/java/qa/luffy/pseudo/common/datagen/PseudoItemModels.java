@@ -35,6 +35,7 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.MESH_LEGGINGS.get());
         basicItem(PseudoItems.MESH_BOOTS.get());
         basicItem(PseudoItems.SKULK_FRUIT.get());
+        basicItem(PseudoItems.SKULK_TOME.get());
         //handheld items
         handheldItem(PseudoItems.MOLE_MITTS);
         handheldItem(PseudoItems.MESH_MITTS);

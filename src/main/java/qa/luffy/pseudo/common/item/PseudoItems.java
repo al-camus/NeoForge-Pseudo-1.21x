@@ -13,6 +13,9 @@ import qa.luffy.pseudo.common.init.PseudoFoods;
 import qa.luffy.pseudo.common.init.PseudoTags;
 import qa.luffy.pseudo.common.init.PseudoToolTiers;
 
+import static qa.luffy.pseudo.common.data.PseudoDataComponents.STORED_XP;
+import static qa.luffy.pseudo.common.data.PseudoDataComponents.MAXIMUM_XP;
+
 public class PseudoItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Pseudo.MODID);
     //simple items
@@ -35,7 +38,8 @@ public class PseudoItems {
     public static final DeferredItem<Item> MESH_BOOTS = ITEMS.register("mesh_boots", () -> new MeshArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
     //advanced-findable
     public static final DeferredItem<Item> SKULK_FRUIT = ITEMS.registerItem("skulk_fruit", Item::new, new Item.Properties().rarity(Rarity.RARE).food(PseudoFoods.SKULK_FRUIT));
-    public static final DeferredItem<Item> WIND_KNOTS = ITEMS.register("wind_knots", () -> new WindKnotsItem(new Item.Properties().setNoRepair().durability(3).fireResistant().rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> SKULK_TOME = ITEMS.register("skulk_tome", () -> new SkulkTomeItem(new Item.Properties().stacksTo(1).component(STORED_XP, 0).component(MAXIMUM_XP, 1395).setNoRepair().fireResistant().rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> WIND_KNOTS = ITEMS.register("wind_knots", () -> new WindKnotsItem(new Item.Properties().stacksTo(1).setNoRepair().durability(3).fireResistant().rarity(Rarity.UNCOMMON)));
     //register method
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

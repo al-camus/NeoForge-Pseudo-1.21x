@@ -38,6 +38,7 @@ public class PseudoItemGroups {
         //advanced-findable
         pOutput.accept(PseudoItems.WIND_KNOTS);
         pOutput.accept(PseudoItems.SKULK_FRUIT);
+        pOutput.accept(PseudoItems.SKULK_TOME);
     }).build());
 
     public static final Supplier<CreativeModeTab> PSEUDO_BLOCKS_TAB = CREATIVE_MODE_TABS.register("pseudo_blocks_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_blocks_tab")).icon(() -> new ItemStack(PseudoBlocks.RAW_GRAPHITE_BLOCK)).withTabsBefore(ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "pseudo_items_tab")).displayItems((pParameters, pOutput) -> {
