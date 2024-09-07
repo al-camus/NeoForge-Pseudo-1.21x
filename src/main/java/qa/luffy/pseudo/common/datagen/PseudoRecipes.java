@@ -72,6 +72,36 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
                 .save(recipeOutput, Pseudo.resource("mesh_mitts_right"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_HELMET.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("MMM")
+                .pattern("M M")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_helmet"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_CHESTPLATE.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("M M")
+                .pattern("MMM")
+                .pattern("MMM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_chestplate"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_LEGGINGS.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("MMM")
+                .pattern("M M")
+                .pattern("M M")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_leggings"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_BOOTS.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .pattern("M M")
+                .pattern("M M")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_boots"));
+
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");

@@ -31,6 +31,10 @@ public class PseudoItemGroups {
         pOutput.accept(PseudoItems.MESH_MITTS);
         //advanced-craftable
         pOutput.accept(PseudoItems.TOOLBOX);
+        pOutput.accept(PseudoItems.MESH_HELMET);
+        pOutput.accept(PseudoItems.MESH_CHESTPLATE);
+        pOutput.accept(PseudoItems.MESH_LEGGINGS);
+        pOutput.accept(PseudoItems.MESH_BOOTS);
         //advanced-findable
         pOutput.accept(PseudoItems.WIND_KNOTS);
         pOutput.accept(PseudoItems.SKULK_FRUIT);

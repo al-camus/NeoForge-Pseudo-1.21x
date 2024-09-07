@@ -11,6 +11,10 @@
   "item.pseudo.mole_mitts": "Mole Mitts",
   "item.pseudo.mesh_mitts": "Mesh Mitts",
   "item.pseudo.toolbox": "Mesh Toolbox",
+  "item.pseudo.mesh_helmet": "Mesh Helmet",
+  "item.pseudo.mesh_chestplate": "Mesh Chestplate",
+  "item.pseudo.mesh_leggings": "Mesh Leggings",
+  "item.pseudo.mesh_boots": "Mesh Boots",
 
   "item.pseudo.wind_knots": "Wind Knots",
   "item.pseudo.skulk_fruit": "Skulk Fruit",

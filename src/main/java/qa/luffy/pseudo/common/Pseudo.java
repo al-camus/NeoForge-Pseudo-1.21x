@@ -20,15 +20,13 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handlers.ClientPayloadHandler;
-import net.neoforged.neoforge.network.handling.ClientPayloadContext;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
+import qa.luffy.pseudo.common.init.PseudoArmorMaterials;
 import qa.luffy.pseudo.common.init.PseudoItemGroups;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
@@ -63,6 +61,8 @@ public class Pseudo  {
         PseudoBlocks.register(modEventBus);
         PseudoBlockEntities.register(modEventBus);
 
+        PseudoArmorMaterials.register(modEventBus);
+
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -78,7 +78,7 @@ public class Pseudo  {
         modEventBus.addListener(this::registerPayloads);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, PseudoConfig.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
