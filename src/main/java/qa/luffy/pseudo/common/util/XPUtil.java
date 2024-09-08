@@ -1,20 +1,20 @@
-package qa.luffy.pseudo.common.util.energy;
+package qa.luffy.pseudo.common.util;
 
 import net.minecraft.world.entity.player.Player;
 
-public class EnchantUtil {
+public class XPUtil {
 
     //Necessary because minecraft doesn't update experienceTotal properly
 
     public static int getPlayerXP(Player player) {
-        return (int)(EnchantUtil.getExperienceForLevel(player.experienceLevel) + (player.experienceProgress * player.getXpNeededForNextLevel()));
+        return (int)(XPUtil.getExperienceForLevel(player.experienceLevel) + (player.experienceProgress * player.getXpNeededForNextLevel()));
     }
 
     public static void addPlayerXP(Player player, int amount) {
         int experience = getPlayerXP(player) + amount;
         player.totalExperience = experience;
-        player.experienceLevel = EnchantUtil.getLevelForExperience(experience);
-        int expForLevel = EnchantUtil.getExperienceForLevel(player.experienceLevel);
+        player.experienceLevel = XPUtil.getLevelForExperience(experience);
+        int expForLevel = XPUtil.getExperienceForLevel(player.experienceLevel);
         player.experienceProgress = (experience - expForLevel) / (float)player.getXpNeededForNextLevel();
     }
 

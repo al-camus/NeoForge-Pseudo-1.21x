@@ -31,6 +31,7 @@ public class PseudoItems {
     public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> DRILL = ITEMS.registerItem("drill", DrillItem::new, new Item.Properties().fireResistant().stacksTo(1));
     //advanced-craftable
+    public static final DeferredItem<Item> ENDER_KNAPSACK = ITEMS.registerItem("ender_knapsack", EnderKnapsack::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> MESH_HELMET = ITEMS.register("mesh_helmet", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
     public static final DeferredItem<Item> MESH_CHESTPLATE = ITEMS.register("mesh_chestplate", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(36))));

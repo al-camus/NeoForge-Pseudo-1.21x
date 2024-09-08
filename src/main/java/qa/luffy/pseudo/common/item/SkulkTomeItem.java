@@ -22,7 +22,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
-import qa.luffy.pseudo.common.util.energy.EnchantUtil;
+import qa.luffy.pseudo.common.util.XPUtil;
 
 public class SkulkTomeItem extends Item {
     public static final Style TOOLTIP_STYLE = Style.EMPTY.applyFormat(ChatFormatting.GRAY);
@@ -44,12 +44,12 @@ public class SkulkTomeItem extends Item {
         if (player.isShiftKeyDown() && storedXP < 1395) {
             int xpToStore = 0;
 
-            int xpForCurrentLevel = EnchantUtil.getExperienceForLevel(player.experienceLevel);
+            int xpForCurrentLevel = XPUtil.getExperienceForLevel(player.experienceLevel);
 
-            xpToStore = EnchantUtil.getPlayerXP(player) - xpForCurrentLevel;
+            xpToStore = XPUtil.getPlayerXP(player) - xpForCurrentLevel;
 
             if (xpToStore == 0 && player.experienceLevel > 0) //player has exactly x > 0 levels (xp bar looks empty)
-                xpToStore = xpForCurrentLevel - EnchantUtil.getExperienceForLevel(player.experienceLevel - 1);
+                xpToStore = xpForCurrentLevel - XPUtil.getExperienceForLevel(player.experienceLevel - 1);
 
 
             if (xpToStore == 0)
@@ -61,7 +61,7 @@ public class SkulkTomeItem extends Item {
                 int previousLevel = player.experienceLevel;
 
                 NeoForge.EVENT_BUS.post(new PlayerXpEvent.XpChange(player, -actuallyStored));
-                EnchantUtil.addPlayerXP(player, -actuallyStored); //negative value removes xp
+                XPUtil.addPlayerXP(player, -actuallyStored); //negative value removes xp
 
                 if (previousLevel != player.experienceLevel)
                     NeoForge.EVENT_BUS.post(new PlayerXpEvent.LevelChange(player, player.experienceLevel));
@@ -73,7 +73,7 @@ public class SkulkTomeItem extends Item {
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
         }
         else if (!player.isShiftKeyDown() && storedXP > 0) {
-            int xpForPlayer = EnchantUtil.getExperienceForLevel(player.experienceLevel + 1) - EnchantUtil.getPlayerXP(player);
+            int xpForPlayer = XPUtil.getExperienceForLevel(player.experienceLevel + 1) - XPUtil.getPlayerXP(player);
             //if retrievalPercentage is 75%, these 75% should be given to the player, but an extra 25% needs to be removed from the tome
             //using floor to be generous towards the player, removing slightly less xp than should be removed (can't be 100% accurate, because XP is saved as an int)
             int xpToRetrieve = xpForPlayer;
