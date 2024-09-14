@@ -12,7 +12,11 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
@@ -22,11 +26,24 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
     public static final ResourceLocation BURN_PROGRESS_REVERSE_SPRITE = Pseudo.resource("util/burn_progress_reverse");
     public static final ResourceLocation ENERGY_SPRITE = Pseudo.resource("util/energy");
 
+    private final CapacitorBlockEntity blockEntity = getMenu().getBlockEntity();
+
+    private EnergyStorage energyStorage;
+
     public CapacitorScreen(CapacitorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
         this.inventoryLabelY = this.imageHeight - 94;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        if (blockEntity==null) return;
+
+        energyStorage = blockEntity.getEnergyStorage(null);
     }
 
     @Override
@@ -39,8 +56,6 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         //will be moved to another class for convenience
         int textureWidth = 15;
         int textureHeight = 46;
-        if (this.menu.entity == null) return;
-        EnergyStorage energyStorage = this.menu.entity.getEnergyStorage(null);
         if (energyStorage != null) {
             int energyAmount = energyStorage.getEnergyStored();
             int energyTotalAmount = energyStorage.getMaxEnergyStored();
@@ -50,11 +65,24 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
 
     }
 
-//    @Override
-//    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-//        super.render(guiGraphics, mouseX, mouseY, partialTick);
-//        this.renderTooltip(guiGraphics, mouseX, mouseY);
-//    }
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
+        super.renderTooltip(guiGraphics, x, y);
+        if (x >= this.leftPos + 126 && y >= this.topPos + 19 ) {
+            if(x <= this.leftPos + 126 + width && y <= this.topPos + 19 + this.height) {
+                guiGraphics.renderComponentTooltip(
+                        font, List.of(Component.literal(
+                                energyStorage.getEnergyStored() + " / " + energyStorage.getMaxEnergyStored() + "FE"))
+                        , x, y);
+            }
+        }
+    }
 
     float getProgress(int amount, int capacity) {
         return Mth.clamp((float)amount / (float)capacity, 0.0F, 1.0F);

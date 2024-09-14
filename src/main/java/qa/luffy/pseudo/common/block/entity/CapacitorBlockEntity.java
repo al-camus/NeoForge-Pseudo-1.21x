@@ -1,12 +1,17 @@
 package qa.luffy.pseudo.common.block.entity;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +19,8 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.network.IContainerFactory;
@@ -37,39 +44,13 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
         @Override
         public void setEnergyChanged() {
             setChanged();
-            PacketDistributor.sendToAllPlayers(new EnergyData(this.energy, getBlockPos()));
+            //PacketDistributor.sendToAllPlayers(new EnergyData(this.energy, getBlockPos()));
         }
     };
-    protected final ContainerData data;
     private final RecipeManager.CachedCheck<CapacitorRecipeInput, CapacitorRecipe> quickCheck = RecipeManager.createCheck(PseudoRecipeTypes.CAPACITOR.get());
 
     public CapacitorBlockEntity(BlockPos pos, BlockState blockState) {
         super(PseudoBlockEntities.CAPACITOR_TYPE.get(), pos, blockState);
-        data = new ContainerData() {
-            @Override
-            public int get(int index) {
-                return switch (index) {
-                    case 0 -> totalProcessTime;
-                    case 1 -> processTime;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0:
-                        totalProcessTime = value;
-                    case 1:
-                        processTime = value;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        };
     }
 
     private int energyPerTick = 1;
@@ -80,6 +61,9 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
             Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
                     new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
             if (optionalRecipes.isPresent()) {
+
+                Minecraft.getInstance().gui.getChat().addMessage(Component.literal("ACTIVE"));
+
                 CapacitorRecipe recipe = optionalRecipes.get().value();
                 if (!isProcessing()) {
                     totalProcessTime = getProcessTimeForEnergy(recipe.getInputEnergy());
@@ -107,14 +91,25 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putInt("energy", energyStorage.getEnergyStored());
-        //energyStorage.serializeNBT(registries);
+        ContainerHelper.saveAllItems(tag, items, registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         energyStorage.setEnergy(tag.getInt("energy"));
+        ContainerHelper.loadAllItems(tag, items, registries);
         //energyStorage.deserializeNBT(registries, tag);
+    }
+
+    @Override
+    public int getContainerSize() {
+        return 2;
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return Container.stillValidBlockEntity(this, player);
     }
 
     @Override
@@ -129,7 +124,7 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
 
     @Override
     protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
-        return new CapacitorMenu(containerId, inventory, this, data);
+        return new CapacitorMenu(containerId, inventory, this);
     }
 
     @Override

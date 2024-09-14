@@ -31,7 +31,7 @@ public record EnergyData(int energy, BlockPos pos) implements CustomPacketPayloa
             if (Minecraft.getInstance().level.getBlockEntity(data.pos) instanceof EnergyStorageBlock storageBlock) {
                 storageBlock.getEnergyStorage(null).setEnergy(data.energy);
 
-                if (Minecraft.getInstance().player.containerMenu instanceof CapacitorMenu menu && menu.entity.getBlockPos().equals(data.pos)) {
+                if (Minecraft.getInstance().player.containerMenu instanceof CapacitorMenu menu && menu.getBlockEntity().getBlockPos().equals(data.pos)) {
                     storageBlock.getEnergyStorage(null).setEnergy(data.energy);
                 }
             }

@@ -9,37 +9,40 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.network.PacketDistributor;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
+import qa.luffy.pseudo.common.networking.packet.EnergyData;
 
 public class CapacitorMenu extends AbstractContainerMenu {
 
     private final Container inventory;
-    private final ContainerData data;
 
-    public CapacitorBlockEntity entity;
+    private final CapacitorBlockEntity entity;
 
     public CapacitorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buf) {
-        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buf.readBlockPos()), new SimpleContainerData(2));
+        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buf.readBlockPos()));
     }
 
-    public CapacitorMenu(int containerId, Inventory playerInventory, BlockEntity entity, ContainerData containerData) {
+    public CapacitorMenu(int containerId, Inventory playerInventory, BlockEntity entity) {
         super(PseudoMenus.CAPACITOR_MENU_TYPE.get(), containerId);
-        this.inventory = (Container) entity;
-        checkContainerSize(this.inventory, 2);
-        this.entity = (CapacitorBlockEntity) entity;
+        CapacitorBlockEntity blockEntity = (CapacitorBlockEntity) entity;
+        checkContainerSize(blockEntity, 2);
+        this.inventory = blockEntity;
+        this.entity = blockEntity;
         this.addSlot(new Slot(inventory, 0, 37, 21));
         this.addSlot(new Slot(inventory, 1, 37 , 47));
-
-        checkContainerDataCount(containerData, 2);
-        this.addDataSlots(containerData);
-        this.data = containerData;
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
     }
 
+    public CapacitorBlockEntity getBlockEntity() {
+        return entity;
+    }
+
     @Override
     public boolean stillValid(Player player) {
+        if (!player.isLocalPlayer()) PacketDistributor.sendToAllPlayers(new EnergyData(entity.getEnergyStorage(null).getEnergyStored(), entity.getBlockPos()));
         return this.inventory.stillValid(player);
     }
 
