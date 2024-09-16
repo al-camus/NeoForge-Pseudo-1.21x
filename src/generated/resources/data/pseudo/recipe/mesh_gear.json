@@ -2,15 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "pseudo:refined_graphite"
+    "M": {
+      "item": "pseudo:graphene_mesh"
     }
   },
   "pattern": [
-    "GGG"
+    " M ",
+    "M M",
+    " M "
   ],
   "result": {
     "count": 1,
-    "id": "pseudo:graphene_sheet"
+    "id": "pseudo:mesh_gear"
   }
 }

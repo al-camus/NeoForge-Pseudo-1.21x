@@ -1,18 +1,23 @@
-// 1.21	2024-09-08T16:38:01.7015801	Item Models: pseudo
-ef11048cbf715b21e5a6f54c089ae989a59de967 assets/pseudo/models/item/chainsaw.json
-98ef6db2fb677511769d7bd012ffe21ae473bd39 assets/pseudo/models/item/drill.json
+// 1.21	2024-09-15T20:19:28.0576038	Item Models: pseudo
+053f7a970644396d02787833e475eb8692fffd6d assets/pseudo/models/item/chainsaw_base.json
+427958764a6c0f2468ff3ae032af925a51f26aa5 assets/pseudo/models/item/drill_base.json
 150c170c0870de4aa253f5d7f199b1423503d123 assets/pseudo/models/item/ender_knapsack.json
 e60cf2bd0fb842571e930748df06ae040a22c379 assets/pseudo/models/item/graphene_mesh.json
 79717e7866467fd6ff087c189a2beef3332b0c1a assets/pseudo/models/item/graphene_sheet.json
 0df06e64802b204183881e0a8c489c4b55600f37 assets/pseudo/models/item/graphite_dust.json
+878295c9277c51d4e9a49da625e0ca825d1b65cd assets/pseudo/models/item/iron_chainsaw_head.json
+6d7d4d442140c5c34706d268e5350196d6600417 assets/pseudo/models/item/iron_drill_head.json
+a469f0086c1a89a3f880871a21153e4d3ea21bf3 assets/pseudo/models/item/mesh_battery.json
 8ebb7caa3edb0b2d4ec3e12ccd67982b300bb4b1 assets/pseudo/models/item/mesh_boots.json
 d54a44fa358c31a71a8280b1e2bfdad5120f3c5f assets/pseudo/models/item/mesh_button.json
+db8d3aa6226afd449ecf1c591357d9104d4b5f34 assets/pseudo/models/item/mesh_chainsaw.json
 62b66c3ef8e7d6983a0bd5c86b70b0e0aa3fb59b assets/pseudo/models/item/mesh_chestplate.json
+1238206e4ecff1a729fdc576311a47501e085ef0 assets/pseudo/models/item/mesh_drill.json
 ee8e07a5f8fa959ecdcf113b7eefc6c103ef2dfd assets/pseudo/models/item/mesh_gear.json
 014d4b6fa95f303e47c86ab8e609ddf9e1276c88 assets/pseudo/models/item/mesh_helmet.json
 32e99a9137d4514a8492a1afcb07cb6c16fb8c3f assets/pseudo/models/item/mesh_leggings.json
 554a6a7b4fb3aaee246814ae84f4cc4f8cafff36 assets/pseudo/models/item/raw_graphite.json
 ae1c585aaa9d3ee461aba0ae44878840af3ecc36 assets/pseudo/models/item/refined_graphite.json
-76936e68eef944817e8a0bcd51e59dcf2bf4b4c0 assets/pseudo/models/item/skulk_fruit.json
-861f0bcae5275893e0e24c89b2815c77b2c8e3b5 assets/pseudo/models/item/skulk_tome.json
+70f5a1651a813634d316d177f3f9b6b002c47e23 assets/pseudo/models/item/sculk_fruit.json
+05b93af3937cda0baa6a268408828b80cbc4f108 assets/pseudo/models/item/sculk_tome.json
 42a991cf4a5c3a9f04d003fc338ce3034acc8a21 assets/pseudo/models/item/toolbox.json

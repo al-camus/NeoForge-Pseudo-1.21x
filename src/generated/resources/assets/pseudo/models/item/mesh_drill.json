@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "pseudo:item/drill"
+    "layer0": "pseudo:item/mesh_drill"
   }
 }

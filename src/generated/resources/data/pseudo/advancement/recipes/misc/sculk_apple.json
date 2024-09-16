@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sculk_vein": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:sculk_vein"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:sculk_apple"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sculk_vein"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:sculk_apple"
+    ]
+  }
+}

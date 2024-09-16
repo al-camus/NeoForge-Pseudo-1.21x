@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "pseudo:chainsaw_base"
+    },
+    "H": {
+      "item": "pseudo:iron_chainsaw_head"
+    }
+  },
+  "pattern": [
+    "HB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_chainsaw"
+  }
+}

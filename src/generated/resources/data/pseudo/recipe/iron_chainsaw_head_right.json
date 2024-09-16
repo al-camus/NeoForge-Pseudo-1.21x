@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    " CI",
+    "CIC",
+    "IC "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:iron_chainsaw_head"
+  }
+}

@@ -2,15 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "pseudo:refined_graphite"
+    "I": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "GGG"
+    "III",
+    "II ",
+    "I  "
   ],
   "result": {
     "count": 1,
-    "id": "pseudo:graphene_sheet"
+    "id": "pseudo:iron_drill_head"
   }
 }

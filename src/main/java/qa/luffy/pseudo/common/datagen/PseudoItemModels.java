@@ -28,18 +28,22 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.GRAPHENE_SHEET.get());
         basicItem(PseudoItems.GRAPHENE_MESH.get());
         basicItem(PseudoItems.MESH_GEAR.get());
+        basicItem(PseudoItems.MESH_BATTERY.get());
+        basicItem(PseudoItems.DRILL_BASE.get());
+        basicItem(PseudoItems.CHAINSAW_BASE.get());
+        basicItem(PseudoItems.IRON_DRILL_HEAD.get());
+        basicItem(PseudoItems.IRON_CHAINSAW_HEAD.get());
         basicItem(PseudoItems.ENDER_KNAPSACK.get());
         basicItem(PseudoItems.TOOLBOX.get());
-        basicItem(PseudoItems.MESH_GEAR.get());
         basicItem(PseudoItems.MESH_HELMET.get());
         basicItem(PseudoItems.MESH_CHESTPLATE.get());
         basicItem(PseudoItems.MESH_LEGGINGS.get());
         basicItem(PseudoItems.MESH_BOOTS.get());
-        basicItem(PseudoItems.SKULK_FRUIT.get());
-        basicItem(PseudoItems.SKULK_TOME.get());
+        basicItem(PseudoItems.SCULK_FRUIT.get());
+        basicItem(PseudoItems.SCULK_TOME.get());
         //handheld items
-        handheldItem(PseudoItems.CHAINSAW);
-        handheldItem(PseudoItems.DRILL);
+        handheldItem(PseudoItems.MESH_CHAINSAW);
+        handheldItem(PseudoItems.MESH_DRILL);
         //misc
         buttonItem(PseudoBlocks.MESH_BUTTON, PseudoBlocks.MESH_BLOCK);
     }
