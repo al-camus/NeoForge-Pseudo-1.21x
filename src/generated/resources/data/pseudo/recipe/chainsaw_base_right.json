@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "pseudo:mesh_battery"
+    },
+    "G": {
+      "item": "pseudo:mesh_gear"
+    },
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    "GM ",
+    "MBM",
+    " M "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:chainsaw_base"
+  }
+}

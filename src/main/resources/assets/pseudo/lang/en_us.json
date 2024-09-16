@@ -5,9 +5,14 @@
   "item.pseudo.graphene_sheet": "Graphene Sheet",
   "item.pseudo.graphene_mesh": "Graphene Mesh",
   "item.pseudo.mesh_gear": "Mesh Gear",
+  "item.pseudo.mesh_battery": "Mesh Battery",
+  "item.pseudo.drill_base": "Mesh Drill Base",
+  "item.pseudo.iron_drill_head": "Iron Drill Head",
+  "item.pseudo.chainsaw_base": "Mesh Chainsaw Base",
+  "item.pseudo.iron_chainsaw_head": "Iron Chainsaw Head",
 
-  "item.pseudo.chainsaw": "Mesh Chainsaw",
-  "item.pseudo.drill": "Mesh Drill",
+  "item.pseudo.mesh_chainsaw": "Mesh Chainsaw",
+  "item.pseudo.mesh_drill": "Mesh Drill",
   "item.pseudo.mole_mitts": "Mole Digging Mitts",
   "item.pseudo.mesh_mitts": "Mesh Mitts",
   "item.pseudo.ender_knapsack": "Ender-Mesh Knapsack",
@@ -18,8 +23,8 @@
   "item.pseudo.mesh_boots": "Mesh Boots",
 
   "item.pseudo.wind_knots": "Wind Knots",
-  "item.pseudo.skulk_fruit": "Skulk Fruit",
-  "item.pseudo.skulk_tome": "Skulk Tome",
+  "item.pseudo.sculk_fruit": "Sculk Fruit",
+  "item.pseudo.sculk_tome": "Sculk Tome",
 
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",

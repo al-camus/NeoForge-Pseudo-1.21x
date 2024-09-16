@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "pseudo:mesh_battery"
+    },
+    "G": {
+      "item": "pseudo:mesh_gear"
+    },
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    " G ",
+    "MBM",
+    " MM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:drill_base"
+  }
+}

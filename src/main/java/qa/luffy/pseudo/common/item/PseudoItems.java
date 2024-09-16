@@ -25,11 +25,16 @@ public class PseudoItems {
     public static final DeferredItem<Item> GRAPHENE_SHEET = ITEMS.registerSimpleItem("graphene_sheet");
     public static final DeferredItem<Item> GRAPHENE_MESH = ITEMS.registerSimpleItem("graphene_mesh");
     public static final DeferredItem<Item> MESH_GEAR = ITEMS.registerSimpleItem("mesh_gear");
+    public static final DeferredItem<Item> MESH_BATTERY = ITEMS.registerSimpleItem("mesh_battery");
+    public static final DeferredItem<Item> DRILL_BASE = ITEMS.registerSimpleItem("drill_base");
+    public static final DeferredItem<Item> IRON_DRILL_HEAD = ITEMS.registerSimpleItem("iron_drill_head");
+    public static final DeferredItem<Item> CHAINSAW_BASE = ITEMS.registerSimpleItem("chainsaw_base");
+    public static final DeferredItem<Item> IRON_CHAINSAW_HEAD = ITEMS.registerSimpleItem("iron_chainsaw_head");
     //tools
     public static final DeferredItem<Item> MOLE_MITTS = ITEMS.register("mole_mitts", () -> new DiggingMittsItem(PseudoToolTiers.MOLE, PseudoTags.Blocks.MOLE_MITTS_MINEABLE, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(PseudoToolTiers.MOLE, -3.0f, -2.5f))));
     public static final DeferredItem<Item> MESH_MITTS = ITEMS.register("mesh_mitts", () -> new DiggingMittsItem(PseudoToolTiers.MESH, PseudoTags.Blocks.MESH_MITTS_MINEABLE, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(PseudoToolTiers.MESH, -3.0f, -2.5f))));
-    public static final DeferredItem<Item> CHAINSAW = ITEMS.registerItem("chainsaw", ChainsawItem::new, new Item.Properties().fireResistant().stacksTo(1));
-    public static final DeferredItem<Item> DRILL = ITEMS.registerItem("drill", DrillItem::new, new Item.Properties().fireResistant().stacksTo(1));
+    public static final DeferredItem<Item> MESH_CHAINSAW = ITEMS.registerItem("mesh_chainsaw", MeshChainsawItem::new, new Item.Properties().fireResistant().stacksTo(1));
+    public static final DeferredItem<Item> MESH_DRILL = ITEMS.registerItem("mesh_drill", DrillItem::new, new Item.Properties().fireResistant().stacksTo(1));
     //advanced-craftable
     public static final DeferredItem<Item> ENDER_KNAPSACK = ITEMS.registerItem("ender_knapsack", EnderKnapsack::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().fireResistant().stacksTo(1));
@@ -38,8 +43,8 @@ public class PseudoItems {
     public static final DeferredItem<Item> MESH_LEGGINGS = ITEMS.register("mesh_leggings", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(36))));
     public static final DeferredItem<Item> MESH_BOOTS = ITEMS.register("mesh_boots", () -> new MeshArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
     //advanced-findable
-    public static final DeferredItem<Item> SKULK_FRUIT = ITEMS.registerItem("skulk_fruit", Item::new, new Item.Properties().rarity(Rarity.RARE).food(PseudoFoods.SKULK_FRUIT));
-    public static final DeferredItem<Item> SKULK_TOME = ITEMS.register("skulk_tome", () -> new SkulkTomeItem(new Item.Properties().stacksTo(1).component(STORED_XP, 0).component(MAXIMUM_XP, 1395).setNoRepair().fireResistant().rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> SCULK_FRUIT = ITEMS.registerItem("sculk_fruit", Item::new, new Item.Properties().rarity(Rarity.RARE).food(PseudoFoods.SCULK_FRUIT));
+    public static final DeferredItem<Item> SCULK_TOME = ITEMS.register("sculk_tome", () -> new SculkTomeItem(new Item.Properties().stacksTo(1).component(STORED_XP, 0).component(MAXIMUM_XP, 1395).setNoRepair().fireResistant().rarity(Rarity.RARE)));
     public static final DeferredItem<Item> WIND_KNOTS = ITEMS.register("wind_knots", () -> new WindKnotsItem(new Item.Properties().stacksTo(1).setNoRepair().durability(3).fireResistant().rarity(Rarity.UNCOMMON)));
     //register method
     public static void register(IEventBus eventBus){

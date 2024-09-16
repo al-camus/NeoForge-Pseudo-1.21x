@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_graphene_mesh": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pseudo:graphene_mesh"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:drill_base_left"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_graphene_mesh"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:drill_base_left"
+    ]
+  }
+}

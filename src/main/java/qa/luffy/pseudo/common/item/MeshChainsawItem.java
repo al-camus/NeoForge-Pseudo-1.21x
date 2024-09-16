@@ -1,11 +1,8 @@
 package qa.luffy.pseudo.common.item;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.FastColor;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -13,7 +10,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.energy.ComponentEnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
-import org.apache.commons.lang3.math.Fraction;
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.init.PseudoTags;
@@ -21,9 +17,9 @@ import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 import java.util.List;
 
-public class ChainsawItem extends Item implements EnergyStorageItem {
+public class MeshChainsawItem extends Item implements EnergyStorageItem {
 
-    public ChainsawItem(Properties pProperties) {
+    public MeshChainsawItem(Properties pProperties) {
         super(pProperties);
     }
 

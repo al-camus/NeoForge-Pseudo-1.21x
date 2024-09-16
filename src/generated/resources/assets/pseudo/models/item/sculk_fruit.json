@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pseudo:item/skulk_fruit"
+    "layer0": "pseudo:item/sculk_fruit"
   }
 }

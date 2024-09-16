@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_drill_base": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pseudo:drill_base"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:iron_drill_head_left"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_drill_base"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:iron_drill_head_left"
+    ]
+  }
+}

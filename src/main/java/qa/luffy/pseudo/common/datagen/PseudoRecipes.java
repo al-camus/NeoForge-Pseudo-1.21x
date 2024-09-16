@@ -31,10 +31,116 @@ public class PseudoRecipes extends RecipeProvider {
         twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH.get(), PseudoItems.GRAPHENE_SHEET.get(), 1, "graphene_mesh_from_sheets");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET.get())
-                .define('I', PseudoItems.REFINED_GRAPHITE.get())
-                .pattern("III")
+                .define('G', PseudoItems.REFINED_GRAPHITE.get())
+                .pattern("GGG")
                 .unlockedBy(getHasName(PseudoItems.RAW_GRAPHITE.get()), has(PseudoItems.RAW_GRAPHITE.get()))
                 .save(recipeOutput, Pseudo.resource("graphene_sheet_from_refined_graphite"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_GEAR.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .pattern(" M ")
+                .pattern("M M")
+                .pattern(" M ")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_gear"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_BATTERY.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('C', Items.COPPER_INGOT)
+                .define('R', Items.REDSTONE)
+                .pattern(" C ")
+                .pattern("MRM")
+                .pattern("MRM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_battery"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.DRILL_BASE.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('B', PseudoItems.MESH_BATTERY.get())
+                .define('G', PseudoItems.MESH_GEAR.get())
+                .pattern(" G ")
+                .pattern("MBM")
+                .pattern("MM ")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("drill_base_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.DRILL_BASE.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('B', PseudoItems.MESH_BATTERY.get())
+                .define('G', PseudoItems.MESH_GEAR.get())
+                .pattern(" G ")
+                .pattern("MBM")
+                .pattern(" MM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("drill_base_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.CHAINSAW_BASE.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('B', PseudoItems.MESH_BATTERY.get())
+                .define('G', PseudoItems.MESH_GEAR.get())
+                .pattern(" MG")
+                .pattern("MBM")
+                .pattern(" M ")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("chainsaw_base_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.CHAINSAW_BASE.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('B', PseudoItems.MESH_BATTERY.get())
+                .define('G', PseudoItems.MESH_GEAR.get())
+                .pattern("GM ")
+                .pattern("MBM")
+                .pattern(" M ")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("chainsaw_base_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.IRON_DRILL_HEAD.get())
+                .define('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern("II ")
+                .pattern("I  ")
+                .unlockedBy(getHasName(PseudoItems.DRILL_BASE.get()), has(PseudoItems.DRILL_BASE.get()))
+                .save(recipeOutput, Pseudo.resource("iron_drill_head_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.IRON_DRILL_HEAD.get())
+                .define('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern(" II")
+                .pattern("  I")
+                .unlockedBy(getHasName(PseudoItems.DRILL_BASE.get()), has(PseudoItems.DRILL_BASE.get()))
+                .save(recipeOutput, Pseudo.resource("iron_drill_head_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.IRON_CHAINSAW_HEAD.get())
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.CHAIN)
+                .pattern("IC ")
+                .pattern("CIC")
+                .pattern(" CI")
+                .unlockedBy(getHasName(PseudoItems.CHAINSAW_BASE.get()), has(PseudoItems.CHAINSAW_BASE.get()))
+                .save(recipeOutput, Pseudo.resource("iron_chainsaw_head_left"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.IRON_CHAINSAW_HEAD.get())
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.CHAIN)
+                .pattern(" CI")
+                .pattern("CIC")
+                .pattern("IC ")
+                .unlockedBy(getHasName(PseudoItems.CHAINSAW_BASE.get()), has(PseudoItems.CHAINSAW_BASE.get()))
+                .save(recipeOutput, Pseudo.resource("iron_chainsaw_head_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_DRILL.get())
+                .define('H', PseudoItems.IRON_DRILL_HEAD)
+                .define('B', PseudoItems.DRILL_BASE)
+                .pattern("HB")
+                .unlockedBy(getHasName(PseudoItems.IRON_DRILL_HEAD.get()), has(PseudoItems.IRON_DRILL_HEAD.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_drill"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_CHAINSAW.get())
+                .define('H', PseudoItems.IRON_CHAINSAW_HEAD)
+                .define('B', PseudoItems.CHAINSAW_BASE)
+                .pattern("HB")
+                .unlockedBy(getHasName(PseudoItems.IRON_CHAINSAW_HEAD.get()), has(PseudoItems.IRON_CHAINSAW_HEAD.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_chainsaw"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MOLE_MITTS.get())
                 .define('F', Items.FLINT)
@@ -101,6 +207,43 @@ public class PseudoRecipes extends RecipeProvider {
                 .pattern("M M")
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
                 .save(recipeOutput, Pseudo.resource("mesh_boots"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.ENDER_KNAPSACK.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .define('E', Items.ENDER_EYE)
+                .pattern("MMM")
+                .pattern("MEM")
+                .pattern("MMM")
+                .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("ender_knapsack"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.SCULK_FRUIT.get())
+                .define('S', Items.SCULK_VEIN)
+                .define('A', Items.APPLE)
+                .pattern("SSS")
+                .pattern("SAS")
+                .pattern("SSS")
+                .unlockedBy(getHasName(Items.SCULK_VEIN), has(Items.SCULK_VEIN))
+                .save(recipeOutput, Pseudo.resource("sculk_apple"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.SCULK_TOME.get())
+                .define('S', Items.SCULK_VEIN)
+                .define('E', Items.ENCHANTED_BOOK)
+                .pattern("SSS")
+                .pattern("SES")
+                .pattern("SSS")
+                .unlockedBy(getHasName(Items.SCULK_VEIN), has(Items.SCULK_VEIN))
+                .save(recipeOutput, Pseudo.resource("sculk_tome"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoBlocks.CAPACITOR_BLOCK.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .define('B', PseudoItems.MESH_BATTERY)
+                .pattern("MMM")
+                .pattern("BBB")
+                .pattern("MMM")
+                .unlockedBy(getHasName(PseudoItems.MESH_BATTERY), has(PseudoItems.MESH_BATTERY))
+                .save(recipeOutput, Pseudo.resource("capacitor_block"));
 
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");

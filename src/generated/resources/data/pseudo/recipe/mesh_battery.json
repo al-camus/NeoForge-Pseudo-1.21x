@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    " C ",
+    "MRM",
+    "MRM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_battery"
+  }
+}

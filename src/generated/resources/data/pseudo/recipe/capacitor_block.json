@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "pseudo:mesh_battery"
+    },
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "BBB",
+    "MMM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:capacitor"
+  }
+}
