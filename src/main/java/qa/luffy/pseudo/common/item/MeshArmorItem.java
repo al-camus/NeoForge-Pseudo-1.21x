@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import qa.luffy.pseudo.common.init.PseudoArmorMaterials;
 
@@ -29,12 +30,13 @@ public class MeshArmorItem extends ArmorItem {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         if(pEntity instanceof Player player) {
-            ArmorItem boots = ((ArmorItem) player.getInventory().getArmor(0).getItem());
-            if(!pLevel.isClientSide() && boots.getMaterial() == PseudoArmorMaterials.MESH) {
-                player.resetFallDistance();
-            }
-            if(!pLevel.isClientSide() && hasFullSuitOfArmorOn(player)) {
-                evaluateArmorEffects(player);
+            if (player.getInventory().getArmor(0).getItem() instanceof ArmorItem boots) {
+                if (!pLevel.isClientSide() && boots.getMaterial() == PseudoArmorMaterials.MESH) {
+                    player.resetFallDistance();
+                }
+                if (!pLevel.isClientSide() && hasFullSuitOfArmorOn(player)) {
+                    evaluateArmorEffects(player);
+                }
             }
         }
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
