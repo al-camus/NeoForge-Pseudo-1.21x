@@ -1,7 +1,6 @@
 package qa.luffy.pseudo.common.block.entity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,21 +12,13 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.energy.EnergyStorage;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.network.IContainerFactory;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
-import qa.luffy.pseudo.common.networking.packet.EnergyData;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipe;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeInput;
@@ -40,7 +31,7 @@ import java.util.Optional;
 public class CapacitorBlockEntity extends BaseContainerBlockEntity implements EnergyStorageBlock, ImplementedInventory {
 
     private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
-    private final PseudoEnergyStorage energyStorage = new PseudoEnergyStorage(64000, 256 ,256) {
+    private final PseudoEnergyStorage energyStorage = new PseudoEnergyStorage(96000, 256 ,256) {
         @Override
         public void setEnergyChanged() {
             setChanged();
