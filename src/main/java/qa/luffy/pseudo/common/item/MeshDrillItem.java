@@ -18,9 +18,9 @@ import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 import java.util.List;
 
-public class DrillItem extends Item implements EnergyStorageItem {
+public class MeshDrillItem extends Item implements EnergyStorageItem {
 
-    public DrillItem(Properties pProperties) {
+    public MeshDrillItem(Properties pProperties) {
         super(pProperties);
     }
 
@@ -47,7 +47,7 @@ public class DrillItem extends Item implements EnergyStorageItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         IEnergyStorage energy = getEnergy(stack);
-        tooltipComponents.add(Component.literal(energy.getEnergyStored() + "/" + energy.getMaxEnergyStored())); // for testing
+        tooltipComponents.add(Component.literal(energy.getEnergyStored() + "/" + energy.getMaxEnergyStored() + " FE"));
     }
 
     @Override

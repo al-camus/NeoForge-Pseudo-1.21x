@@ -1,0 +1,11 @@
+{
+  "type": "pseudo:capacitor",
+  "energy": 200,
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:red_dye"
+  }
+}

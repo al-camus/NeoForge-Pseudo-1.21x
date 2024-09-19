@@ -10,8 +10,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class EnderKnapsack extends Item {
-    public EnderKnapsack(Properties properties) {
+public class EnderKnapsackItem extends Item {
+    public EnderKnapsackItem(Properties properties) {
         super(properties);
     }
 
