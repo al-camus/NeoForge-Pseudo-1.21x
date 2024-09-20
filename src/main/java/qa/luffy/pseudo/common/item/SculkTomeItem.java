@@ -24,12 +24,12 @@ import qa.luffy.pseudo.common.util.XPUtil;
 
 import java.util.List;
 
-public class SkulkTomeItem extends Item {
+public class SculkTomeItem extends Item {
     public static final Style TOOLTIP_STYLE = Style.EMPTY.applyFormat(ChatFormatting.GRAY);
     private static final Component TOOLTIP_1 = Component.translatable("tooltip.pseudo.store.previous").setStyle(TOOLTIP_STYLE);
     private static final Component TOOLTIP_2 = Component.translatable("tooltip.pseudo.retrieve.next").setStyle(TOOLTIP_STYLE);
 
-    public SkulkTomeItem(Item.Properties properties) {
+    public SculkTomeItem(Item.Properties properties) {
         super(properties);
     }
 
