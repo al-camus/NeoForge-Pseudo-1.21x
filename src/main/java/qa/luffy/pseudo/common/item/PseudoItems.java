@@ -10,8 +10,8 @@ import qa.luffy.pseudo.common.init.PseudoFoods;
 import qa.luffy.pseudo.common.init.PseudoTags;
 import qa.luffy.pseudo.common.init.PseudoToolTiers;
 
-import static qa.luffy.pseudo.common.data.PseudoDataComponents.STORED_XP;
 import static qa.luffy.pseudo.common.data.PseudoDataComponents.MAXIMUM_XP;
+import static qa.luffy.pseudo.common.data.PseudoDataComponents.STORED_XP;
 
 public class PseudoItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Pseudo.MODID);

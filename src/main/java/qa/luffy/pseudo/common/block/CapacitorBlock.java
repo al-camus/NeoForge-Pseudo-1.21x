@@ -44,7 +44,7 @@ public class CapacitorBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-            player.openMenu(state.getMenuProvider(level, pos), pos);
+            serverPlayer.openMenu(state.getMenuProvider(level, pos), pos);
 
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
