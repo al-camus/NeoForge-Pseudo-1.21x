@@ -17,6 +17,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
 import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
@@ -24,6 +26,7 @@ import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipe;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeInput;
 import qa.luffy.pseudo.common.util.ImplementedInventory;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
+import qa.luffy.pseudo.common.util.energy.EnergyUtil;
 import qa.luffy.pseudo.common.util.energy.PseudoEnergyStorage;
 
 import java.util.Optional;
@@ -49,6 +52,16 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
     private int totalProcessTime;
     public void tick() {
         if(!level.isClientSide()) {
+            IEnergyStorage itemEnergy = Capabilities.EnergyStorage.ITEM.getCapability(getItem(0), null);
+            if (itemEnergy != null) {
+                if (itemEnergy.getEnergyStored()==itemEnergy.getMaxEnergyStored() && getItems().get(1).isEmpty()) {
+                    setItem(1, getItem(0));
+                    setItem(0, ItemStack.EMPTY);
+                }
+                EnergyUtil.transferEnergy(energyStorage, itemEnergy, level, 256);
+            }
+
+
             Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
                     new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
             if (optionalRecipes.isPresent()) {
