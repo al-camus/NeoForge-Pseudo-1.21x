@@ -104,7 +104,7 @@ public class Pseudo  {
                 return energyStorageItem.getEnergy(itemStack);
             }
             return null;
-        }, PseudoItems.MESH_CHAINSAW.get());
+        }, PseudoItems.MESH_CHAINSAW.get(), PseudoItems.MESH_BATTERY.get(), PseudoItems.MESH_DRILL.get());
     }
 
     public void registerPayloads(final RegisterPayloadHandlersEvent event) {
