@@ -39,7 +39,7 @@ public class PseudoBlocks {
                     .noCollission()
                     .pushReaction(PushReaction.DESTROY)
     ));
-    public static final DeferredBlock<Block> MESH_BUTTON = registerBlock("mesh_button", () -> new ButtonBlock(BlockSetType.IRON, 5, BlockBehaviour.Properties.of().strength(4f, 10000f).noCollission()));
+    public static final DeferredBlock<Block> MESH_BUTTON = registerBlock("mesh_button", () -> new MeshButtonBlock(BlockSetType.IRON, 5, BlockBehaviour.Properties.of().strength(4f, 10000f).noCollission()));
     //block-items
     public static final DeferredItem<BlockItem> RAW_GRAPHITE_BLOCK_ITEM = PseudoItems.ITEMS.register("raw_graphite_block", () -> {
         return new BlockItem(PseudoBlocks.RAW_GRAPHITE_BLOCK.get(), new Item.Properties()) {

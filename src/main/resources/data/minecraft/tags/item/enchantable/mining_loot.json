@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "pseudo:mole_mitts",
+    "pseudo:mesh_mitts",
+    "pseudo:mesh_drill",
+    "pseudo:mesh_chainsaw"
+  ]
+}
