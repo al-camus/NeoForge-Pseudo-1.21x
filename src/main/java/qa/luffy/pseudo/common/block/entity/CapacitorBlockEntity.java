@@ -52,15 +52,20 @@ public class CapacitorBlockEntity extends BaseContainerBlockEntity implements En
     private int totalProcessTime;
     public void tick() {
         if(!level.isClientSide()) {
-            IEnergyStorage itemEnergy = Capabilities.EnergyStorage.ITEM.getCapability(getItem(0), null);
-            if (itemEnergy != null) {
-                if (itemEnergy.getEnergyStored()==itemEnergy.getMaxEnergyStored() && getItems().get(1).isEmpty()) {
-                    setItem(1, getItem(0));
-                    setItem(0, ItemStack.EMPTY);
+            //slot 0 - charge capacitor
+            IEnergyStorage itemEnergy0 = Capabilities.EnergyStorage.ITEM.getCapability(getItem(0), null);
+            if (itemEnergy0 != null) {
+                if (itemEnergy0.getEnergyStored() != 0) {
+                    EnergyUtil.transferEnergy(itemEnergy0, energyStorage, level, 256);
                 }
-                EnergyUtil.transferEnergy(energyStorage, itemEnergy, level, 256);
             }
-
+            //slot 1 - charge item
+            IEnergyStorage itemEnergy1 = Capabilities.EnergyStorage.ITEM.getCapability(getItem(1), null);
+            if (itemEnergy1 != null) {
+                if (itemEnergy1.getEnergyStored() != itemEnergy1.getMaxEnergyStored()) {
+                    EnergyUtil.transferEnergy(energyStorage, itemEnergy1, level, 256);
+                }
+            }
 
             Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
                     new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);

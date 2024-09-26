@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:mineable/hoe",
-    "#minecraft:mineable/axe"
+    "#minecraft:mineable/axe",
+    "#minecraft:mineable/hoe"
   ]
 }

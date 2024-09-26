@@ -23,7 +23,7 @@ license="MIT"
 modId="pseudo" #mandatory
 
 # The version number of the mod
-version="0.1a" #mandatory
+version="0.5a" #mandatory
 
 # A display name for the mod
 displayName="Pseudo" #mandatory
