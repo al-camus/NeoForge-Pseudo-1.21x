@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:wind_knots_right"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wind_knots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pseudo:wind_knots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wind_knots"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:wind_knots_right"
+    ]
+  }
+}

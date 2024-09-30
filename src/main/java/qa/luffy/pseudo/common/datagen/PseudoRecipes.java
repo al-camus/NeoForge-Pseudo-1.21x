@@ -237,6 +237,24 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(Items.SCULK_VEIN), has(Items.SCULK_VEIN))
                 .save(recipeOutput, Pseudo.resource("sculk_tome"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.WIND_KNOTS.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .define('W', Items.WIND_CHARGE)
+                .pattern(" MW")
+                .pattern("MWM")
+                .pattern("WM ")
+                .unlockedBy(getHasName(PseudoItems.WIND_KNOTS), has(PseudoItems.WIND_KNOTS))
+                .save(recipeOutput, Pseudo.resource("wind_knots_right"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.WIND_KNOTS.get())
+                .define('M', PseudoItems.GRAPHENE_MESH)
+                .define('W', Items.WIND_CHARGE)
+                .pattern("WM ")
+                .pattern("MWM")
+                .pattern(" MW")
+                .unlockedBy(getHasName(PseudoItems.WIND_KNOTS), has(PseudoItems.WIND_KNOTS))
+                .save(recipeOutput, Pseudo.resource("wind_knots_left"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoBlocks.CAPACITOR_BLOCK.get())
                 .define('M', PseudoItems.GRAPHENE_MESH)
                 .define('B', PseudoItems.MESH_BATTERY)

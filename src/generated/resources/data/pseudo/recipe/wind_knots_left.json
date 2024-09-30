@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    },
+    "W": {
+      "item": "minecraft:wind_charge"
+    }
+  },
+  "pattern": [
+    "WM ",
+    "MWM",
+    " MW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:wind_knots"
+  }
+}

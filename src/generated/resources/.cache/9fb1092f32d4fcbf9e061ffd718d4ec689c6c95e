@@ -1,4 +1,4 @@
-// 1.21	2024-09-18T21:06:18.5931817	Recipes
+// 1.21	2024-09-30T10:50:50.7052761	Recipes
 a27affb888f4eba792e13fd0574906e1506509cc data/pseudo/advancement/recipes/charcoal_energizing.json
 94efbd2dfa0e81703b0031c3d1b5efff89f69eb9 data/pseudo/advancement/recipes/charcoal_lower_output_energizing.json
 afcc5050de28a50b1d5bcb673fbf32587606651e data/pseudo/advancement/recipes/misc/capacitor_block.json
@@ -54,6 +54,8 @@ bdbaae8df031a158f371af301d15c200ac3e7c86 data/pseudo/advancement/recipes/misc/re
 a582decc507643dd86f5a32637e837ea5f22a768 data/pseudo/advancement/recipes/misc/refined_graphite_from_smelting_raw_graphite.json
 331bc0be5552dba90920c604a03ca8f700d55a09 data/pseudo/advancement/recipes/misc/sculk_apple.json
 774345a07267ad226982e80babbaee47a120e27a data/pseudo/advancement/recipes/misc/sculk_tome.json
+8d9775c2eaae03f18deb9bcd967d3e1ff1a1f059 data/pseudo/advancement/recipes/misc/wind_knots_left.json
+c771b6a22ddef19e9bda047d0d42b60a94028393 data/pseudo/advancement/recipes/misc/wind_knots_right.json
 143e922744e9737b13d5c6bfdcd87f49d821c325 data/pseudo/advancement/recipes/redstone/mesh_button.json
 344401869cbfacc373c2c4a5e5af86cedc282def data/pseudo/advancement/recipes/redstone/mesh_pressure_plate.json
 f8250a3d98c21eb5ce74fab14974435051159545 data/pseudo/advancement/recipes/red_dye_lower_output_energizing.json
@@ -117,3 +119,5 @@ aa7f601ca70301646a9f29b1ecc9d7eb9918bdad data/pseudo/recipe/refined_graphite_fro
 bbc1b83521bfb8c85c5125bd2660dc3b6fe6b5e6 data/pseudo/recipe/sculk_apple.json
 69add42b228ab2505b2fb580e766dd562efccd53 data/pseudo/recipe/sculk_tome.json
 7393fdae586cdbb33d3ec45e32ec701cbfe0703d data/pseudo/recipe/stone_lower_output_energizing.json
+33743d12a20770b076aa47cef530d6c4b94cc739 data/pseudo/recipe/wind_knots_left.json
+4ffc18552d18cabedde1d8752593f2e74ae6f64b data/pseudo/recipe/wind_knots_right.json
