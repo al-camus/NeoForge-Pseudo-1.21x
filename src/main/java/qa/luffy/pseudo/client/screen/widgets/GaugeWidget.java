@@ -45,7 +45,8 @@ public class GaugeWidget extends AbstractWidget {
                 //guiGraphics.blitSprite(SPRITE, getX(), getY(), i, getHeight());
             }
             case RIGHT_LEFT -> { //make
-
+                int i = Mth.ceil(getProgress(amount, capacity) * (getWidth() - 1));
+                guiGraphics.blitSprite(SPRITE, getWidth(), getHeight(), getWidth() -i, 0, getX() + getWidth() -i, getY(), i, getHeight());
             }
         }
 //        int i = Mth.ceil(getProgress(amount, capacity) * (getHeight() - 1));
