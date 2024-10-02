@@ -1,74 +1,84 @@
 package qa.luffy.pseudo.common.recipe.capacitor;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
-import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
+import org.jetbrains.annotations.NotNull;
+import qa.luffy.pseudo.common.recipe.PseudoCustomRecipes;
 
-public class CapacitorRecipe implements Recipe<CapacitorRecipeInput> {
-
-    private final int inputEnergy;
-    private final Ingredient inputItem;
-    private final ItemStack result;
-
-    public CapacitorRecipe(int energy, Ingredient inputItem, ItemStack result) {
-        this.inputEnergy = energy;
-        this.inputItem = inputItem;
-        this.result = result;
-    }
+public record CapacitorRecipe(Ingredient inputItem, int inputEnergy, ItemStack output) implements Recipe<CapacitorRecipeInput> {
 
     @Override
-    public boolean matches(CapacitorRecipeInput input, Level level) {
-        return this.inputItem.test(input.stack()) && this.inputEnergy >= input.energy();
-    }
-
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
-        list.add(this.inputItem);
+        list.add(inputItem);
         return list;
     }
 
     @Override
-    public ItemStack assemble(CapacitorRecipeInput input, HolderLookup.Provider registries) {
-        return this.result.copy();
+    public boolean matches(CapacitorRecipeInput input, Level level) {
+        if (level.isClientSide()) return false;
+        return inputItem.test(input.getItem(0));
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(CapacitorRecipeInput input, HolderLookup.Provider registries) {
+        return output.copy();
     }
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 1;
+        return true;
     }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider registries) {
-        return this.result;
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider registries) {
+        return output;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        return PseudoRecipeSerializers.CAPACITOR.get();
+    public @NotNull RecipeSerializer<?> getSerializer() {
+        return PseudoCustomRecipes.CAPACITOR_SERIALIZER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return PseudoRecipeTypes.CAPACITOR.get();
+    public @NotNull RecipeType<?> getType() {
+        return PseudoCustomRecipes.CAPACITOR_TYPE.get();
     }
 
-    public int getInputEnergy() {
-        return inputEnergy;
-    }
+    public static class Serializer implements RecipeSerializer<CapacitorRecipe> {
+        public static final MapCodec<CapacitorRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(CapacitorRecipe::inputItem),
+                Codec.INT.fieldOf("energy").forGetter(CapacitorRecipe::inputEnergy),
+                ItemStack.CODEC.fieldOf("result").forGetter(CapacitorRecipe::output)
+                ).apply(inst, CapacitorRecipe::new));
 
-    public Ingredient getInputItem() {
-        return inputItem;
-    }
+        public static final StreamCodec<RegistryFriendlyByteBuf, CapacitorRecipe> STREAM_CODEC =
+                StreamCodec.composite(
+                        Ingredient.CONTENTS_STREAM_CODEC, CapacitorRecipe::inputItem,
+                        ByteBufCodecs.INT, CapacitorRecipe::inputEnergy,
+                        ItemStack.STREAM_CODEC, CapacitorRecipe::output,
+                        CapacitorRecipe::new);
 
-    public ItemStack getResult() {
-        return result;
+        @Override
+        public @NotNull MapCodec<CapacitorRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, CapacitorRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
     }
 }

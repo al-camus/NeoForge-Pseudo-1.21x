@@ -31,8 +31,8 @@ import qa.luffy.pseudo.common.init.PseudoItemGroups;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
 import qa.luffy.pseudo.common.networking.packet.EnergyData;
-import qa.luffy.pseudo.common.recipe.PseudoRecipeSerializers;
-import qa.luffy.pseudo.common.recipe.PseudoRecipeTypes;
+import qa.luffy.pseudo.common.recipe.PseudoCustomRecipes;
+import qa.luffy.pseudo.common.util.ItemHandlerBlock;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageBlock;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
@@ -53,8 +53,7 @@ public class Pseudo  {
         PseudoItemGroups.register(modEventBus);
         PseudoMenus.register(modEventBus);
 
-        PseudoRecipeTypes.register(modEventBus);
-        PseudoRecipeSerializers.register(modEventBus);
+        PseudoCustomRecipes.register(modEventBus);
 
         PseudoDataComponents.register(modEventBus);
         PseudoItems.register(modEventBus);
@@ -93,7 +92,7 @@ public class Pseudo  {
         //Item Block Entities
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
                 PseudoBlockEntities.CAPACITOR_TYPE.get(),
-                (entity, direction) -> new SidedInvWrapper((WorldlyContainer) entity, direction));
+                (entity, direction) -> ((ItemHandlerBlock) entity).getItemHandler(direction));
         //Energy Block Entities
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 PseudoBlockEntities.CAPACITOR_TYPE.get(),

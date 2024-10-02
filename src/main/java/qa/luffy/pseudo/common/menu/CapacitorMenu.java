@@ -4,48 +4,59 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.network.PacketDistributor;
+import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 import qa.luffy.pseudo.common.networking.packet.EnergyData;
 
 public class CapacitorMenu extends AbstractContainerMenu {
 
-    private final Container inventory;
-
-    private final CapacitorBlockEntity entity;
+    public final CapacitorBlockEntity entity;
+    private final Level level;
+    private final ContainerData data;
 
     public CapacitorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buf) {
-        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buf.readBlockPos()));
+        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buf.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CapacitorMenu(int containerId, Inventory playerInventory, BlockEntity entity) {
+    public CapacitorMenu(int containerId, Inventory playerInventory, BlockEntity entity, ContainerData data) {
         super(PseudoMenus.CAPACITOR_MENU_TYPE.get(), containerId);
-        CapacitorBlockEntity blockEntity = (CapacitorBlockEntity) entity;
-        checkContainerSize(blockEntity, 2);
-        this.inventory = blockEntity;
-        this.entity = blockEntity;
-        this.addSlot(new Slot(inventory, 0, 37, 21));
-        this.addSlot(new Slot(inventory, 1, 37 , 47));
+        this.entity = ((CapacitorBlockEntity) entity);
+        this.level = playerInventory.player.level();
+        this.data = data;
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
+
+        this.addSlot(new SlotItemHandler(this.entity.getItemHandler(null), 0, 37, 21));
+        this.addSlot(new SlotItemHandler(this.entity.getItemHandler(null), 1, 37 , 47));
+
+        addDataSlots(data);
     }
 
     public CapacitorBlockEntity getBlockEntity() {
         return entity;
     }
 
+    public int getProgressAmount() {
+        return data.get(0);
+    }
+
+    public int getProgressCapacity() {
+        return data.get(1);
+    }
+
     @Override
     public boolean stillValid(Player player) {
         if (!player.isLocalPlayer()) PacketDistributor.sendToAllPlayers(new EnergyData(entity.getEnergyStorage(null).getEnergyStored(), entity.getBlockPos()));
-        return this.inventory.stillValid(player);
+        return stillValid(ContainerLevelAccess.create(level, entity.getBlockPos()), player, PseudoBlocks.CAPACITOR_BLOCK.get());
     }
 
-    //Taken from Stellaris CC BY-NC-SA 4.0
     @Override
     public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex) {
         ItemStack newStack = ItemStack.EMPTY;
@@ -53,11 +64,11 @@ public class CapacitorMenu extends AbstractContainerMenu {
         if (slot.hasItem()) {
             ItemStack originalStack = slot.getItem();
             newStack = originalStack.copy();
-            if (quickMovedSlotIndex < this.inventory.getContainerSize()) {
-                if (!this.moveItemStackTo(originalStack, this.inventory.getContainerSize(), this.slots.size(), true)) {
+            if (quickMovedSlotIndex < this.entity.getItemHandler(null).getSlots()) {
+                if (!this.moveItemStackTo(originalStack, this.entity.getItemHandler(null).getSlots(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(originalStack, 0, this.inventory.getContainerSize(), false)) {
+            } else if (!this.moveItemStackTo(originalStack, 0, this.entity.getItemHandler(null).getSlots(), false)) {
                 return ItemStack.EMPTY;
             }
 

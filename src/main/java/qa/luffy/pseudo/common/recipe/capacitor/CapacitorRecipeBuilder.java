@@ -11,12 +11,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import qa.luffy.pseudo.common.recipe.SimpleRecipeBuilder;
 
 public class CapacitorRecipeBuilder extends SimpleRecipeBuilder {
-    private final int intputEnergy;
+    private final int inputEnergy;
     private final Ingredient inputItem;
 
     public CapacitorRecipeBuilder(ItemStack result, int inputEnergy, Ingredient inputItem) {
         super(result);
-        this.intputEnergy = inputEnergy;
+        this.inputEnergy = inputEnergy;
         this.inputItem = inputItem;
     }
 
@@ -29,7 +29,7 @@ public class CapacitorRecipeBuilder extends SimpleRecipeBuilder {
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
         // Our factory parameters are the result, the block state, and the ingredient.
-        CapacitorRecipe recipe = new CapacitorRecipe(this.intputEnergy, this.inputItem, this.result);
+        CapacitorRecipe recipe = new CapacitorRecipe(this.inputItem, this.inputEnergy, this.result);
         // Pass the id, the recipe, and the recipe advancement into the RecipeOutput.
         output.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
     }

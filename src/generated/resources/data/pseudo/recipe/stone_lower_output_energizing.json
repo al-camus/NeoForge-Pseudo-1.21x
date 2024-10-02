@@ -1,5 +1,5 @@
 {
-  "type": "pseudo:capacitor",
+  "type": "pseudo:energizing",
   "energy": 200,
   "ingredient": {
     "item": "minecraft:redstone_ore"
