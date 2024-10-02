@@ -50,7 +50,10 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
 
         arrowGaugeInto = new GaugeWidget(this.leftPos + 76, this.topPos + 21, 24, 16, getMenu().getProgressCapacity(), GaugeWidget.Direction4.LEFT_RIGHT, BURN_PROGRESS_SPRITE);
         addRenderableWidget(arrowGaugeInto);
+        arrowGaugeOutFrom = new GaugeWidget(this.leftPos + 76, this.topPos + 46, 24, 16, getMenu().getProgressCapacity(), GaugeWidget.Direction4.RIGHT_LEFT, BURN_PROGRESS_REVERSE_SPRITE);
+        addRenderableWidget(arrowGaugeOutFrom);
     }
+
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
@@ -60,8 +63,10 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         guiGraphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
         if (energyStorage != null) energyGauge.updateAmount(energyStorage.getEnergyStored());
+        arrowGaugeInto.updateCapacity(getMenu().getProgressCapacity()/2);
         arrowGaugeInto.updateAmount(getMenu().getProgressAmount());
-        arrowGaugeInto.updateCapacity(getMenu().getProgressCapacity());
+        arrowGaugeOutFrom.updateCapacity(getMenu().getProgressCapacity()/2);
+        arrowGaugeOutFrom.updateAmount(getMenu().getProgressAmount() - getMenu().getProgressCapacity()/2);
     }
 
     @Override

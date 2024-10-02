@@ -63,11 +63,12 @@ public class GaugeWidget extends AbstractWidget {
     }
 
     public void updateAmount(int value) {
-        this.amount = value;
+        this.amount = Math.clamp(value, 0, capacity);
     }
 
     public void updateCapacity(int capacity) {
         this.capacity = capacity;
+        this.amount = Math.min(this.amount, capacity);
     }
 
     @Override
