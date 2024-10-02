@@ -89,42 +89,36 @@ public class CapacitorBlockEntity extends BlockEntity implements MenuProvider, E
     public void tick() {
         if(!level.isClientSide()) {
             //slot 0 - charge capacitor
-            IEnergyStorage itemEnergy0 = Capabilities.EnergyStorage.ITEM.getCapability(getItem(0), null);
+            IEnergyStorage itemEnergy0 = Capabilities.EnergyStorage.ITEM.getCapability(itemHandler.getStackInSlot(INPUT_SLOT), null);
             if (itemEnergy0 != null) {
                 if (itemEnergy0.getEnergyStored() != 0) {
                     EnergyUtil.transferEnergy(itemEnergy0, energyStorage, level, 256);
                 }
             }
             //slot 1 - charge item
-            IEnergyStorage itemEnergy1 = Capabilities.EnergyStorage.ITEM.getCapability(getItem(1), null);
+            IEnergyStorage itemEnergy1 = Capabilities.EnergyStorage.ITEM.getCapability(itemHandler.getStackInSlot(OUTPUT_SLOT), null);
             if (itemEnergy1 != null) {
                 if (itemEnergy1.getEnergyStored() != itemEnergy1.getMaxEnergyStored()) {
                     EnergyUtil.transferEnergy(energyStorage, itemEnergy1, level, 256);
                 }
             }
 
-            Optional<RecipeHolder<CapacitorRecipe>> optionalRecipes = quickCheck.getRecipeFor(
-                    new CapacitorRecipeInput(this.energyStorage.getEnergyStored(), getItem(0)), this.level);
-            if (optionalRecipes.isPresent()) {
-                else EnergyUtil.transferEnergy(energyStorage, itemEnergy, level, 256);
-            } else {
-                if (hasRecipe() && !isProcessing()) {
-                    Optional<RecipeHolder<CapacitorRecipe>> recipe = getCurrentRecipes();
-                    recipe.ifPresent(capacitorRecipeRecipeHolder -> maxProgress = getProcessTimeForEnergy(capacitorRecipeRecipeHolder.value().inputEnergy()));
-                }
-                if (hasRecipe() && isOutputSlotEmptyOrRecievable()) {
-                    increaseProgress();
-                    this.energyStorage.extractEnergy(1,false);
-                    setChanged();
+            if (hasRecipe() && !isProcessing()) {
+                Optional<RecipeHolder<CapacitorRecipe>> recipe = getCurrentRecipes();
+                recipe.ifPresent(capacitorRecipeRecipeHolder -> maxProgress = getProcessTimeForEnergy(capacitorRecipeRecipeHolder.value().inputEnergy()));
+            }
+            if (hasRecipe() && isOutputSlotEmptyOrRecievable()) {
+                increaseProgress();
+                this.energyStorage.extractEnergy(1,false);
+                setChanged();
 
-                    if (hasCraftingFinished()) {
-                        craftItem();
-                        resetProgress();
-                    }
-                }
-                else {
+                if (hasCraftingFinished()) {
+                    craftItem();
                     resetProgress();
                 }
+            }
+            else {
+                resetProgress();
             }
 
         }
