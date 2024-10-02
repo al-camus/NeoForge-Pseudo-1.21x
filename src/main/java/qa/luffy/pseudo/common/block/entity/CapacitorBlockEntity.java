@@ -88,6 +88,9 @@ public class CapacitorBlockEntity extends BlockEntity implements MenuProvider, E
     private int energyPerTick = 1;
     public void tick() {
         if(!level.isClientSide()) {
+
+            EnergyUtil.distributeEnergyNearby(getLevel(), getBlockPos(), 256);
+
             //slot 0 - charge capacitor
             IEnergyStorage itemEnergy0 = Capabilities.EnergyStorage.ITEM.getCapability(itemHandler.getStackInSlot(INPUT_SLOT), null);
             if (itemEnergy0 != null) {
