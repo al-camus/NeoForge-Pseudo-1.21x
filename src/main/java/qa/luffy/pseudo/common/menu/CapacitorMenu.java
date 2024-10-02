@@ -12,6 +12,7 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.network.PacketDistributor;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
+import qa.luffy.pseudo.common.menu.slot.EnergyResultSlot;
 import qa.luffy.pseudo.common.networking.packet.EnergyData;
 
 public class CapacitorMenu extends AbstractContainerMenu {
@@ -34,7 +35,7 @@ public class CapacitorMenu extends AbstractContainerMenu {
         addPlayerHotbar(playerInventory);
 
         this.addSlot(new SlotItemHandler(this.entity.getItemHandler(null), 0, 37, 21));
-        this.addSlot(new SlotItemHandler(this.entity.getItemHandler(null), 1, 37 , 47));
+        this.addSlot(new EnergyResultSlot(this.entity.getItemHandler(null), 1, 37 , 47));
 
         addDataSlots(data);
     }
