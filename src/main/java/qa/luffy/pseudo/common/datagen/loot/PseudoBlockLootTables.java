@@ -1,10 +1,12 @@
 package qa.luffy.pseudo.common.datagen.loot;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +14,11 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import org.jetbrains.annotations.NotNull;
+import qa.luffy.pseudo.common.block.GoldenCarrotCropBlock;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.item.PseudoItems;
 
@@ -30,9 +35,28 @@ public class  PseudoBlockLootTables extends BlockLootSubProvider {
         dropSelf(PseudoBlocks.RAW_GRAPHITE_BLOCK.get());
         dropSelf(PseudoBlocks.GRAPHITE_DUST_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BLOCK.get());
+        dropSelf(PseudoBlocks.REFINED_GRAPHITE_STAIRS.get());
+        this.add(PseudoBlocks.REFINED_GRAPHITE_SLAB.get(),
+                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BRICK.get());
+        dropSelf(PseudoBlocks.GRAPHITE_BRICK_STAIRS.get());
+        this.add(PseudoBlocks.GRAPHITE_BRICK_SLAB.get(),
+                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
         dropSelf(PseudoBlocks.GRAPHENE_SHEET_BLOCK.get());
+        dropSelf(PseudoBlocks.GRAPHENE_SHEET_STAIRS.get());
+        this.add(PseudoBlocks.GRAPHENE_SHEET_SLAB.get(),
+                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
         dropSelf(PseudoBlocks.MESH_BLOCK.get());
+        dropSelf(PseudoBlocks.MESH_STAIRS.get());
+        this.add(PseudoBlocks.MESH_SLAB.get(),
+                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
+        dropSelf(PseudoBlocks.MESH_LAMP.get());
+        dropSelf(PseudoBlocks.MESH_LAMP_INVERTED.get());
+        dropSelf(PseudoBlocks.MESH_FENCE.get());
+        dropSelf(PseudoBlocks.MESH_FENCE_GATE.get());
+        dropSelf(PseudoBlocks.MESH_DOOR.get());
+        dropSelf(PseudoBlocks.MESH_TRAPDOOR.get());
+        dropSelf(PseudoBlocks.MESH_WALL.get());
         //advanced blocks
         dropSelf(PseudoBlocks.MESH_BUTTON.get());
         dropSelf(PseudoBlocks.MESH_PRESSURE_PLATE.get());
@@ -40,6 +64,9 @@ public class  PseudoBlockLootTables extends BlockLootSubProvider {
         //ore
         add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
         add(PseudoBlocks.NETHER_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
+        //crops
+        LootItemCondition.Builder lootItemBlockstateCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(PseudoBlocks.GOLDEN_CARROT_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GoldenCarrotCropBlock.AGE, 7));
+        this.add(PseudoBlocks.GOLDEN_CARROT_CROP.get(), this.createCropDrops(PseudoBlocks.GOLDEN_CARROT_CROP.get(), Items.GOLDEN_CARROT, Items.GOLDEN_CARROT, lootItemBlockstateCondition));
     }
 
     protected LootTable.Builder createCustomCountOreDrop(Block block, NumberProvider count) {

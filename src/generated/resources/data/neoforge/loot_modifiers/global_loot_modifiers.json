@@ -1,0 +1,27 @@
+{
+  "entries": [
+    "pseudo:buried_weapons",
+    "pseudo:nether_fortress_graphite",
+    "pseudo:desert_pyramid_extras",
+    "pseudo:bastion_graphite_bridge",
+    "pseudo:stronghold_crossing_extras",
+    "pseudo:stronghold_library_extras",
+    "pseudo:ender_knapsack_in_end_city",
+    "pseudo:jungle_temple_extras",
+    "pseudo:ruined_portal_extras",
+    "pseudo:sea_in_underwater_ruin_big",
+    "pseudo:stronghold_corridor_extras",
+    "pseudo:sea_in_end_city",
+    "pseudo:bastion_graphite_treasure",
+    "pseudo:pillager_outpost_extras",
+    "pseudo:sea_in_underwater_ruin_small",
+    "pseudo:woodland_mansion_extras",
+    "pseudo:dungeon_extras",
+    "pseudo:sea_in_buried_treasure",
+    "pseudo:bastion_graphite_hoglin",
+    "pseudo:sea_in_shipwreck_treasure",
+    "pseudo:ancient_city_sculk",
+    "pseudo:bastion_graphite_other"
+  ],
+  "replace": false
+}

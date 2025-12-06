@@ -34,11 +34,12 @@ public class PseudoItems {
     //advanced-craftable
     public static final DeferredItem<Item> MESH_BATTERY = ITEMS.registerItem("mesh_battery", MeshBatteryItem::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> ENDER_KNAPSACK = ITEMS.registerItem("ender_knapsack", EnderKnapsackItem::new, new Item.Properties().fireResistant().stacksTo(1));
-    public static final DeferredItem<Item> TOOLBOX = ITEMS.registerSimpleItem("toolbox", new Item.Properties().fireResistant().stacksTo(1));
+    public static final DeferredItem<Item> TOOLBOX = ITEMS.register("toolbox", () -> new ToolboxItem(new Item.Properties().fireResistant().stacksTo(1)));
     public static final DeferredItem<Item> MESH_HELMET = ITEMS.register("mesh_helmet", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
     public static final DeferredItem<Item> MESH_CHESTPLATE = ITEMS.register("mesh_chestplate", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(36))));
     public static final DeferredItem<Item> MESH_LEGGINGS = ITEMS.register("mesh_leggings", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(36))));
     public static final DeferredItem<Item> MESH_BOOTS = ITEMS.register("mesh_boots", () -> new MeshArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
+    public static final DeferredItem<Item> MESH_HORSE_ARMOR = ITEMS.register("mesh_horse_armor", () -> new AnimalArmorItem(PseudoArmorMaterials.MESH, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
     //advanced-findable
     public static final DeferredItem<Item> SCULK_FRUIT = ITEMS.registerItem("sculk_fruit", Item::new, new Item.Properties().rarity(Rarity.RARE).food(PseudoFoods.SCULK_FRUIT));
     public static final DeferredItem<Item> SCULK_TOME = ITEMS.register("sculk_tome", () -> new SculkTomeItem(new Item.Properties().stacksTo(1).component(STORED_XP, 0).component(MAXIMUM_XP, 1395).setNoRepair().fireResistant().rarity(Rarity.RARE)));

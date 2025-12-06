@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "pseudo:block/mesh_crate" }
+  }
+}

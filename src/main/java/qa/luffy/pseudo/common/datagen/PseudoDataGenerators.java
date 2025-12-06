@@ -8,6 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.datagen.loot.PseudoGlobalLootModifierProvider;
 import qa.luffy.pseudo.common.datagen.loot.PseudoLootTables;
 
 import java.util.concurrent.CompletableFuture;
@@ -25,6 +26,7 @@ public class PseudoDataGenerators {
 
         generator.addProvider(event.includeServer(), new PseudoRecipes(packOutput, registries));
         generator.addProvider(event.includeServer(), new PseudoLootTables(packOutput, registries));
+        generator.addProvider(event.includeServer(), new PseudoGlobalLootModifierProvider(packOutput, registries));
         generator.addProvider(event.includeServer(), blockTagProvider);
         generator.addProvider(event.includeServer(), new PseudoItemTags(packOutput, registries, blockTagProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new PseudoWorldGen(packOutput, registries));

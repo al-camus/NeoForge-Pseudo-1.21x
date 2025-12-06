@@ -1,4 +1,7 @@
-// 1.21	2024-10-02T18:16:50.4957069	Recipes
+// 1.21	2024-10-19T05:04:42.4679572	Recipes
+1a3ffabf792fb9abaf5927f4efb04f7541c05ef1 data/pseudo/advancement/recipes/building_blocks/mesh_slab.json
+ec352e1348801167c2057be4a4113968fff7e9e0 data/pseudo/advancement/recipes/building_blocks/mesh_stairs.json
+9bc30e6bff0bb60d35a68a61a4405d4c559e921f data/pseudo/advancement/recipes/building_blocks/mesh_wall.json
 a27affb888f4eba792e13fd0574906e1506509cc data/pseudo/advancement/recipes/charcoal_energizing.json
 94efbd2dfa0e81703b0031c3d1b5efff89f69eb9 data/pseudo/advancement/recipes/charcoal_lower_output_energizing.json
 afcc5050de28a50b1d5bcb673fbf32587606651e data/pseudo/advancement/recipes/misc/capacitor_block.json
@@ -92,6 +95,9 @@ e6cd158dfdd5d6e021e6870fefda8bc1898c3f0e data/pseudo/recipe/mesh_gear.json
 c8d18ca6e27af80b707dc0fcdec133d9e3fe8c75 data/pseudo/recipe/mesh_mitts_left.json
 f700a2da5260fc12bbfa70fac9a94ffa1c295664 data/pseudo/recipe/mesh_mitts_right.json
 f1ffbdc20f4b7705bbabcbfe7fc29458baa4d34f data/pseudo/recipe/mesh_pressure_plate.json
+7825c4e28e3af01ef4b7c9ae6a4d3e8d401974a2 data/pseudo/recipe/mesh_slab.json
+424081707ba3d0ce7d924087a052951e96f3eb5b data/pseudo/recipe/mesh_stairs.json
+623d832a9b6349775f5cc9e8dcb806932dc2a8ef data/pseudo/recipe/mesh_wall.json
 73675dca10595c5c1d981fe72bc611c3465cced3 data/pseudo/recipe/mole_mitts_left.json
 617a21a71db8d6702339dd095862132cf0778932 data/pseudo/recipe/mole_mitts_right.json
 e42b5a1df7dc95bb355c0cbbcb53ecc02f93e280 data/pseudo/recipe/raw_graphite_block.json

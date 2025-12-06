@@ -15,6 +15,8 @@ public class PseudoBlockEntities {
     public static final Supplier<BlockEntityType<?>> CAPACITOR_TYPE = BLOCK_ENTITY_TYPES.register(
             "capacitor", () -> BlockEntityType.Builder.of(CapacitorBlockEntity::new, PseudoBlocks.CAPACITOR_BLOCK.get()).build(null));
 
+    public static final Supplier<BlockEntityType<?>> MESH_CRATE_TYPE = BLOCK_ENTITY_TYPES.register("mesh_crate", () -> BlockEntityType.Builder.of(MeshCrateBlockEntity::new, PseudoBlocks.MESH_CRATE.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
     }

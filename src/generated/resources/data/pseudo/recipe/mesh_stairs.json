@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "graphene_mesh",
+  "key": {
+    "#": {
+      "item": "pseudo:mesh_block"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "pseudo:mesh_stairs"
+  }
+}

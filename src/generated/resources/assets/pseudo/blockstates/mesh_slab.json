@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pseudo:block/mesh_slab"
+    },
+    "type=double": {
+      "model": "pseudo:block/mesh_block"
+    },
+    "type=top": {
+      "model": "pseudo:block/mesh_slab_top"
+    }
+  }
+}

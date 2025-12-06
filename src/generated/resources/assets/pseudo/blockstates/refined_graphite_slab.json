@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pseudo:block/refined_graphite_slab"
+    },
+    "type=double": {
+      "model": "pseudo:block/refined_graphite_block"
+    },
+    "type=top": {
+      "model": "pseudo:block/refined_graphite_slab_top"
+    }
+  }
+}

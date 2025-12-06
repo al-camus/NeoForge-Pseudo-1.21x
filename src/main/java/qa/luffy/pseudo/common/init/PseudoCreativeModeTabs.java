@@ -13,7 +13,7 @@ import qa.luffy.pseudo.common.item.PseudoItems;
 
 import java.util.function.Supplier;
 
-public class PseudoItemGroups {
+public class PseudoCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Pseudo.MODID);
 
     public static final Supplier<CreativeModeTab> PSEUDO_ITEMS_TAB = CREATIVE_MODE_TABS.register("pseudo_items_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_items_tab")).icon(() -> new ItemStack(PseudoItems.RAW_GRAPHITE.get())).displayItems((pParameters, pOutput) -> {
@@ -37,6 +37,7 @@ public class PseudoItemGroups {
         //advanced-craftable
         pOutput.accept(PseudoItems.ENDER_KNAPSACK);
         pOutput.accept(PseudoItems.TOOLBOX);
+        pOutput.accept(PseudoItems.MESH_HORSE_ARMOR);
         pOutput.accept(PseudoItems.MESH_HELMET);
         pOutput.accept(PseudoItems.MESH_CHESTPLATE);
         pOutput.accept(PseudoItems.MESH_LEGGINGS);
@@ -56,9 +57,22 @@ public class PseudoItemGroups {
         pOutput.accept(PseudoBlocks.RAW_GRAPHITE_BLOCK);
         pOutput.accept(PseudoBlocks.GRAPHITE_DUST_BLOCK);
         pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_BLOCK);
+        pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_STAIRS);
+        pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_SLAB);
         pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_BRICK);
+        pOutput.accept(PseudoBlocks.GRAPHITE_BRICK_STAIRS);
+        pOutput.accept(PseudoBlocks.GRAPHITE_BRICK_SLAB);
         pOutput.accept(PseudoBlocks.GRAPHENE_SHEET_BLOCK);
+        pOutput.accept(PseudoBlocks.GRAPHENE_SHEET_STAIRS);
+        pOutput.accept(PseudoBlocks.GRAPHENE_SHEET_SLAB);
         pOutput.accept(PseudoBlocks.MESH_BLOCK);
+        pOutput.accept(PseudoBlocks.MESH_STAIRS);
+        pOutput.accept(PseudoBlocks.MESH_SLAB);
+        pOutput.accept(PseudoBlocks.MESH_LAMP);
+        pOutput.accept(PseudoBlocks.MESH_LAMP_INVERTED);
+        pOutput.accept(PseudoBlocks.MESH_FENCE);
+        pOutput.accept(PseudoBlocks.MESH_FENCE_GATE);
+        pOutput.accept(PseudoBlocks.MESH_WALL);
         //advanced blocks
         pOutput.accept(PseudoBlocks.CAPACITOR_BLOCK);
         pOutput.accept(PseudoBlocks.MESH_PRESSURE_PLATE);

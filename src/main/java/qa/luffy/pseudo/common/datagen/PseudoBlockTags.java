@@ -58,6 +58,10 @@ public class PseudoBlockTags extends BlockTagsProvider {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
+
+        tag(BlockTags.FENCES).add(PseudoBlocks.MESH_FENCE.get());
+        tag(BlockTags.FENCE_GATES).add(PseudoBlocks.MESH_FENCE_GATE.get());
+        tag(BlockTags.WALLS).add(PseudoBlocks.MESH_WALL.get());
     }
 
 }

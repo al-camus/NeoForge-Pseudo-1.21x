@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "pseudo:block/refined_graphite_block",
+    "side": "pseudo:block/refined_graphite_block",
+    "top": "pseudo:block/refined_graphite_block"
+  }
+}

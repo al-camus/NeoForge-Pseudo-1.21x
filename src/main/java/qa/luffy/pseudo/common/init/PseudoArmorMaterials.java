@@ -23,14 +23,14 @@ public class PseudoArmorMaterials {
     public static final Holder<ArmorMaterial> MESH =
             ARMOR_MATERIALS.register("mesh", () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                        map.put(ArmorItem.Type.BOOTS, 3);
-                        map.put(ArmorItem.Type.LEGGINGS, 6);
-                        map.put(ArmorItem.Type.CHESTPLATE, 6);
-                        map.put(ArmorItem.Type.HELMET, 3);
-                        map.put(ArmorItem.Type.BODY, 12);
-                    }), 18, SoundEvents.ARMOR_EQUIP_CHAIN, () -> Ingredient.of(PseudoItems.GRAPHENE_MESH),
+                        map.put(ArmorItem.Type.BOOTS, 7);
+                        map.put(ArmorItem.Type.LEGGINGS, 7);
+                        map.put(ArmorItem.Type.CHESTPLATE, 7);
+                        map.put(ArmorItem.Type.HELMET, 7);
+                        map.put(ArmorItem.Type.BODY, 14);
+                    }), 20, SoundEvents.ARMOR_EQUIP_CHAIN, () -> Ingredient.of(PseudoItems.GRAPHENE_MESH),
                     List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "mesh"))),
-                    3, 0.6f));
+                    4f, 0.6f));
 
     public static void register(IEventBus eventBus) {
         ARMOR_MATERIALS.register(eventBus);

@@ -23,11 +23,12 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
+import qa.luffy.pseudo.client.screen.ToolboxScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.init.PseudoArmorMaterials;
-import qa.luffy.pseudo.common.init.PseudoItemGroups;
+import qa.luffy.pseudo.common.init.PseudoCreativeModeTabs;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
 import qa.luffy.pseudo.common.networking.packet.EnergyData;
@@ -50,7 +51,7 @@ public class Pseudo  {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        PseudoItemGroups.register(modEventBus);
+        PseudoCreativeModeTabs.register(modEventBus);
         PseudoMenus.register(modEventBus);
 
         PseudoCustomRecipes.register(modEventBus);
@@ -130,6 +131,7 @@ public class Pseudo  {
         @SubscribeEvent
         private static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(PseudoMenus.CAPACITOR_MENU_TYPE.get(), CapacitorScreen::new);
+            event.register(PseudoMenus.TOOLBOX_MENU_TYPE.get(), ToolboxScreen::new);
         }
     }
 

@@ -10,7 +10,18 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class PseudoLootTables extends LootTableProvider {
-    public PseudoLootTables(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, Set.of(), List.of(new SubProviderEntry(PseudoBlockLootTables::new, LootContextParamSets.BLOCK)), registries);
+
+    public PseudoLootTables(PackOutput output,
+                            CompletableFuture<HolderLookup.Provider> registries) {
+
+        super(
+                output,
+                Set.of(),
+                List.of(
+                        new SubProviderEntry(PseudoBlockLootTables::new, LootContextParamSets.BLOCK),
+                        new SubProviderEntry(PseudoChestLootSubProvider::new, LootContextParamSets.CHEST)
+                ),
+                registries
+        );
     }
 }

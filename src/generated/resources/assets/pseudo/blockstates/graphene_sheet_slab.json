@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pseudo:block/graphene_sheet_slab"
+    },
+    "type=double": {
+      "model": "pseudo:block/graphene_sheet_block"
+    },
+    "type=top": {
+      "model": "pseudo:block/graphene_sheet_slab_top"
+    }
+  }
+}
