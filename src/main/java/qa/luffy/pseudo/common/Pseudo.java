@@ -23,6 +23,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
+import qa.luffy.pseudo.client.screen.MeshCrateScreen;
 import qa.luffy.pseudo.client.screen.ToolboxScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
@@ -132,6 +133,7 @@ public class Pseudo  {
         private static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(PseudoMenus.CAPACITOR_MENU_TYPE.get(), CapacitorScreen::new);
             event.register(PseudoMenus.TOOLBOX_MENU_TYPE.get(), ToolboxScreen::new);
+            event.register(PseudoMenus.MESH_CRATE_MENU_TYPE.get(), MeshCrateScreen::new);
         }
     }
 

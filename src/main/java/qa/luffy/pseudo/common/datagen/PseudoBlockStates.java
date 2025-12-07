@@ -110,35 +110,11 @@ public class PseudoBlockStates extends BlockStateProvider {
 
     // === Mesh Lamps ===
     private void customLamp() {
-        // Head-sized ON model (4,0,4 -> 12,8,12)
-        ModelFile meshLampOnModel = models().getBuilder("mesh_lamp_on")
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .texture("all", modLoc("block/mesh_lamp_on"))
-                .element()
-                .from(4, 0, 4)
-                .to(12, 8, 12)
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.DOWN).texture("#all").end()
-                .end();
+        ModelFile meshLampOnModel = smallLampModel("mesh_lamp_on", modLoc("block/mesh_lamp_on"));
+        ModelFile meshLampOffModel = smallLampModel("mesh_lamp_off", modLoc("block/mesh_lamp_off"));
 
-        // Head-sized OFF model (same geometry, different texture)
-        ModelFile meshLampOffModel = models().getBuilder("mesh_lamp_off")
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .texture("all", modLoc("block/mesh_lamp_off"))
-                .element()
-                .from(4, 0, 4)
-                .to(12, 8, 12)
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.DOWN).texture("#all").end()
-                .end();
+        ModelFile meshLampInvertedOnModel = smallLampModel("mesh_lamp_inverted_on", modLoc("block/mesh_lamp_on"));
+        ModelFile meshLampInvertedOffModel = smallLampModel("mesh_lamp_inverted_off", modLoc("block/mesh_lamp_off"));
 
         // Normal Mesh Lamp (mesh_lamp)
         getVariantBuilder(PseudoBlocks.MESH_LAMP.get()).forAllStates(state -> {
@@ -155,11 +131,27 @@ public class PseudoBlockStates extends BlockStateProvider {
         getVariantBuilder(PseudoBlocks.MESH_LAMP_INVERTED.get()).forAllStates(state -> {
             boolean active = state.getValue(MeshLampBlock.ACTIVATED);
             return new ConfiguredModel[]{
-                    new ConfiguredModel(active ? meshLampOnModel : meshLampOffModel)
+                    new ConfiguredModel(active ? meshLampInvertedOnModel : meshLampInvertedOffModel)
             };
         });
 
-        simpleBlockItem(PseudoBlocks.MESH_LAMP_INVERTED.get(), meshLampOnModel);
+        simpleBlockItem(PseudoBlocks.MESH_LAMP_INVERTED.get(), meshLampInvertedOnModel);
+    }
+
+    private ModelFile smallLampModel(String name, ResourceLocation texture) {
+        return models().getBuilder(name)
+                .parent(models().getExistingFile(mcLoc("block/block")))
+                .texture("all", texture)
+                .element()
+                .from(4, 0, 4)
+                .to(12, 8, 12)
+                .face(Direction.NORTH).texture("#all").end()
+                .face(Direction.SOUTH).texture("#all").end()
+                .face(Direction.EAST).texture("#all").end()
+                .face(Direction.WEST).texture("#all").end()
+                .face(Direction.UP).texture("#all").end()
+                .face(Direction.DOWN).texture("#all").end()
+                .end();
     }
 
     private ConfiguredModel[] states(BlockState state, String modelName, String textureName) {
