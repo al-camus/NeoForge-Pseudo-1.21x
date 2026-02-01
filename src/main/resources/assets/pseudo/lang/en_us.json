@@ -17,6 +17,7 @@
   "item.pseudo.mesh_mitts": "Mesh Mitts",
   "item.pseudo.ender_knapsack": "Ender-Mesh Knapsack",
   "item.pseudo.toolbox": "Mesh Toolbox",
+  "item.pseudo.pocket_crafter": "Mesh Crafter",
   "item.pseudo.mesh_helmet": "Mesh Helmet",
   "item.pseudo.mesh_chestplate": "Mesh Chestplate",
   "item.pseudo.mesh_leggings": "Mesh Leggings",
@@ -50,6 +51,8 @@
   "block.pseudo.mesh_fence": "Graphene Mesh Fence",
   "block.pseudo.mesh_fence_gate": "Graphene Mesh Fence Gate",
   "block.pseudo.mesh_wall": "Graphene Mesh Wall",
+  "block.pseudo.mesh_door": "Mesh Door",
+  "block.pseudo.mesh_trapdoor": "Mesh Trapdoor",
 
   "block.pseudo.golden_carrot_crop": "Golden Carrot Crop",
 
@@ -60,6 +63,7 @@
 
   "container.pseudo.mesh_crate": "Mesh Crate",
   "container.pseudo.toolbox": "Toolbox",
+  "container.pseudo.pocket_crafter": "Mesh Crafter",
 
   "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",
   "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks",

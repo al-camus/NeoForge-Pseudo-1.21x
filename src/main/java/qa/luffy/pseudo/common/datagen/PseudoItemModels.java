@@ -59,6 +59,7 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.TOOLBOX.get());
         basicItem(PseudoItems.SCULK_FRUIT.get());
         basicItem(PseudoItems.SCULK_TOME.get());
+        basicItem(PseudoItems.POCKET_CRAFTER.get());
         //handheld items
         handheldItem(PseudoItems.MESH_CHAINSAW);
         handheldItem(PseudoItems.MESH_DRILL);
@@ -71,11 +72,13 @@ public class PseudoItemModels extends ItemModelProvider {
         buttonItem(PseudoBlocks.MESH_BUTTON, PseudoBlocks.MESH_BLOCK);
         fenceItem(PseudoBlocks.MESH_FENCE, PseudoBlocks.MESH_BLOCK);
         wallItem(PseudoBlocks.MESH_WALL, PseudoBlocks.MESH_BLOCK);
+        basicItem(PseudoBlocks.MESH_DOOR.get().asItem());
 
-        withExistingParent(
-                "mesh_crate",
-                modLoc("block/mesh_crate")
-        );
+        // MESH TRAPDOOR ITEM  (uses block model as icon, but DOESN'T assert existence)
+        getBuilder(PseudoBlocks.MESH_TRAPDOOR.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile(
+                        modLoc("block/mesh_trapdoor_bottom")
+                ));
     }
 
     private void trimmedArmorItem(DeferredItem<Item> itemDeferredItem) {

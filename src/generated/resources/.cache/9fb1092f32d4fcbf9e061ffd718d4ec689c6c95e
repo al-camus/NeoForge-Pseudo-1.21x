@@ -1,4 +1,4 @@
-// 1.21	2024-10-19T05:04:42.4679572	Recipes
+// 1.21	2025-12-10T19:07:42.0169834	Recipes
 1a3ffabf792fb9abaf5927f4efb04f7541c05ef1 data/pseudo/advancement/recipes/building_blocks/mesh_slab.json
 ec352e1348801167c2057be4a4113968fff7e9e0 data/pseudo/advancement/recipes/building_blocks/mesh_stairs.json
 9bc30e6bff0bb60d35a68a61a4405d4c559e921f data/pseudo/advancement/recipes/building_blocks/mesh_wall.json
@@ -21,6 +21,7 @@ e4f104e544466c0ebf60c88ba00cd0470d7576a1 data/pseudo/advancement/recipes/misc/gr
 e596681c052c3ce604ad60db23e66b03e5f8d212 data/pseudo/advancement/recipes/misc/iron_chainsaw_head_right.json
 5b8f5a0bac8af4c98b61f5bacd8ce5dae35650dc data/pseudo/advancement/recipes/misc/iron_drill_head_left.json
 57449c6ec5e6189a6271217d932677a43157cf46 data/pseudo/advancement/recipes/misc/iron_drill_head_right.json
+41b30c0749ff53e6fc3d8061acd6cc439ea6f496 data/pseudo/advancement/recipes/misc/led.json
 9b6a49194074f46b28ba6d6ce465f075a675f539 data/pseudo/advancement/recipes/misc/mesh_battery.json
 4002b7b1a27922d1c343abdbcf746ba5db2191b4 data/pseudo/advancement/recipes/misc/mesh_block.json
 c291ca62ae6876a6057c8bce749122fb5a46bd4d data/pseudo/advancement/recipes/misc/mesh_boots.json
@@ -29,11 +30,14 @@ d409fc9a8ec55cea5c3bc33f37f830784d4da9fb data/pseudo/advancement/recipes/misc/me
 7c84188584adfef0ed5a9a4c1bfe46b347e7e875 data/pseudo/advancement/recipes/misc/mesh_drill.json
 cf4a6df552f037eb144e25e3be31676bfd1f1d72 data/pseudo/advancement/recipes/misc/mesh_gear.json
 5f857970374669b2c27a6d0cf58ddb122c4cbb3f data/pseudo/advancement/recipes/misc/mesh_helmet.json
+259d5f68800fb3922a5feb71cc2c0a42b9de4b9b data/pseudo/advancement/recipes/misc/mesh_horse_armor_left.json
+c171540f7b4b2854b483abadf02c327f5767be1a data/pseudo/advancement/recipes/misc/mesh_horse_armor_right.json
 53f4aeda23c2e764093157a24c98d74a54fb7d24 data/pseudo/advancement/recipes/misc/mesh_leggings.json
 ffddb0a13208b1ffb06a49de31b55453e4d9dcfc data/pseudo/advancement/recipes/misc/mesh_mitts_left.json
 50672bd0d3678461602aa3b5a3327e7dcf5f0c09 data/pseudo/advancement/recipes/misc/mesh_mitts_right.json
 b906d5c7127a8016c7c34f243b34a493d7393ce4 data/pseudo/advancement/recipes/misc/mole_mitts_left.json
 b2d03a9ea5df8156236fbfbfc11835c4d2867ebc data/pseudo/advancement/recipes/misc/mole_mitts_right.json
+5af3ba929a4c6c365bcb058f1bde4f228fe99ec2 data/pseudo/advancement/recipes/misc/pocket_crafter.json
 aa103cd4f485a22aef5077ae5265c0796bb29834 data/pseudo/advancement/recipes/misc/raw_graphite_block.json
 fbfc262e3a81ee96e664e1ea159f63091ba3ba1b data/pseudo/advancement/recipes/misc/raw_graphite_block_from_blasting_coal_block.json
 1b231c7d85c9181325aeae9d6ed0014f43c097e3 data/pseudo/advancement/recipes/misc/raw_graphite_from_blasting_charcoal.json
@@ -57,6 +61,7 @@ bdbaae8df031a158f371af301d15c200ac3e7c86 data/pseudo/advancement/recipes/misc/re
 a582decc507643dd86f5a32637e837ea5f22a768 data/pseudo/advancement/recipes/misc/refined_graphite_from_smelting_raw_graphite.json
 331bc0be5552dba90920c604a03ca8f700d55a09 data/pseudo/advancement/recipes/misc/sculk_apple.json
 774345a07267ad226982e80babbaee47a120e27a data/pseudo/advancement/recipes/misc/sculk_tome.json
+0cf08312ef7a7c9fee3277e35fbb40b2762f65c3 data/pseudo/advancement/recipes/misc/toolbox.json
 8d9775c2eaae03f18deb9bcd967d3e1ff1a1f059 data/pseudo/advancement/recipes/misc/wind_knots_left.json
 c771b6a22ddef19e9bda047d0d42b60a94028393 data/pseudo/advancement/recipes/misc/wind_knots_right.json
 143e922744e9737b13d5c6bfdcd87f49d821c325 data/pseudo/advancement/recipes/redstone/mesh_button.json
@@ -82,6 +87,7 @@ a2defcf6d720919299554cca40ccb51ffd665e84 data/pseudo/recipe/iron_chainsaw_head_l
 6ca3cd83120758b6478e90787246a1649f9e6f70 data/pseudo/recipe/iron_chainsaw_head_right.json
 8c5f946ee5addb2642b467128eed6bf1e7e075e8 data/pseudo/recipe/iron_drill_head_left.json
 26e41d60bda56537921a68ab60cc8dc19d356ae9 data/pseudo/recipe/iron_drill_head_right.json
+67de79d1712b1a900533ff4b62e158ef54a2a57d data/pseudo/recipe/led.json
 bc66ab1f50a62210dac543aa24b52778f5aa85a7 data/pseudo/recipe/mesh_battery.json
 b6d184cc01923aea49e4c2c3a2f29a6908806eba data/pseudo/recipe/mesh_block.json
 95c76b55751c5eaad14713230e21f9cb969a9915 data/pseudo/recipe/mesh_boots.json
@@ -91,6 +97,8 @@ e6eb55364dadd181d6d462e9a1d4c953780b513a data/pseudo/recipe/mesh_chainsaw.json
 e023d7003384b81966d83dcfd8a0d02190c19e66 data/pseudo/recipe/mesh_drill.json
 e6cd158dfdd5d6e021e6870fefda8bc1898c3f0e data/pseudo/recipe/mesh_gear.json
 8ac92c39b5b033889ab5aef7ffb14058327aa549 data/pseudo/recipe/mesh_helmet.json
+e8bc62ff53423086ae809ac1fbcd8c0f2bafbaa4 data/pseudo/recipe/mesh_horse_armor_left.json
+791d704a50c0199f2356ff1fae1347c82aaf809e data/pseudo/recipe/mesh_horse_armor_right.json
 9aa5c8e7bd7a939e7d330840629769e0849265cc data/pseudo/recipe/mesh_leggings.json
 c8d18ca6e27af80b707dc0fcdec133d9e3fe8c75 data/pseudo/recipe/mesh_mitts_left.json
 f700a2da5260fc12bbfa70fac9a94ffa1c295664 data/pseudo/recipe/mesh_mitts_right.json
@@ -100,6 +108,7 @@ f1ffbdc20f4b7705bbabcbfe7fc29458baa4d34f data/pseudo/recipe/mesh_pressure_plate.
 623d832a9b6349775f5cc9e8dcb806932dc2a8ef data/pseudo/recipe/mesh_wall.json
 73675dca10595c5c1d981fe72bc611c3465cced3 data/pseudo/recipe/mole_mitts_left.json
 617a21a71db8d6702339dd095862132cf0778932 data/pseudo/recipe/mole_mitts_right.json
+dfa3754c47511162fcd12c8562619da60a4796c4 data/pseudo/recipe/pocket_crafter.json
 e42b5a1df7dc95bb355c0cbbcb53ecc02f93e280 data/pseudo/recipe/raw_graphite_block.json
 ed4e618f41131bc6b94d19dfbecb73980ace0c28 data/pseudo/recipe/raw_graphite_block_from_blasting_coal_block.json
 881fb76d8f0db08c17dcfd218941a512cd33a932 data/pseudo/recipe/raw_graphite_from_blasting_charcoal.json
@@ -125,5 +134,6 @@ aa7f601ca70301646a9f29b1ecc9d7eb9918bdad data/pseudo/recipe/refined_graphite_fro
 bbc1b83521bfb8c85c5125bd2660dc3b6fe6b5e6 data/pseudo/recipe/sculk_apple.json
 69add42b228ab2505b2fb580e766dd562efccd53 data/pseudo/recipe/sculk_tome.json
 0f09a5beb10d279bdac0363b21fdd6b7290a570f data/pseudo/recipe/stone_lower_output_energizing.json
+2b32199a16d02b5ca3e443b5309ff54eddccd084 data/pseudo/recipe/toolbox.json
 33743d12a20770b076aa47cef530d6c4b94cc739 data/pseudo/recipe/wind_knots_left.json
 4ffc18552d18cabedde1d8752593f2e74ae6f64b data/pseudo/recipe/wind_knots_right.json

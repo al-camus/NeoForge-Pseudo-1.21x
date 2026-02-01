@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": [
+      {
+        "item": "minecraft:leather_horse_armor"
+      },
+      {
+        "item": "minecraft:iron_horse_armor"
+      },
+      {
+        "item": "minecraft:golden_horse_armor"
+      },
+      {
+        "item": "minecraft:diamond_horse_armor"
+      }
+    ],
+    "M": {
+      "item": "pseudo:graphene_mesh"
+    }
+  },
+  "pattern": [
+    "  M",
+    "MMM",
+    "MHM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_horse_armor"
+  }
+}

@@ -10,7 +10,7 @@
         },
         {
           "type": "minecraft:empty",
-          "weight": 9
+          "weight": 4
         }
       ],
       "rolls": 1.0
@@ -24,7 +24,7 @@
         },
         {
           "type": "minecraft:empty",
-          "weight": 9
+          "weight": 4
         }
       ],
       "rolls": 1.0

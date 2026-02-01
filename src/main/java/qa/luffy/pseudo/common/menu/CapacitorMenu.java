@@ -1,17 +1,22 @@
 package qa.luffy.pseudo.common.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
+import qa.luffy.pseudo.common.item.PocketCrafterItem;
+import qa.luffy.pseudo.common.item.ToolboxItem;
 import qa.luffy.pseudo.common.menu.slot.EnergyResultSlot;
 import qa.luffy.pseudo.common.networking.packet.EnergyData;
 
@@ -52,6 +57,56 @@ public class CapacitorMenu extends AbstractContainerMenu {
         return data.get(1);
     }
 
+
+    private static boolean isBlockedContainerItem(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        Item item = stack.getItem();
+
+        // Your container items
+        switch (item) {
+            case PocketCrafterItem pocketCrafterItem -> {
+                return true;
+            }
+            case ToolboxItem toolboxItem -> {
+                return true;
+            }
+
+            // Mesh Crate block item and all shulker boxes
+            case BlockItem blockItem -> {
+                if (blockItem.getBlock() == PseudoBlocks.MESH_CRATE.get()) {
+                    return true;
+                }
+                if (blockItem.getBlock() instanceof ShulkerBoxBlock) {
+                    return true;
+                }
+            }
+            default -> {
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
+        // Prevent interacting with *any* container item (crafter, toolbox, mesh crate, shulker)
+        // while THIS menu is open.
+        if (slotId >= 0 && slotId < this.slots.size()) {
+            Slot slot = this.slots.get(slotId);
+            if (slot.hasItem()) {
+                ItemStack stack = slot.getItem();
+                if (isBlockedContainerItem(stack)) {
+                    // Completely ignore the click for these items
+                    return;
+                }
+            }
+        }
+        super.clicked(slotId, dragType, clickType, player);
+    }
+
     @Override
     public boolean stillValid(Player player) {
         if (!player.isLocalPlayer()) PacketDistributor.sendToAllPlayers(new EnergyData(entity.getEnergyStorage(null).getEnergyStored(), entity.getBlockPos()));
@@ -59,7 +114,7 @@ public class CapacitorMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player player, int quickMovedSlotIndex) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(quickMovedSlotIndex);
         if (slot.hasItem()) {

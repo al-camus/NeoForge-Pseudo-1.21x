@@ -18,11 +18,11 @@
             }
           ],
           "name": "pseudo:raw_graphite",
-          "weight": 7
+          "weight": 3
         },
         {
           "type": "minecraft:empty",
-          "weight": 3
+          "weight": 2
         }
       ],
       "rolls": 1.0
@@ -44,11 +44,11 @@
             }
           ],
           "name": "pseudo:refined_graphite",
-          "weight": 7
+          "weight": 3
         },
         {
           "type": "minecraft:empty",
-          "weight": 3
+          "weight": 2
         }
       ],
       "rolls": 1.0

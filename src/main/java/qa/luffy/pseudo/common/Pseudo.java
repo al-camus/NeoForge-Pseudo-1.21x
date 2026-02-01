@@ -2,7 +2,6 @@ package qa.luffy.pseudo.common;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.WorldlyContainer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,11 +17,12 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
+import qa.luffy.pseudo.client.screen.MeshCrateScreen;
+import qa.luffy.pseudo.client.screen.PocketCrafterScreen;
 import qa.luffy.pseudo.client.screen.ToolboxScreen;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
@@ -132,6 +132,11 @@ public class Pseudo  {
         private static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(PseudoMenus.CAPACITOR_MENU_TYPE.get(), CapacitorScreen::new);
             event.register(PseudoMenus.TOOLBOX_MENU_TYPE.get(), ToolboxScreen::new);
+            event.register(PseudoMenus.MESH_CRATE_MENU_TYPE.get(), MeshCrateScreen::new);
+            event.register(
+                    PseudoMenus.POCKET_CRAFTER_MENU.get(),
+                    PocketCrafterScreen::new
+            );
         }
     }
 

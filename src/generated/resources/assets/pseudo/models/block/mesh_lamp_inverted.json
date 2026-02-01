@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "activated=false": { "model": "pseudo:block/mesh_lamp_inverted_off" },
-    "activated=true":  { "model": "pseudo:block/mesh_lamp_inverted_on" }
-  }
-}

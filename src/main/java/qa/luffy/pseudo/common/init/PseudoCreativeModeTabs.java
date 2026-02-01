@@ -37,6 +37,7 @@ public class PseudoCreativeModeTabs {
         //advanced-craftable
         pOutput.accept(PseudoItems.ENDER_KNAPSACK);
         pOutput.accept(PseudoItems.TOOLBOX);
+        pOutput.accept(PseudoItems.POCKET_CRAFTER);
         pOutput.accept(PseudoItems.MESH_HORSE_ARMOR);
         pOutput.accept(PseudoItems.MESH_HELMET);
         pOutput.accept(PseudoItems.MESH_CHESTPLATE);
@@ -70,9 +71,12 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoBlocks.MESH_SLAB);
         pOutput.accept(PseudoBlocks.MESH_LAMP);
         pOutput.accept(PseudoBlocks.MESH_LAMP_INVERTED);
+        pOutput.accept(PseudoBlocks.LED);
         pOutput.accept(PseudoBlocks.MESH_FENCE);
         pOutput.accept(PseudoBlocks.MESH_FENCE_GATE);
         pOutput.accept(PseudoBlocks.MESH_WALL);
+        pOutput.accept(PseudoBlocks.MESH_DOOR);
+        pOutput.accept(PseudoBlocks.MESH_TRAPDOOR);
         //advanced blocks
         pOutput.accept(PseudoBlocks.CAPACITOR_BLOCK);
         pOutput.accept(PseudoBlocks.MESH_PRESSURE_PLATE);

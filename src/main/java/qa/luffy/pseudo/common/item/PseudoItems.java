@@ -35,6 +35,9 @@ public class PseudoItems {
     public static final DeferredItem<Item> MESH_BATTERY = ITEMS.registerItem("mesh_battery", MeshBatteryItem::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> ENDER_KNAPSACK = ITEMS.registerItem("ender_knapsack", EnderKnapsackItem::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> TOOLBOX = ITEMS.register("toolbox", () -> new ToolboxItem(new Item.Properties().fireResistant().stacksTo(1)));
+    public static final DeferredItem<PocketCrafterItem> POCKET_CRAFTER =
+            ITEMS.register("pocket_crafter",
+                    () -> new PocketCrafterItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> MESH_HELMET = ITEMS.register("mesh_helmet", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
     public static final DeferredItem<Item> MESH_CHESTPLATE = ITEMS.register("mesh_chestplate", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(36))));
     public static final DeferredItem<Item> MESH_LEGGINGS = ITEMS.register("mesh_leggings", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(36))));

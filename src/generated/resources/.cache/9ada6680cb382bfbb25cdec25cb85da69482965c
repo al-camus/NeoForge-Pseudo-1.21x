@@ -1,4 +1,4 @@
-// 1.21	2025-11-24T20:21:55.7813963	Item Models: pseudo
+// 1.21	2025-12-08T16:28:56.471344	Item Models: pseudo
 053f7a970644396d02787833e475eb8692fffd6d assets/pseudo/models/item/chainsaw_base.json
 427958764a6c0f2468ff3ae032af925a51f26aa5 assets/pseudo/models/item/drill_base.json
 150c170c0870de4aa253f5d7f199b1423503d123 assets/pseudo/models/item/ender_knapsack.json
@@ -32,6 +32,7 @@ bc7886b3c8da7bbc18a7db21fe70adf3ae80b4ac assets/pseudo/models/item/mesh_chestpla
 0f971ec5c3a31d6eccba024f9f96fea24dff9560 assets/pseudo/models/item/mesh_chestplate_netherite_trim.json
 53b09ebb7d7fbbda9655a9c4060bb4aec8a38f59 assets/pseudo/models/item/mesh_chestplate_quartz_trim.json
 048858603335f62526f01f2fc050d6134c5c302c assets/pseudo/models/item/mesh_chestplate_redstone_trim.json
+c861696d9ab839f73e6f700d9f1f7511c094495f assets/pseudo/models/item/mesh_door.json
 1238206e4ecff1a729fdc576311a47501e085ef0 assets/pseudo/models/item/mesh_drill.json
 8e10659dc248987726cb4635a8eab08f0540a3ec assets/pseudo/models/item/mesh_fence.json
 ee8e07a5f8fa959ecdcf113b7eefc6c103ef2dfd assets/pseudo/models/item/mesh_gear.json
@@ -58,7 +59,9 @@ e2351901ba06bd32a31b8c666293e205a7d2cce8 assets/pseudo/models/item/mesh_leggings
 dba6162d2dceea50b51373dcfb6e780f36200a21 assets/pseudo/models/item/mesh_leggings_netherite_trim.json
 f03e3bea783052167e87e4882d38dd6595b929c0 assets/pseudo/models/item/mesh_leggings_quartz_trim.json
 cb0a5e7857c4bef64236203b3059098026869dd1 assets/pseudo/models/item/mesh_leggings_redstone_trim.json
+2df623387d8bf7fb45a696da0ddf7b584bb67fb7 assets/pseudo/models/item/mesh_trapdoor.json
 7940354ba26d8dbce5425d6355d2ec609f8b15e5 assets/pseudo/models/item/mesh_wall.json
+c2c1187bc0856ddc396a611b2e1cc860054eb22b assets/pseudo/models/item/pocket_crafter.json
 554a6a7b4fb3aaee246814ae84f4cc4f8cafff36 assets/pseudo/models/item/raw_graphite.json
 ae1c585aaa9d3ee461aba0ae44878840af3ecc36 assets/pseudo/models/item/refined_graphite.json
 70f5a1651a813634d316d177f3f9b6b002c47e23 assets/pseudo/models/item/sculk_fruit.json

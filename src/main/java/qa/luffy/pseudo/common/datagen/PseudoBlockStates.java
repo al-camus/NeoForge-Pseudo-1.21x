@@ -12,6 +12,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.GoldenCarrotCropBlock;
+import qa.luffy.pseudo.common.block.LedBlock;
 import qa.luffy.pseudo.common.block.MeshLampBlock;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
 
@@ -66,6 +67,7 @@ public class PseudoBlockStates extends BlockStateProvider {
         buttonBlock((ButtonBlock) PseudoBlocks.MESH_BUTTON.get(),
                 blockTexture(PseudoBlocks.MESH_BLOCK.get()));
 
+        //blockItems
         blockItem(PseudoBlocks.REFINED_GRAPHITE_STAIRS);
         blockItem(PseudoBlocks.REFINED_GRAPHITE_SLAB);
         blockItem(PseudoBlocks.GRAPHITE_BRICK_STAIRS);
@@ -79,28 +81,30 @@ public class PseudoBlockStates extends BlockStateProvider {
         blockItem(PseudoBlocks.MESH_FENCE_GATE);
         blockItem(PseudoBlocks.MESH_WALL);
 
-        // Crops
+        //crops
         cropBlock(
                 (CropBlock) PseudoBlocks.GOLDEN_CARROT_CROP.get(),
-                "golden_carrot_crop_stage",        // model prefix
-                "golden_carrot_crop_stage"         // texture prefix
+                "golden_carrot_crop_stage",
+                "golden_carrot_crop_stage"
         );
 
-        // Door & trapdoor (fix all the crazy variant warnings)
-        doorBlock(
+        //doors/trapdoors
+        doorBlockWithRenderType(
                 (DoorBlock) PseudoBlocks.MESH_DOOR.get(),
                 modLoc("block/mesh_door_bottom"),
-                modLoc("block/mesh_door_top")
+                modLoc("block/mesh_door_top"),
+                "cutout"
         );
-
-        trapdoorBlock(
+        trapdoorBlockWithRenderType(
                 (TrapDoorBlock) PseudoBlocks.MESH_TRAPDOOR.get(),
                 modLoc("block/mesh_trapdoor"),
-                true // orientable (can be placed on floor/ceiling/wall)
+                true,
+                "cutout"
         );
 
-        // Mesh lamps (normal + inverted)
+        // light blocks
         customLamp();
+        customLed();
     }
 
     // === Crops ===
@@ -108,70 +112,138 @@ public class PseudoBlockStates extends BlockStateProvider {
         getVariantBuilder(block).forAllStates(state -> states(state, modelName, textureName));
     }
 
-    // === Mesh Lamps ===
+    // === Mesh Lamps (full cube) ===
     private void customLamp() {
-        // Head-sized ON model (4,0,4 -> 12,8,12)
-        ModelFile meshLampOnModel = models().getBuilder("mesh_lamp_on")
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .texture("all", modLoc("block/mesh_lamp_on"))
-                .element()
-                .from(4, 0, 4)
-                .to(12, 8, 12)
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.DOWN).texture("#all").end()
-                .end();
+        ResourceLocation lampOffTex = modLoc("block/mesh_lamp_off");
+        ResourceLocation lampOnTex = modLoc("block/mesh_lamp_on");
 
-        // Head-sized OFF model (same geometry, different texture)
-        ModelFile meshLampOffModel = models().getBuilder("mesh_lamp_off")
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .texture("all", modLoc("block/mesh_lamp_off"))
-                .element()
-                .from(4, 0, 4)
-                .to(12, 8, 12)
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.DOWN).texture("#all").end()
-                .end();
+        ModelFile lampOff = models().cubeAll("mesh_lamp_off", lampOffTex);
+        ModelFile lampOn = models().cubeAll("mesh_lamp_on", lampOnTex);
 
-        // Normal Mesh Lamp (mesh_lamp)
+        // Normal Mesh Lamp
         getVariantBuilder(PseudoBlocks.MESH_LAMP.get()).forAllStates(state -> {
             boolean active = state.getValue(MeshLampBlock.ACTIVATED);
-            return new ConfiguredModel[]{
-                    new ConfiguredModel(active ? meshLampOnModel : meshLampOffModel)
-            };
+            ModelFile model = active ? lampOn : lampOff;
+            return new ConfiguredModel[]{new ConfiguredModel(model)};
         });
+        simpleBlockItem(PseudoBlocks.MESH_LAMP.get(), lampOff);
 
-        // Item uses the "on" model
-        simpleBlockItem(PseudoBlocks.MESH_LAMP.get(), meshLampOnModel);
-
-        // Inverted Mesh Lamp (mesh_lamp_inverted)
+        // Inverted Mesh Lamp
         getVariantBuilder(PseudoBlocks.MESH_LAMP_INVERTED.get()).forAllStates(state -> {
             boolean active = state.getValue(MeshLampBlock.ACTIVATED);
-            return new ConfiguredModel[]{
-                    new ConfiguredModel(active ? meshLampOnModel : meshLampOffModel)
+            ModelFile model = active ? lampOn : lampOff;
+            return new ConfiguredModel[]{new ConfiguredModel(model)};
+        });
+        simpleBlockItem(PseudoBlocks.MESH_LAMP_INVERTED.get(), lampOn);
+    }
+
+    private void customLed() {
+        ResourceLocation ledTex = modLoc("block/mesh_lamp_on");
+
+        ModelFile ledUp    = ledPlateModel("led_up", ledTex, Direction.UP);
+        ModelFile ledDown  = ledPlateModel("led_down", ledTex, Direction.DOWN);
+        ModelFile ledNorth = ledPlateModel("led_north", ledTex, Direction.NORTH);
+        ModelFile ledSouth = ledPlateModel("led_south", ledTex, Direction.SOUTH);
+        ModelFile ledWest  = ledPlateModel("led_west", ledTex, Direction.WEST);
+        ModelFile ledEast  = ledPlateModel("led_east", ledTex, Direction.EAST);
+
+        getVariantBuilder(PseudoBlocks.LED.get()).forAllStates(state -> {
+            Direction facing = state.getValue(LedBlock.FACING);
+            ModelFile model = switch (facing) {
+                case DOWN  -> ledDown;
+                case UP    -> ledUp;
+                case NORTH -> ledNorth;
+                case SOUTH -> ledSouth;
+                case WEST  -> ledWest;
+                case EAST  -> ledEast;
             };
+            return new ConfiguredModel[]{ new ConfiguredModel(model) };
         });
 
-        simpleBlockItem(PseudoBlocks.MESH_LAMP_INVERTED.get(), meshLampOnModel);
+        simpleBlockItem(PseudoBlocks.LED.get(), ledUp);
+    }
+
+    private ModelFile ledPlateModel(String name, ResourceLocation texture, Direction facing) {
+        var builder = models().getBuilder(name)
+                .parent(models().getExistingFile(mcLoc("block/block")))
+                .texture("all", texture)
+                .texture("particle", texture);
+
+        switch (facing) {
+            case DOWN ->
+                    builder.element().from(7.0F, 15.0F, 7.5F).to(9.0F, 16.0F, 8.5F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+
+            case UP ->
+                    builder.element().from(7.0F, 0.0F, 7.5F).to(9.0F, 1.0F, 8.5F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+
+            case NORTH ->
+                    builder.element().from(7.0F, 7.5F, 15.0F).to(9.0F, 8.5F, 16.0F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+
+            case SOUTH ->
+                    builder.element().from(7.0F, 7.5F, 0.0F).to(9.0F, 8.5F, 1.0F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+
+            case WEST ->
+                    builder.element().from(15.0F, 7.5F, 7.0F).to(16.0F, 8.5F, 9.0F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+
+            case EAST ->
+                    builder.element().from(0.0F, 7.5F, 7.0F).to(1.0F, 8.5F, 9.0F)
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").end()
+                            .end();
+        }
+
+        return builder;
     }
 
     private ConfiguredModel[] states(BlockState state, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         int age = state.getValue(GoldenCarrotCropBlock.AGE);
-        int stage = age / 2; // visual stages: 0–1→0, 2–3→1, 4–5→2, 6–7→3
+        int stage = age / 2;
         models[0] = new ConfiguredModel(
                 models().crop(
-                        modelName + stage, // e.g. golden_carrot_crop_stage0
+                        modelName + stage,
                         ResourceLocation.fromNamespaceAndPath(
                                 Pseudo.MODID,
-                                "block/" + textureName + stage // e.g. golden_carrot_crop_stage0.png
+                                "block/" + textureName + stage
                         )
                 ).renderType("cutout")
         );

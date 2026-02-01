@@ -18,6 +18,10 @@ public class PseudoMenus {
 
     public static final Supplier<MenuType<ToolboxMenu>> TOOLBOX_MENU_TYPE = registerMenuType((windowId, inv, data) -> new ToolboxMenu(windowId, inv), "toolbox");
 
+    public static final Supplier<MenuType<PocketCrafterMenu>> POCKET_CRAFTER_MENU =
+            registerMenuType((windowId, inv, data) -> new PocketCrafterMenu(windowId, inv),
+                    "pocket_crafter");
+
     public static final Supplier<MenuType<MeshCrateMenu>> MESH_CRATE_MENU_TYPE = registerMenuType(MeshCrateMenu::new, "mesh_crate");
 
     private static <T extends AbstractContainerMenu> Supplier<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {

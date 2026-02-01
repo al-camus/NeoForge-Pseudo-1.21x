@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
@@ -27,7 +28,7 @@ public class PseudoRecipes extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH.get(), PseudoItems.GRAPHENE_SHEET.get(), 1, "graphene_mesh_from_sheets");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET.get())
@@ -179,6 +180,57 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
                 .save(recipeOutput, Pseudo.resource("mesh_mitts_right"));
 
+        // Mesh Toolbox: ring of mesh, iron in the top corners
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.TOOLBOX.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('I', Items.IRON_INGOT)
+                .pattern("IMI")
+                .pattern("M M")
+                .pattern("MMM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("toolbox"));
+
+        // Pocket Crafter: mesh ring around the Crafter block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.POCKET_CRAFTER.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('C', Items.CRAFTER)
+                .pattern("MMM")
+                .pattern("MCM")
+                .pattern("MMM")
+                .unlockedBy(getHasName(Items.CRAFTER), has(Items.CRAFTER))
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("pocket_crafter"));
+
+        // Mesh Horse Armor – left variant
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_HORSE_ARMOR.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('H', Ingredient.of(
+                        Items.LEATHER_HORSE_ARMOR,
+                        Items.IRON_HORSE_ARMOR,
+                        Items.GOLDEN_HORSE_ARMOR,
+                        Items.DIAMOND_HORSE_ARMOR
+                ))
+                .pattern("M  ")
+                .pattern("MMM")
+                .pattern("MHM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_horse_armor_left"));
+
+        // Mesh Horse Armor – right variant
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_HORSE_ARMOR.get())
+                .define('M', PseudoItems.GRAPHENE_MESH.get())
+                .define('H', Ingredient.of(
+                        Items.LEATHER_HORSE_ARMOR,
+                        Items.IRON_HORSE_ARMOR,
+                        Items.GOLDEN_HORSE_ARMOR,
+                        Items.DIAMOND_HORSE_ARMOR
+                ))
+                .pattern("  M")
+                .pattern("MMM")
+                .pattern("MHM")
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
+                .save(recipeOutput, Pseudo.resource("mesh_horse_armor_right"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_HELMET.get())
                 .define('M', PseudoItems.GRAPHENE_MESH)
                 .pattern("MMM")
@@ -269,6 +321,13 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.REFINED_GRAPHITE), has(PseudoItems.REFINED_GRAPHITE.get()))
                 .save(recipeOutput, Pseudo.resource("refined_graphite_from_brick"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoBlocks.LED.get())
+                .requires(PseudoItems.REFINED_GRAPHITE.get())
+                .requires(Items.GLOWSTONE_DUST)
+                .requires(Items.REDSTONE)
+                .unlockedBy(getHasName(PseudoItems.REFINED_GRAPHITE.get()), has(PseudoItems.REFINED_GRAPHITE.get()))
+                .save(recipeOutput, Pseudo.resource("led"));
+
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
         nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");
@@ -312,7 +371,7 @@ public class PseudoRecipes extends RecipeProvider {
 
     }
 
-    protected static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
+    protected static @NotNull Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
         return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike));
     }
 

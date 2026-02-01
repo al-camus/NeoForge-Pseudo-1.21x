@@ -41,27 +41,10 @@ public class PseudoBlocks {
     public static final DeferredBlock<Block> MESH_BLOCK = registerBlock("mesh_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f, 10000f)));
     public static final DeferredBlock<Block> MESH_STAIRS = registerBlock("mesh_stairs", () -> new StairBlock(PseudoBlocks.MESH_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().strength(5f, 10000f)));
     public static final DeferredBlock<Block> MESH_SLAB = registerBlock("mesh_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().strength(5f, 10000f)));
-    // Normal mesh lamp: OFF when placed, ON after first right-click
-    public static final DeferredBlock<Block> MESH_LAMP = BLOCKS.register(
-            "mesh_lamp",
-            () -> new MeshLampBlock(
-                    BlockBehaviour.Properties.of()
-                            .strength(0.3F)
-                            .lightLevel(state -> state.getValue(MeshLampBlock.ACTIVATED) ? 15 : 0),
-                    false // defaultOn = false → OFF when crafted
-            )
-    );
-
-    // Inverted mesh lamp: ON when placed, OFF after first right-click
-    public static final DeferredBlock<Block> MESH_LAMP_INVERTED = BLOCKS.register(
-            "mesh_lamp_inverted",
-            () -> new MeshLampBlock(
-                    BlockBehaviour.Properties.of()
-                            .strength(0.3F)
-                            .lightLevel(state -> state.getValue(MeshLampBlock.ACTIVATED) ? 15 : 0),
-                    true // defaultOn = true → ON when crafted
-            )
-    );    public static final DeferredBlock<Block> MESH_PRESSURE_PLATE = registerBlock("mesh_pressure_plate", () -> new MeshPressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(4f, 10000f).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> MESH_LAMP = registerBlock("mesh_lamp", () -> new MeshLampBlock(BlockBehaviour.Properties.of().strength(0.3F).lightLevel(state -> state.getValue(MeshLampBlock.ACTIVATED) ? 15 : 0), false));
+    public static final DeferredBlock<Block> MESH_LAMP_INVERTED = registerBlock("mesh_lamp_inverted", () -> new MeshLampBlock(BlockBehaviour.Properties.of().strength(0.3F).lightLevel(state -> state.getValue(MeshLampBlock.ACTIVATED) ? 15 : 0), true));// defaultOn = true → ON when crafted));
+    public static final DeferredBlock<Block> LED = registerBlock("led", () -> new LedBlock(BlockBehaviour.Properties.of().strength(0.3F).noOcclusion().lightLevel(state -> 15)));
+    public static final DeferredBlock<Block> MESH_PRESSURE_PLATE = registerBlock("mesh_pressure_plate", () -> new MeshPressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(4f, 10000f).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> MESH_BUTTON = registerBlock("mesh_button", () -> new MeshButtonBlock(BlockSetType.IRON, 5, BlockBehaviour.Properties.of().strength(4f, 10000f).noCollission()));
     public static final DeferredBlock<Block> MESH_FENCE = registerBlock("mesh_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(4f, 10000f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MESH_FENCE_GATE = registerBlock("mesh_fence_gate", () -> new FenceGateBlock(WoodType.CRIMSON, BlockBehaviour.Properties.of().strength(4f, 10000f).requiresCorrectToolForDrops()));

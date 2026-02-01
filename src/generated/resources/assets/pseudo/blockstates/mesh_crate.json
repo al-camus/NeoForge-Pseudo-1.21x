@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "pseudo:block/mesh_crate" }
+    "": {
+      "model": "pseudo:block/mesh_crate"
+    }
   }
 }

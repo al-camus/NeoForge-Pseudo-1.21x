@@ -4,10 +4,17 @@ package qa.luffy.pseudo.common.menu;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
+import qa.luffy.pseudo.common.block.PseudoBlocks;
+import qa.luffy.pseudo.common.item.PocketCrafterItem;
 import qa.luffy.pseudo.common.item.ToolboxItem;
 
 public class ToolboxMenu extends AbstractContainerMenu {
@@ -34,7 +41,7 @@ public class ToolboxMenu extends AbstractContainerMenu {
                         startX + col * 18,
                         startY + row * 18) {
                     @Override
-                    public boolean mayPlace(ItemStack stack) {
+                    public boolean mayPlace(@NotNull ItemStack stack) {
                         // No toolboxes inside toolboxes
                         return !(stack.getItem() instanceof ToolboxItem);
                     }
@@ -51,9 +58,8 @@ public class ToolboxMenu extends AbstractContainerMenu {
                         playerInvStartY + row * 18) {
 
                     @Override
-                    public boolean mayPickup(Player player) {
+                    public boolean mayPickup(@NotNull Player player) {
                         ItemStack stack = this.getItem();
-                        // ❌ Don’t allow picking up *any* toolbox while this menu is open
                         if (stack.getItem() instanceof ToolboxItem) {
                             return false;
                         }
@@ -65,13 +71,12 @@ public class ToolboxMenu extends AbstractContainerMenu {
 
         int hotbarY = 142;
         for (int col = 0; col < 9; ++col) {
-            int slotIndex = col;
-            this.addSlot(new Slot(playerInv, slotIndex,
+            this.addSlot(new Slot(playerInv, col,
                     8 + col * 18,
                     hotbarY) {
 
                 @Override
-                public boolean mayPickup(Player player) {
+                public boolean mayPickup(@NotNull Player player) {
                     ItemStack stack = this.getItem();
                     if (stack.getItem() instanceof ToolboxItem) {
                         return false;
@@ -103,19 +108,74 @@ public class ToolboxMenu extends AbstractContainerMenu {
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public boolean stillValid(Player player) {
-        // Close the GUI if the player no longer has a toolbox at all
-        return player.isAlive() && player.getInventory().items.stream()
-                .anyMatch(s -> s.getItem() instanceof ToolboxItem);
+    private static boolean isBlockedContainerItem(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        Item item = stack.getItem();
+
+        // Your container items
+        switch (item) {
+            case PocketCrafterItem pocketCrafterItem -> {
+                return true;
+            }
+            case ToolboxItem toolboxItem -> {
+                return true;
+            }
+
+            // Mesh Crate block item and all shulker boxes
+            case BlockItem blockItem -> {
+                if (blockItem.getBlock() == PseudoBlocks.MESH_CRATE.get()) {
+                    return true;
+                }
+                if (blockItem.getBlock() instanceof ShulkerBoxBlock) {
+                    return true;
+                }
+            }
+            default -> {
+            }
+        }
+
+        return false;
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
+    public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
+        // Prevent interacting with *any* container item (crafter, toolbox, mesh crate, shulker)
+        // while THIS menu is open.
+        if (slotId >= 0 && slotId < this.slots.size()) {
+            Slot slot = this.slots.get(slotId);
+            if (slot.hasItem()) {
+                ItemStack stack = slot.getItem();
+                if (isBlockedContainerItem(stack)) {
+                    // Completely ignore the click for these items
+                    return;
+                }
+            }
+        }
+        super.clicked(slotId, dragType, clickType, player);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        if (!player.isAlive()) {
+            return false;
+        }
+
+        // Require the player to still be holding a toolbox in either hand
+        ItemStack main = player.getMainHandItem();
+        ItemStack off  = player.getOffhandItem();
+
+        return (main.getItem() instanceof ToolboxItem) || (off.getItem() instanceof ToolboxItem);
+    }
+
+    @Override
+    public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
         ItemStack original = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
 
-        if (slot != null && slot.hasItem()) {
+        if (slot.hasItem()) {
             ItemStack stackInSlot = slot.getItem();
             original = stackInSlot.copy();
 

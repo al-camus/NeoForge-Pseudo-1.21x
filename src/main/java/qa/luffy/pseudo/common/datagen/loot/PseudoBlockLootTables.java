@@ -24,32 +24,28 @@ import qa.luffy.pseudo.common.item.PseudoItems;
 
 import java.util.Set;
 
-public class  PseudoBlockLootTables extends BlockLootSubProvider {
+public class PseudoBlockLootTables extends BlockLootSubProvider {
     public PseudoBlockLootTables(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
     protected void generate() {
-        //simple blocks
+        // simple blocks
         dropSelf(PseudoBlocks.RAW_GRAPHITE_BLOCK.get());
         dropSelf(PseudoBlocks.GRAPHITE_DUST_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_STAIRS.get());
-        this.add(PseudoBlocks.REFINED_GRAPHITE_SLAB.get(),
-                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
+        this.add(PseudoBlocks.REFINED_GRAPHITE_SLAB.get(), this::createSlabItemTable);
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BRICK.get());
         dropSelf(PseudoBlocks.GRAPHITE_BRICK_STAIRS.get());
-        this.add(PseudoBlocks.GRAPHITE_BRICK_SLAB.get(),
-                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
+        this.add(PseudoBlocks.GRAPHITE_BRICK_SLAB.get(), this::createSlabItemTable);
         dropSelf(PseudoBlocks.GRAPHENE_SHEET_BLOCK.get());
         dropSelf(PseudoBlocks.GRAPHENE_SHEET_STAIRS.get());
-        this.add(PseudoBlocks.GRAPHENE_SHEET_SLAB.get(),
-                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
+        this.add(PseudoBlocks.GRAPHENE_SHEET_SLAB.get(), this::createSlabItemTable);
         dropSelf(PseudoBlocks.MESH_BLOCK.get());
         dropSelf(PseudoBlocks.MESH_STAIRS.get());
-        this.add(PseudoBlocks.MESH_SLAB.get(),
-                block -> createSlabItemTable(PseudoBlocks.MESH_SLAB.get()));
+        this.add(PseudoBlocks.MESH_SLAB.get(), this::createSlabItemTable);
         dropSelf(PseudoBlocks.MESH_LAMP.get());
         dropSelf(PseudoBlocks.MESH_LAMP_INVERTED.get());
         dropSelf(PseudoBlocks.MESH_FENCE.get());
@@ -57,21 +53,34 @@ public class  PseudoBlockLootTables extends BlockLootSubProvider {
         dropSelf(PseudoBlocks.MESH_DOOR.get());
         dropSelf(PseudoBlocks.MESH_TRAPDOOR.get());
         dropSelf(PseudoBlocks.MESH_WALL.get());
-        //advanced blocks
+        dropSelf(PseudoBlocks.LED.get()); // <— new LED loot table
+
+        // advanced blocks
         dropSelf(PseudoBlocks.MESH_BUTTON.get());
         dropSelf(PseudoBlocks.MESH_PRESSURE_PLATE.get());
         dropSelf(PseudoBlocks.CAPACITOR_BLOCK.get());
-        //ore
+        this.add(PseudoBlocks.MESH_CRATE.get(), block -> LootTable.lootTable());
+
+        // ore
         add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
         add(PseudoBlocks.NETHER_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
-        //crops
-        LootItemCondition.Builder lootItemBlockstateCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(PseudoBlocks.GOLDEN_CARROT_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GoldenCarrotCropBlock.AGE, 7));
-        this.add(PseudoBlocks.GOLDEN_CARROT_CROP.get(), this.createCropDrops(PseudoBlocks.GOLDEN_CARROT_CROP.get(), Items.GOLDEN_CARROT, Items.GOLDEN_CARROT, lootItemBlockstateCondition));
+
+        // crops
+        LootItemCondition.Builder lootItemBlockstateCondition =
+                LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(PseudoBlocks.GOLDEN_CARROT_CROP.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GoldenCarrotCropBlock.AGE, 7));
+        this.add(PseudoBlocks.GOLDEN_CARROT_CROP.get(),
+                this.createCropDrops(PseudoBlocks.GOLDEN_CARROT_CROP.get(), Items.GOLDEN_CARROT, Items.GOLDEN_CARROT, lootItemBlockstateCondition));
     }
 
     protected LootTable.Builder createCustomCountOreDrop(Block block, NumberProvider count) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-        return this.createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(block).apply(SetItemCountFunction.setCount(count)).apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
+        return this.createSilkTouchDispatchTable(block,
+                this.applyExplosionDecay(block,
+                        LootItem.lootTableItem(block)
+                                .apply(SetItemCountFunction.setCount(count))
+                                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
     }
 
     @Override
