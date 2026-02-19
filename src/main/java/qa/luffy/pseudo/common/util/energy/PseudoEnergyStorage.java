@@ -23,20 +23,28 @@ public abstract class PseudoEnergyStorage extends EnergyStorage {
 
     @Override
     public int receiveEnergy(int toReceive, boolean simulate) {
-        setEnergyChanged();
-        return super.receiveEnergy(toReceive, simulate);
+        int received = super.receiveEnergy(toReceive, simulate);
+        if (!simulate && received > 0) {
+            setEnergyChanged();
+        }
+        return received;
     }
 
     @Override
     public int extractEnergy(int toExtract, boolean simulate) {
-        setEnergyChanged();
-        return super.extractEnergy(toExtract, simulate);
+        int extracted = super.extractEnergy(toExtract, simulate);
+        if (!simulate && extracted > 0) {
+            setEnergyChanged();
+        }
+        return extracted;
     }
 
-    public int setEnergy(int amount) {
-        this.energy = Mth.clamp(amount, 0, this.capacity);
-        setEnergyChanged();
-        return this.energy;
+    public void setEnergy(int amount) {
+        int clamped = Mth.clamp(amount, 0, this.capacity);
+        if (clamped != this.energy) {
+            this.energy = clamped;
+            setEnergyChanged();
+        }
     }
 
     public abstract void setEnergyChanged();

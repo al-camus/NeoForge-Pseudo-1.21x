@@ -48,9 +48,9 @@ public class PocketCrafterScreen extends AbstractContainerScreen<PocketCrafterMe
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         // Title near top-left
-        graphics.drawString(this.font, this.title, 8, 6, 0x404040, false);
+        graphics.drawString(this.font, this.title, 8, 6, 0xF0F0F0, false);
         // "Inventory" above player inventory slots
-        graphics.drawString(this.font, this.playerInventoryTitle, 8, 74, 0x404040, false);
+        graphics.drawString(this.font, this.playerInventoryTitle, 8, 74, 0xF0F0F0, false);
     }
 
     @Override

@@ -16,7 +16,10 @@ public class PseudoMenus {
 
     public static final Supplier<MenuType<CapacitorMenu>> CAPACITOR_MENU_TYPE = registerMenuType(CapacitorMenu::new, "capacitor");
 
-    public static final Supplier<MenuType<ToolboxMenu>> TOOLBOX_MENU_TYPE = registerMenuType((windowId, inv, data) -> new ToolboxMenu(windowId, inv), "toolbox");
+    public static final Supplier<MenuType<ToolboxMenu>> TOOLBOX_MENU_TYPE = registerMenuType(ToolboxMenu::new, "toolbox");
+
+    public static final Supplier<MenuType<ToolboxBlockMenu>> TOOLBOX_BLOCK_MENU_TYPE =
+            registerMenuType(ToolboxBlockMenu::new, "toolbox_block");
 
     public static final Supplier<MenuType<PocketCrafterMenu>> POCKET_CRAFTER_MENU =
             registerMenuType((windowId, inv, data) -> new PocketCrafterMenu(windowId, inv),

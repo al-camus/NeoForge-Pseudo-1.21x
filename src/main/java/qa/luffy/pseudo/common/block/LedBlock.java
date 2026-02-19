@@ -9,53 +9,66 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class LedBlock extends Block {
+public class LedBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    // Smaller, slightly less wide than previous; ~2:1 aspect ratio, centered at (8, 8), 2px thick
-    private static final VoxelShape SHAPE_UP =
-            Block.box(4.0D, 0.0D, 6.0D, 12.0D, 2.0D, 10.0D);
-    private static final VoxelShape SHAPE_DOWN =
-            Block.box(4.0D, 14.0D, 6.0D, 12.0D, 16.0D, 10.0D);
-    private static final VoxelShape SHAPE_NORTH =
-            Block.box(4.0D, 6.0D, 14.0D, 12.0D, 10.0D, 16.0D);
-    private static final VoxelShape SHAPE_SOUTH =
-            Block.box(4.0D, 6.0D, 0.0D, 12.0D, 10.0D, 2.0D);
-    private static final VoxelShape SHAPE_WEST =
-            Block.box(14.0D, 6.0D, 4.0D, 16.0D, 10.0D, 12.0D);
-    private static final VoxelShape SHAPE_EAST =
-            Block.box(0.0D, 6.0D, 4.0D, 2.0D, 10.0D, 12.0D);
+    // PICK/OUTLINE box: 4x4 centered, 1px thick
+    private static final VoxelShape BIG_UP    = Block.box(6, 0, 6, 10, 1, 10);
+    private static final VoxelShape BIG_DOWN  = Block.box(6, 15, 6, 10, 16, 10);
+    private static final VoxelShape BIG_NORTH = Block.box(6, 6, 15, 10, 10, 16);
+    private static final VoxelShape BIG_SOUTH = Block.box(6, 6, 0,  10, 10, 1);
+    private static final VoxelShape BIG_WEST  = Block.box(15, 6, 6, 16, 10, 10);
+    private static final VoxelShape BIG_EAST  = Block.box(0,  6, 6, 1,  10, 10);
+
+    // COLLISION: visible model size, 2x2 centered, 1px thick
+    private static final VoxelShape SMALL_UP    = Block.box(7, 0, 7, 9, 1, 9);
+    private static final VoxelShape SMALL_DOWN  = Block.box(7, 15, 7, 9, 16, 9);
+    private static final VoxelShape SMALL_NORTH = Block.box(7, 7, 15, 9, 9, 16);
+    private static final VoxelShape SMALL_SOUTH = Block.box(7, 7, 0,  9, 9, 1);
+    private static final VoxelShape SMALL_WEST  = Block.box(15, 7, 7, 16, 9, 9);
+    private static final VoxelShape SMALL_EAST  = Block.box(0,  7, 7, 1,  9, 9);
 
     public LedBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(
                 this.stateDefinition.any()
-                        .setValue(FACING, Direction.NORTH)
+                        .setValue(FACING, Direction.UP)
+                        .setValue(WATERLOGGED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, WATERLOGGED);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction face = context.getClickedFace();
         BlockPos pos = context.getClickedPos();
         Level level = context.getLevel();
 
-        BlockState state = this.defaultBlockState().setValue(FACING, face);
+        FluidState fluid = level.getFluidState(pos);
+        BlockState state = this.defaultBlockState()
+                .setValue(FACING, face)
+                .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
+
         return state.canSurvive(level, pos) ? state : null;
     }
 
@@ -73,25 +86,56 @@ public class LedBlock extends Block {
                                            @NotNull LevelAccessor level,
                                            @NotNull BlockPos pos,
                                            @NotNull BlockPos neighborPos) {
+
+        // If our support is gone, pop off.
         Direction facing = state.getValue(FACING);
         if (neighborDir == facing.getOpposite() && !state.canSurvive(level, pos)) {
-            return Blocks.AIR.defaultBlockState();
+            // If we were waterlogged, leave water behind instead of air.
+            return state.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
         }
+
+        // Keep water ticking properly when waterlogged.
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
         return super.updateShape(state, neighborDir, neighborState, level, pos, neighborPos);
     }
 
+    @Override
+    public @NotNull FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    // Pick/outline/break shape (easy to click): BIG
     @Override
     public @NotNull VoxelShape getShape(BlockState state,
                                         @NotNull BlockGetter level,
                                         @NotNull BlockPos pos,
                                         @NotNull CollisionContext context) {
         return switch (state.getValue(FACING)) {
-            case DOWN -> SHAPE_DOWN;
-            case UP -> SHAPE_UP;
-            case NORTH -> SHAPE_NORTH;
-            case SOUTH -> SHAPE_SOUTH;
-            case WEST -> SHAPE_WEST;
-            case EAST -> SHAPE_EAST;
+            case UP -> BIG_UP;
+            case DOWN -> BIG_DOWN;
+            case NORTH -> BIG_NORTH;
+            case SOUTH -> BIG_SOUTH;
+            case WEST -> BIG_WEST;
+            case EAST -> BIG_EAST;
+        };
+    }
+
+    // Physical collision: SMALL (matches the 2x2x1 model)
+    @Override
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state,
+                                                 @NotNull BlockGetter level,
+                                                 @NotNull BlockPos pos,
+                                                 @NotNull CollisionContext context) {
+        return switch (state.getValue(FACING)) {
+            case UP -> SMALL_UP;
+            case DOWN -> SMALL_DOWN;
+            case NORTH -> SMALL_NORTH;
+            case SOUTH -> SMALL_SOUTH;
+            case WEST -> SMALL_WEST;
+            case EAST -> SMALL_EAST;
         };
     }
 

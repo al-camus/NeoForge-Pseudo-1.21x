@@ -1,7 +1,10 @@
 {
+  "item.pseudo.coal_dust": "Coal Dust",
   "item.pseudo.graphite_dust": "Graphite Dust",
   "item.pseudo.raw_graphite": "Raw Graphite",
   "item.pseudo.refined_graphite": "Refined Graphite",
+  "item.pseudo.carbon_filament": "Carbon Filament",
+  "item.pseudo.carbon_fiber": "Carbon Fiber",
   "item.pseudo.graphene_sheet": "Graphene Sheet",
   "item.pseudo.graphene_mesh": "Graphene Mesh",
   "item.pseudo.mesh_gear": "Mesh Gear",
@@ -47,6 +50,7 @@
   "block.pseudo.mesh_stairs": "Graphene Mesh Stairs",
   "block.pseudo.mesh_slab": "Graphene Mesh Slab",
   "block.pseudo.mesh_lamp": "Graphene Mesh Lamp",
+  "block.pseudo.led": "LED",
   "block.pseudo.mesh_lamp_inverted": "Inverted Mesh Lamp",
   "block.pseudo.mesh_fence": "Graphene Mesh Fence",
   "block.pseudo.mesh_fence_gate": "Graphene Mesh Fence Gate",
@@ -55,11 +59,15 @@
   "block.pseudo.mesh_trapdoor": "Mesh Trapdoor",
 
   "block.pseudo.golden_carrot_crop": "Golden Carrot Crop",
+  "block.pseudo.thistle": "Thistle",
+  "block.pseudo.potted_thistle": "Potted Thistle",
 
   "block.pseudo.mesh_button": "Mesh Button",
   "block.pseudo.mesh_pressure_plate": "Mesh Pressure Plate",
   "block.pseudo.capacitor": "Capacitor",
   "block.pseudo.mesh_crate": "Mesh Crate",
+  "block.pseudo.clipboard": "Mesh Clipboard",
+  "block.pseudo.toolbox": "Toolbox",
 
   "container.pseudo.mesh_crate": "Mesh Crate",
   "container.pseudo.toolbox": "Toolbox",
@@ -79,7 +87,13 @@
   "tooltip.pseudo.item_tags": "Item Tags:",
   "tooltip.pseudo.not_yet_implemented": "Not Yet Implemented",
 
+  "tooltip.pseudo.mesh_crate.fill": "%s%% full (%s/%s slots)",
+  "tooltip.pseudo.capacitor.fill": "%s%% full",
+
   "tooltip.pseudo.stored_xp": "%1$s/%2$s XP stored",
   "tooltip.pseudo.store.previous": "Sneak + right-click to store one level of XP",
-  "tooltip.pseudo.retrieve.next": "Right-click to retrieve one level of XP"
+  "tooltip.pseudo.retrieve.next": "Right-click to retrieve one level of XP",
+
+  "key.categories.pseudo": "Pseudo",
+  "key.pseudo.open_pocket_crafter": "Open Pocket Crafter"
 }

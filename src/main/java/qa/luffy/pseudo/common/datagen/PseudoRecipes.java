@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
+import qa.luffy.pseudo.common.datagen.recipes.MeshCrateCopyRecipeBuilder;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.recipe.capacitor.CapacitorRecipeBuilder;
 
@@ -29,13 +30,25 @@ public class PseudoRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
-        twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH.get(), PseudoItems.GRAPHENE_SHEET.get(), 1, "graphene_mesh_from_sheets");
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.CARBON_FILAMENT.get(), 2)
                 .define('G', PseudoItems.REFINED_GRAPHITE.get())
                 .pattern("GGG")
+                .unlockedBy(getHasName(PseudoItems.REFINED_GRAPHITE.get()), has(PseudoItems.REFINED_GRAPHITE.get()))
+                .save(recipeOutput, Pseudo.resource("carbon_filament_from_refined_graphite"));
+
+        twoByTwo(recipeOutput,
+                PseudoItems.CARBON_FIBER.get(),
+                PseudoItems.CARBON_FILAMENT.get(),
+                1,
+                "carbon_fiber_from_carbon_filament");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET.get(), 2)
+                .define('F', PseudoItems.CARBON_FIBER.get())
+                .pattern("FFF")
                 .unlockedBy(getHasName(PseudoItems.RAW_GRAPHITE.get()), has(PseudoItems.RAW_GRAPHITE.get()))
-                .save(recipeOutput, Pseudo.resource("graphene_sheet_from_refined_graphite"));
+                .save(recipeOutput, Pseudo.resource("graphene_sheet_from_carbon_fiber"));
+
+        twoByTwo(recipeOutput, PseudoItems.GRAPHENE_MESH.get(), PseudoItems.GRAPHENE_SHEET.get(), 1, "graphene_mesh_from_sheets");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.MESH_GEAR.get())
                 .define('M', PseudoItems.GRAPHENE_MESH.get())
@@ -190,13 +203,12 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
                 .save(recipeOutput, Pseudo.resource("toolbox"));
 
-        // Pocket Crafter: mesh ring around the Crafter block
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PseudoItems.POCKET_CRAFTER.get())
                 .define('M', PseudoItems.GRAPHENE_MESH.get())
                 .define('C', Items.CRAFTER)
-                .pattern("MMM")
+                .pattern(" M ")
                 .pattern("MCM")
-                .pattern("MMM")
+                .pattern(" M ")
                 .unlockedBy(getHasName(Items.CRAFTER), has(Items.CRAFTER))
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH.get()), has(PseudoItems.GRAPHENE_MESH.get()))
                 .save(recipeOutput, Pseudo.resource("pocket_crafter"));
@@ -316,46 +328,78 @@ public class PseudoRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(PseudoItems.MESH_BATTERY), has(PseudoItems.MESH_BATTERY))
                 .save(recipeOutput, Pseudo.resource("capacitor_block"));
 
+        MeshCrateCopyRecipeBuilder.meshCrate(
+                        RecipeCategory.MISC,
+                        PseudoBlocks.MESH_CRATE_ITEM.get(),
+                        PseudoItems.GRAPHENE_MESH.get()
+                )
+                .save(recipeOutput, Pseudo.resource("mesh_crate"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoItems.CLIPBOARD.get())
+                .requires(PseudoItems.GRAPHENE_MESH)
+                .requires(Items.PAPER)
+                .requires(Items.INK_SAC)
+                .requires(Items.FEATHER)
+                .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoItems.GRAPHENE_MESH))
+                .save(recipeOutput, Pseudo.resource("clipboard"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoBlocks.MESH_LAMP.get())
+                .requires(PseudoItems.CARBON_FIBER)
+                .requires(PseudoBlocks.LED)
+                .unlockedBy(getHasName(PseudoItems.CARBON_FIBER), has(PseudoItems.CARBON_FIBER))
+                .save(recipeOutput, Pseudo.resource("mesh_lamp"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoBlocks.MESH_LAMP.get())
+                .requires(PseudoBlocks.MESH_LAMP_INVERTED)
+                .unlockedBy(getHasName(PseudoBlocks.MESH_LAMP_INVERTED), has(PseudoBlocks.MESH_LAMP_INVERTED))
+                .save(recipeOutput, Pseudo.resource("mesh_lamp_from_inverted"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoBlocks.MESH_LAMP_INVERTED.get())
+                .requires(PseudoBlocks.MESH_LAMP)
+                .unlockedBy(getHasName(PseudoBlocks.MESH_LAMP), has(PseudoBlocks.MESH_LAMP))
+                .save(recipeOutput, Pseudo.resource("inverted_mesh_lamp"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 9)
                 .requires(PseudoBlocks.REFINED_GRAPHITE_BRICK)
                 .unlockedBy(getHasName(PseudoItems.REFINED_GRAPHITE), has(PseudoItems.REFINED_GRAPHITE.get()))
                 .save(recipeOutput, Pseudo.resource("refined_graphite_from_brick"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PseudoBlocks.LED.get())
-                .requires(PseudoItems.REFINED_GRAPHITE.get())
+                .requires(PseudoItems.CARBON_FIBER.get())
+                .requires(PseudoItems.CARBON_FILAMENT.get())
                 .requires(Items.GLOWSTONE_DUST)
                 .requires(Items.REDSTONE)
                 .unlockedBy(getHasName(PseudoItems.REFINED_GRAPHITE.get()), has(PseudoItems.REFINED_GRAPHITE.get()))
                 .save(recipeOutput, Pseudo.resource("led"));
 
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_SHEET, "graphene_sheet_from_block", RecipeCategory.MISC, PseudoBlocks.GRAPHENE_SHEET_BLOCK, "graphene_sheet_block");
-        nineBlockStorageRecipe(recipeOutput, RecipeCategory.MISC, PseudoItems.GRAPHENE_MESH, "graphene_mesh_from_block", RecipeCategory.MISC, PseudoBlocks.MESH_BLOCK, "mesh_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.GRAPHENE_SHEET, "graphene_sheet_from_block", PseudoBlocks.GRAPHENE_SHEET_BLOCK, "graphene_sheet_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.GRAPHENE_MESH, "graphene_mesh_from_block", PseudoBlocks.MESH_BLOCK, "mesh_block");
 
         stairBuilder(PseudoBlocks.MESH_STAIRS.get(), Ingredient.of(PseudoBlocks.MESH_BLOCK.get())).group("graphene_mesh")
                 .unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoBlocks.MESH_BLOCK.get())).save(recipeOutput);
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, PseudoBlocks.MESH_SLAB.get(), PseudoBlocks.MESH_BLOCK);
 
-        twoByTwo(recipeOutput, RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK, 4, "refined_graphite_brick_from_block");
+        twoByTwo(recipeOutput, PseudoBlocks.REFINED_GRAPHITE_BRICK, PseudoBlocks.REFINED_GRAPHITE_BLOCK, 4, "refined_graphite_brick_from_block");
 
         pressurePlate(recipeOutput, PseudoBlocks.MESH_PRESSURE_PLATE.get(), PseudoBlocks.MESH_BLOCK.get());
         buttonBuilder(PseudoBlocks.MESH_BUTTON.get(), Ingredient.of(PseudoBlocks.MESH_BLOCK.get())).group("graphene_mesh_block").unlockedBy("has_mesh_block", has(PseudoBlocks.MESH_BLOCK.get())).save(recipeOutput);
 
-        fenceBuilder(PseudoBlocks.MESH_FENCE.get(),Ingredient.of(PseudoItems.GRAPHENE_MESH.get())).group("graphene_mesh").unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoBlocks.MESH_BLOCK.get()));
-        fenceGateBuilder(PseudoBlocks.MESH_FENCE.get(),Ingredient.of(PseudoItems.GRAPHENE_MESH.get())).group("graphene_mesh").unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoBlocks.MESH_BLOCK.get()));
+        fenceBuilder(PseudoBlocks.MESH_FENCE.get(), Ingredient.of(PseudoItems.GRAPHENE_MESH.get())).group("graphene_mesh").unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoBlocks.MESH_BLOCK.get()));
+        fenceGateBuilder(PseudoBlocks.MESH_FENCE_GATE.get(), Ingredient.of(PseudoItems.GRAPHENE_MESH.get())).group("graphene_mesh").unlockedBy(getHasName(PseudoItems.GRAPHENE_MESH), has(PseudoBlocks.MESH_BLOCK.get()));
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, PseudoBlocks.MESH_WALL.get(), PseudoItems.GRAPHENE_MESH.get());
 
-        smelting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
-        smelting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
-        smelting(recipeOutput, List.of(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
-        smelting(recipeOutput, List.of(PseudoBlocks.NETHER_GRAPHITE_ORE), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
-        smelting(recipeOutput, List.of(PseudoBlocks.GRAPHITE_DUST_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
-        smelting(recipeOutput, List.of(PseudoBlocks.RAW_GRAPHITE_BLOCK.get()), RecipeCategory.MISC, PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE), PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.NETHER_GRAPHITE_ORE), PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 200, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.GRAPHITE_DUST_BLOCK.get()), PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
+        smelting(recipeOutput, List.of(PseudoBlocks.RAW_GRAPHITE_BLOCK.get()), PseudoBlocks.REFINED_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.REFINED_GRAPHITE_BLOCK.getRegisteredName());
 
         blasting(recipeOutput, List.of(Items.COAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 200, PseudoItems.RAW_GRAPHITE.getRegisteredName());
-        blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 200, PseudoItems.RAW_GRAPHITE.getRegisteredName());
+        blasting(recipeOutput, List.of(Items.CHARCOAL), RecipeCategory.MISC, PseudoItems.RAW_GRAPHITE.get(), 0.8f, 300, PseudoItems.RAW_GRAPHITE.getRegisteredName());
         blasting(recipeOutput, List.of(Items.COAL_BLOCK), RecipeCategory.MISC, PseudoBlocks.RAW_GRAPHITE_BLOCK.get(), 0.8f, 400, PseudoBlocks.RAW_GRAPHITE_BLOCK.getRegisteredName());
         blasting(recipeOutput, List.of(PseudoItems.GRAPHITE_DUST.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 100, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
         blasting(recipeOutput, List.of(PseudoItems.RAW_GRAPHITE.get()), RecipeCategory.MISC, PseudoItems.REFINED_GRAPHITE.get(), 0.8f, 100, PseudoItems.REFINED_GRAPHITE.getRegisteredName());
@@ -368,21 +412,14 @@ public class PseudoRecipes extends RecipeProvider {
         energizing(recipeOutput, Ingredient.of(Items.ACACIA_LOG, Items.BIRCH_LOG), 50, new ItemStack(Items.CHARCOAL, 2), "lower_output"); //TEST RECIPE
         energizing(recipeOutput, Ingredient.of(Items.REDSTONE_ORE), 200, new ItemStack(Items.STONE, 1), "lower_output"); //TEST RECIPE
         energizing(recipeOutput, Ingredient.of(Items.REDSTONE), 200, new ItemStack(Items.RED_DYE, 1), "lower_output"); //TEST RECIPE
-
     }
 
-    protected static @NotNull Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
+    protected static @NotNull Criterion<InventoryChangeTrigger.TriggerInstance> has(@NotNull ItemLike itemLike) {
         return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike));
     }
 
-    /**
-     * Equivalent to twoByTwoPacker, with the Pseudo namespace
-     * @param recipeOutput
-     * @param category
-     * @param unpacked
-     */
-    protected static void twoByTwo(RecipeOutput recipeOutput, RecipeCategory category, ItemLike packed, ItemLike unpacked, int count, String name) {
-        ShapedRecipeBuilder.shaped(category, packed, count)
+    protected static void twoByTwo(RecipeOutput recipeOutput, ItemLike packed, ItemLike unpacked, int count, String name) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, packed, count)
                 .define('#', unpacked)
                 .pattern("##")
                 .pattern("##")
@@ -390,13 +427,6 @@ public class PseudoRecipes extends RecipeProvider {
                 .save(recipeOutput, Pseudo.resource(name));
     }
 
-    /**
-     * Reverse of twoByTwoPacker, with the Pseudo namespace
-     * @param recipeOutput
-     * @param category
-     * @param packed
-     * @param unpacked
-     */
     protected static void twoByTwoUnpack(RecipeOutput recipeOutput, RecipeCategory category, ItemLike packed, ItemLike unpacked, String name) {
         ShapelessRecipeBuilder.shapeless(category, unpacked, 4)
                 .requires(packed)
@@ -404,22 +434,14 @@ public class PseudoRecipes extends RecipeProvider {
                 .save(recipeOutput, Pseudo.resource(name));
     }
 
-    /**
-     * Equivalent to nineBlockStorageRecipes, with the Psuedo namespace
-     * @param recipeOutput
-     * @param unpackedCategory
-     * @param unpacked
-     * @param packedCategory
-     * @param packed
-     */
-    protected static void nineBlockStorageRecipe(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, DeferredItem<?> unpacked, String unpackedName, RecipeCategory packedCategory, DeferredBlock<?> packed, String packedName) {
-        ShapelessRecipeBuilder.shapeless(unpackedCategory, unpacked, 9)
+    protected static void nineBlockStorageRecipe(RecipeOutput recipeOutput, DeferredItem<?> unpacked, String unpackedName, DeferredBlock<?> packed, String packedName) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, unpacked, 9)
                 .requires(packed)
                 .group(unpacked.getRegisteredName())
                 .unlockedBy(getHasName(packed), has(packed))
                 .save(recipeOutput, Pseudo.resource(unpackedName));
 
-        ShapedRecipeBuilder.shaped(packedCategory, packed)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, packed)
                 .define('#', unpacked)
                 .pattern("###")
                 .pattern("###")
@@ -429,48 +451,14 @@ public class PseudoRecipes extends RecipeProvider {
                 .save(recipeOutput, Pseudo.resource(packedName));
     }
 
-    /**
-     * Equivalent to oreSmelting, with the Psuedo namespace
-     * @param recipeOutput
-     * @param ingredients
-     * @param category
-     * @param result
-     * @param experience
-     * @param cookingTime
-     * @param group
-     */
-    protected static void smelting(RecipeOutput recipeOutput, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
-        cooking(recipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, ingredients, category, result, experience, cookingTime, group, "_from_smelting");
+    protected static void smelting(RecipeOutput recipeOutput, List<ItemLike> ingredients, ItemLike result, float experience, int cookingTime, String group) {
+        cooking(recipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, ingredients, RecipeCategory.MISC, result, experience, cookingTime, group, "_from_smelting");
     }
 
-    /**
-     * Equivalent to oreBlasting, with the Psuedo namespace
-     * @param recipeOutput
-     * @param ingredients
-     * @param category
-     * @param result
-     * @param experience
-     * @param cookingTime
-     * @param group
-     */
     protected static void blasting(RecipeOutput recipeOutput, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
         cooking(recipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, ingredients, category, result, experience, cookingTime, group, "_from_blasting");
     }
 
-    /**
-     * Equivalent to oreCooking, with the Psuedo namespace
-     * @param recipeOutput
-     * @param serializer
-     * @param recipeFactory
-     * @param ingredients
-     * @param category
-     * @param result
-     * @param experience
-     * @param cookingTime
-     * @param group
-     * @param suffix
-     * @param <T>
-     */
     protected static <T extends AbstractCookingRecipe> void cooking(RecipeOutput recipeOutput, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group, String suffix) {
         for (ItemLike itemlike : ingredients) {
             SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), category, result, experience, cookingTime, serializer, recipeFactory)
@@ -478,17 +466,8 @@ public class PseudoRecipes extends RecipeProvider {
                     .unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(recipeOutput, Pseudo.resource(getItemName(result) + suffix + "_" + getItemName(itemlike)));
         }
-
     }
 
-    /**
-     * Recipes for the Capacitor
-     * @param recipeOutput
-     * @param input
-     * @param energy in FE
-     * @param result
-     * @param suffix
-     */
     protected static void energizing(RecipeOutput recipeOutput, Ingredient input, int energy, ItemStack result, @Nullable String suffix) {
         if (suffix == null) suffix = "";
         else suffix = "_" + suffix;

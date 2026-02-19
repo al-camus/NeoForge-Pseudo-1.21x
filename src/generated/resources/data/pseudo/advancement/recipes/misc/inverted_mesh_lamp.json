@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mesh_lamp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pseudo:mesh_lamp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:inverted_mesh_lamp"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mesh_lamp"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:inverted_mesh_lamp"
+    ]
+  }
+}

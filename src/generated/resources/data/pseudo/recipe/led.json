@@ -3,7 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "pseudo:refined_graphite"
+      "item": "pseudo:carbon_fiber"
+    },
+    {
+      "item": "pseudo:carbon_filament"
     },
     {
       "item": "minecraft:glowstone_dust"

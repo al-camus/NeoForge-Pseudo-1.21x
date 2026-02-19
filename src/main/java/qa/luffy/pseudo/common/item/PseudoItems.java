@@ -5,6 +5,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.block.PseudoBlocks;
+import qa.luffy.pseudo.common.data.PseudoDataComponents;
+import qa.luffy.pseudo.common.data.clipboard.ClipboardContent;
 import qa.luffy.pseudo.common.init.PseudoArmorMaterials;
 import qa.luffy.pseudo.common.init.PseudoFoods;
 import qa.luffy.pseudo.common.init.PseudoTags;
@@ -16,9 +19,12 @@ import static qa.luffy.pseudo.common.data.PseudoDataComponents.STORED_XP;
 public class PseudoItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Pseudo.MODID);
     //simple items
+    public static final DeferredItem<Item> COAL_DUST = ITEMS.registerSimpleItem("coal_dust");
     public static final DeferredItem<Item> GRAPHITE_DUST = ITEMS.registerItem("graphite_dust", properties -> new FuelItem(properties, 800), new Item.Properties());
     public static final DeferredItem<Item> RAW_GRAPHITE = ITEMS.registerItem("raw_graphite", properties -> new FuelItem(properties, 1600), new Item.Properties());
     public static final DeferredItem<Item> REFINED_GRAPHITE = ITEMS.registerItem("refined_graphite", properties -> new FuelItem(properties, 2400), new Item.Properties());
+    public static final DeferredItem<Item> CARBON_FILAMENT = ITEMS.registerSimpleItem("carbon_filament");
+    public static final DeferredItem<Item> CARBON_FIBER = ITEMS.registerSimpleItem("carbon_fiber");
     public static final DeferredItem<Item> GRAPHENE_SHEET = ITEMS.registerSimpleItem("graphene_sheet");
     public static final DeferredItem<Item> GRAPHENE_MESH = ITEMS.registerSimpleItem("graphene_mesh");
     public static final DeferredItem<Item> MESH_GEAR = ITEMS.registerSimpleItem("mesh_gear");
@@ -34,10 +40,18 @@ public class PseudoItems {
     //advanced-craftable
     public static final DeferredItem<Item> MESH_BATTERY = ITEMS.registerItem("mesh_battery", MeshBatteryItem::new, new Item.Properties().fireResistant().stacksTo(1));
     public static final DeferredItem<Item> ENDER_KNAPSACK = ITEMS.registerItem("ender_knapsack", EnderKnapsackItem::new, new Item.Properties().fireResistant().stacksTo(1));
-    public static final DeferredItem<Item> TOOLBOX = ITEMS.register("toolbox", () -> new ToolboxItem(new Item.Properties().fireResistant().stacksTo(1)));
+    public static final net.neoforged.neoforge.registries.DeferredItem<ToolboxItem> TOOLBOX =
+            ITEMS.register("toolbox", () -> new ToolboxItem(PseudoBlocks.TOOLBOX_BLOCK.get(), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<PocketCrafterItem> POCKET_CRAFTER =
             ITEMS.register("pocket_crafter",
                     () -> new PocketCrafterItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> CLIPBOARD =
+            ITEMS.register("clipboard", () -> new ClipboardItem(
+                    PseudoBlocks.CLIPBOARD_BLOCK.get(),
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .component(PseudoDataComponents.CLIPBOARD_CONTENT.get(), ClipboardContent.DEFAULT)
+            ));
     public static final DeferredItem<Item> MESH_HELMET = ITEMS.register("mesh_helmet", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
     public static final DeferredItem<Item> MESH_CHESTPLATE = ITEMS.register("mesh_chestplate", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(36))));
     public static final DeferredItem<Item> MESH_LEGGINGS = ITEMS.register("mesh_leggings", () -> new ArmorItem(PseudoArmorMaterials.MESH, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(36))));

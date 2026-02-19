@@ -58,12 +58,12 @@ public class MeshCrateScreen extends AbstractContainerScreen<MeshCrateMenu> {
         // title
         guiGraphics.drawString(this.font, this.title,
                 8, 6,
-                0x404040, false);
+                0xF0F0F0, false);
 
         // "Inventory" label – same formula as IronShulkerBoxScreen
         guiGraphics.drawString(this.font, this.playerInventoryTitle,
                 8, this.imageHeight - 96 + 2,
-                0x404040, false);
+                0xF0F0F0, false);
     }
 
     @Override

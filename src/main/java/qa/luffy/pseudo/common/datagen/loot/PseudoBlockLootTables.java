@@ -10,16 +10,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.block.GoldenCarrotCropBlock;
 import qa.luffy.pseudo.common.block.PseudoBlocks;
+import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.item.PseudoItems;
 
 import java.util.Set;
@@ -31,7 +35,6 @@ public class PseudoBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        // simple blocks
         dropSelf(PseudoBlocks.RAW_GRAPHITE_BLOCK.get());
         dropSelf(PseudoBlocks.GRAPHITE_DUST_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BLOCK.get());
@@ -50,28 +53,46 @@ public class PseudoBlockLootTables extends BlockLootSubProvider {
         dropSelf(PseudoBlocks.MESH_LAMP_INVERTED.get());
         dropSelf(PseudoBlocks.MESH_FENCE.get());
         dropSelf(PseudoBlocks.MESH_FENCE_GATE.get());
-        dropSelf(PseudoBlocks.MESH_DOOR.get());
+        this.add(PseudoBlocks.MESH_DOOR.get(), this::createDoorTable);
         dropSelf(PseudoBlocks.MESH_TRAPDOOR.get());
         dropSelf(PseudoBlocks.MESH_WALL.get());
-        dropSelf(PseudoBlocks.LED.get()); // <— new LED loot table
+        dropSelf(PseudoBlocks.LED.get());
 
-        // advanced blocks
         dropSelf(PseudoBlocks.MESH_BUTTON.get());
         dropSelf(PseudoBlocks.MESH_PRESSURE_PLATE.get());
         dropSelf(PseudoBlocks.CAPACITOR_BLOCK.get());
         this.add(PseudoBlocks.MESH_CRATE.get(), block -> LootTable.lootTable());
+        dropSelf(PseudoBlocks.TOOLBOX_BLOCK.get());
 
-        // ore
+        this.add(PseudoBlocks.CLIPBOARD_BLOCK.get(), this::clipboardTable);
+
         add(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
         add(PseudoBlocks.NETHER_GRAPHITE_ORE.get(), ore -> createOreDrop(ore, PseudoItems.RAW_GRAPHITE.get()));
 
-        // crops
-        LootItemCondition.Builder lootItemBlockstateCondition =
+        this.dropSelf(PseudoBlocks.THISTLE.get());
+        this.add(PseudoBlocks.POTTED_THISTLE.get(), createPotFlowerItemTable(PseudoBlocks.THISTLE));
+
+        LootItemCondition.Builder ripe =
                 LootItemBlockStatePropertyCondition
                         .hasBlockStateProperties(PseudoBlocks.GOLDEN_CARROT_CROP.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GoldenCarrotCropBlock.AGE, 7));
+
         this.add(PseudoBlocks.GOLDEN_CARROT_CROP.get(),
-                this.createCropDrops(PseudoBlocks.GOLDEN_CARROT_CROP.get(), Items.GOLDEN_CARROT, Items.GOLDEN_CARROT, lootItemBlockstateCondition));
+                this.createCropDrops(PseudoBlocks.GOLDEN_CARROT_CROP.get(), Items.GOLDEN_CARROT, Items.GOLDEN_CARROT, ripe));
+    }
+
+    private LootTable.Builder clipboardTable(Block block) {
+        return LootTable.lootTable().withPool(
+                applyExplosionCondition(block,
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(block)
+                                        .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                                .include(PseudoDataComponents.CLIPBOARD_CONTENT.get())
+                                        )
+                                )
+                )
+        );
     }
 
     protected LootTable.Builder createCustomCountOreDrop(Block block, NumberProvider count) {
@@ -80,14 +101,13 @@ public class PseudoBlockLootTables extends BlockLootSubProvider {
                 this.applyExplosionDecay(block,
                         LootItem.lootTableItem(block)
                                 .apply(SetItemCountFunction.setCount(count))
-                                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
+                                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                )
+        );
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return PseudoBlocks.BLOCKS.getEntries()
-                .stream()
-                .map(Holder::value)
-                .toList();
+        return PseudoBlocks.BLOCKS.getEntries().stream().map(Holder::value).toList();
     }
 }

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=up":    { "model": "pseudo:block/led" },
+    "facing=down":  { "model": "pseudo:block/led", "x": 180 },
+
+    "facing=north": { "model": "pseudo:block/led", "x": 90 },
+    "facing=south": { "model": "pseudo:block/led", "x": 90, "y": 180 },
+
+    "facing=west":  { "model": "pseudo:block/led", "x": 90, "y": 270 },
+    "facing=east":  { "model": "pseudo:block/led", "x": 90, "y": 90 }
+  }
+}
