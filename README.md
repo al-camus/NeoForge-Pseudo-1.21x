@@ -67,17 +67,17 @@ Thank you to the following creators and projects.
 **Malcolm Riley — Unused Textures**
 - Author: Malcolm Riley (malcolmriley)  
   Repository: https://github.com/malcolmriley/unused-textures  
-  License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+  License: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
 
 **Foreck1 — Foreck’s Textures**
 - Author: Foreck (Foreck1)  
   Repository: https://github.com/Foreck1/foreck-textures  
-  License: As stated in the repository (see LICENSE.txt / README)
+  License: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
 
 **Futureazoo — TextureRepository**
 - Author: Futureazoo  
   Repository: https://github.com/Futureazoo/TextureRepository  
-  License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+  License: [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 - Additional credited contributors (per repository structure): sunconure11, xbony2  
   sunconure11 folder: https://github.com/Futureazoo/TextureRepository/tree/master/sunconure11  
   xbony2 folder: https://github.com/Futureazoo/TextureRepository/tree/master/xbony2
