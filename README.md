@@ -1,4 +1,4 @@
-# Pseudoscience (Minecraft 1.21.1 • NeoForge)
+# Pseudoscience (For Minecraft 1.21.1 / NeoForge 21.0.167)
 
 Pseudoscience is a mod themed around the scientific method, observation, experimentation, and hypothesis — but science left unchecked parallels madness.
 
