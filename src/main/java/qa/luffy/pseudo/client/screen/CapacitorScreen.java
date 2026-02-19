@@ -9,10 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.energy.EnergyStorage;
+import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.client.screen.widgets.GaugeWidget;
 import qa.luffy.pseudo.common.Pseudo;
-import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 import qa.luffy.pseudo.common.menu.CapacitorMenu;
 
 @OnlyIn(Dist.CLIENT)
@@ -22,10 +21,6 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
     public static final ResourceLocation BURN_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("container/furnace/burn_progress");
     public static final ResourceLocation BURN_PROGRESS_REVERSE_SPRITE = Pseudo.resource("util/burn_progress_reverse");
     public static final ResourceLocation ENERGY_SPRITE = Pseudo.resource("util/energy");
-
-    private final CapacitorBlockEntity blockEntity = getMenu().getBlockEntity();
-
-    private EnergyStorage energyStorage;
 
     private GaugeWidget energyGauge;
     private GaugeWidget arrowGaugeInto;
@@ -42,18 +37,33 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
     protected void init() {
         super.init();
 
-        if (blockEntity==null) return;
-        energyStorage = blockEntity.getEnergyStorage(null);
-        if (energyStorage!=null) energyGauge =
-                new GaugeWidget(this.leftPos + 126, this.topPos + 19, 15, 46, energyStorage.getMaxEnergyStored(), GaugeWidget.Direction4.DOWN_UP, ENERGY_SPRITE);
-        addRenderableWidget(energyGauge);
+        this.energyGauge = new GaugeWidget(
+                this.leftPos + 126, this.topPos + 19,
+                15, 46,
+                getMenu().getEnergyCapacity(),
+                GaugeWidget.Direction4.DOWN_UP,
+                ENERGY_SPRITE
+        );
+        addRenderableWidget(this.energyGauge);
 
-        arrowGaugeInto = new GaugeWidget(this.leftPos + 76, this.topPos + 21, 24, 16, getMenu().getProgressCapacity(), GaugeWidget.Direction4.LEFT_RIGHT, BURN_PROGRESS_SPRITE);
-        addRenderableWidget(arrowGaugeInto);
-        arrowGaugeOutFrom = new GaugeWidget(this.leftPos + 76, this.topPos + 46, 24, 16, getMenu().getProgressCapacity(), GaugeWidget.Direction4.RIGHT_LEFT, BURN_PROGRESS_REVERSE_SPRITE);
-        addRenderableWidget(arrowGaugeOutFrom);
+        this.arrowGaugeInto = new GaugeWidget(
+                this.leftPos + 76, this.topPos + 21,
+                24, 16,
+                getMenu().getProgressCapacity(),
+                GaugeWidget.Direction4.LEFT_RIGHT,
+                BURN_PROGRESS_SPRITE
+        );
+        addRenderableWidget(this.arrowGaugeInto);
+
+        this.arrowGaugeOutFrom = new GaugeWidget(
+                this.leftPos + 76, this.topPos + 46,
+                24, 16,
+                getMenu().getProgressCapacity(),
+                GaugeWidget.Direction4.RIGHT_LEFT,
+                BURN_PROGRESS_REVERSE_SPRITE
+        );
+        addRenderableWidget(this.arrowGaugeOutFrom);
     }
-
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
@@ -62,23 +72,32 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         guiGraphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
-        if (energyStorage != null) energyGauge.updateAmount(energyStorage.getEnergyStored());
-        arrowGaugeInto.updateCapacity(getMenu().getProgressCapacity()/2);
-        arrowGaugeInto.updateAmount(getMenu().getProgressAmount());
-        arrowGaugeOutFrom.updateCapacity(getMenu().getProgressCapacity()/2);
-        arrowGaugeOutFrom.updateAmount(getMenu().getProgressAmount() - getMenu().getProgressCapacity()/2);
+        if (energyGauge != null) {
+            energyGauge.updateAmount(getMenu().getEnergyStored());
+        }
+
+        int cap = Math.max(getMenu().getProgressCapacity(), 1);
+        int half = Math.max(cap / 2, 1);
+        int amt = getMenu().getProgressAmount();
+
+        arrowGaugeInto.updateCapacity(half);
+        arrowGaugeInto.updateAmount(Math.min(amt, half));
+
+        arrowGaugeOutFrom.updateCapacity(half);
+        arrowGaugeOutFrom.updateAmount(Math.max(0, amt - half));
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
+    protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
         super.renderTooltip(guiGraphics, x, y);
-        energyGauge.renderTooltip("FE" ,guiGraphics, font, x, y);
+        if (energyGauge != null) {
+            energyGauge.renderTooltip("FE", guiGraphics, font, x, y);
+        }
     }
-
 }

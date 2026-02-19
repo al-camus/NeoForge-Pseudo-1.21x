@@ -38,7 +38,7 @@ displayName="Pseudo" #mandatory
 #logoFile="examplemod.png" #optional
 
 # A text field displayed in the mod UI
-#credits="" #optional
+credits="Includes modified code / textures from Bibliocraft Legacy (MinecraftschurliMods), Malcolm Riley, Foreck, and Futureazoo. See CREDITS.md."
 
 # A text field displayed in the mod UI
 authors="${mod_authors}" #optional

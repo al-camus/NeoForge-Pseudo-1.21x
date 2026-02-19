@@ -1,5 +1,9 @@
-// 1.21	2025-12-08T16:28:56.471344	Item Models: pseudo
+// 1.21	2026-02-18T20:24:42.1527328	Item Models: pseudo
+9814d32dc1d52683ae3367c61ee97e76e523f0cf assets/pseudo/models/item/carbon_fiber.json
+56d97d161a2e59d315448c824cd54a0de963d532 assets/pseudo/models/item/carbon_filament.json
 053f7a970644396d02787833e475eb8692fffd6d assets/pseudo/models/item/chainsaw_base.json
+d85d40b9b6065454ec73b39f33b9cc3682a3bd28 assets/pseudo/models/item/clipboard.json
+cdc155a4e9322ca5cbe45b2338a1cf85f6564938 assets/pseudo/models/item/coal_dust.json
 427958764a6c0f2468ff3ae032af925a51f26aa5 assets/pseudo/models/item/drill_base.json
 150c170c0870de4aa253f5d7f199b1423503d123 assets/pseudo/models/item/ender_knapsack.json
 e60cf2bd0fb842571e930748df06ae040a22c379 assets/pseudo/models/item/graphene_mesh.json
@@ -20,7 +24,6 @@ b13e270a80ce681cb1b1e69b6a520eddb74ef2f5 assets/pseudo/models/item/mesh_boots_di
 4eeaaebb6f17707ce4d6a49d5d804d708951778e assets/pseudo/models/item/mesh_boots_quartz_trim.json
 0b14efc2807fa171434d5e65e2ea245bd7ef7d0c assets/pseudo/models/item/mesh_boots_redstone_trim.json
 d54a44fa358c31a71a8280b1e2bfdad5120f3c5f assets/pseudo/models/item/mesh_button.json
-db8d3aa6226afd449ecf1c591357d9104d4b5f34 assets/pseudo/models/item/mesh_chainsaw.json
 12733c6628a9fb1d121bce677a2d1b686ac40407 assets/pseudo/models/item/mesh_chestplate.json
 4bbaf0f9e7267cca770244e3b5acbc2e1b720a0b assets/pseudo/models/item/mesh_chestplate_amethyst_trim.json
 b7d154c321304f6fb2e00fc7a53f8f2320df77a9 assets/pseudo/models/item/mesh_chestplate_copper_trim.json
@@ -33,7 +36,6 @@ bc7886b3c8da7bbc18a7db21fe70adf3ae80b4ac assets/pseudo/models/item/mesh_chestpla
 53b09ebb7d7fbbda9655a9c4060bb4aec8a38f59 assets/pseudo/models/item/mesh_chestplate_quartz_trim.json
 048858603335f62526f01f2fc050d6134c5c302c assets/pseudo/models/item/mesh_chestplate_redstone_trim.json
 c861696d9ab839f73e6f700d9f1f7511c094495f assets/pseudo/models/item/mesh_door.json
-1238206e4ecff1a729fdc576311a47501e085ef0 assets/pseudo/models/item/mesh_drill.json
 8e10659dc248987726cb4635a8eab08f0540a3ec assets/pseudo/models/item/mesh_fence.json
 ee8e07a5f8fa959ecdcf113b7eefc6c103ef2dfd assets/pseudo/models/item/mesh_gear.json
 528163f256f3c04b1cbf383082837595fe7cc792 assets/pseudo/models/item/mesh_helmet.json
@@ -61,9 +63,8 @@ f03e3bea783052167e87e4882d38dd6595b929c0 assets/pseudo/models/item/mesh_leggings
 cb0a5e7857c4bef64236203b3059098026869dd1 assets/pseudo/models/item/mesh_leggings_redstone_trim.json
 2df623387d8bf7fb45a696da0ddf7b584bb67fb7 assets/pseudo/models/item/mesh_trapdoor.json
 7940354ba26d8dbce5425d6355d2ec609f8b15e5 assets/pseudo/models/item/mesh_wall.json
-c2c1187bc0856ddc396a611b2e1cc860054eb22b assets/pseudo/models/item/pocket_crafter.json
 554a6a7b4fb3aaee246814ae84f4cc4f8cafff36 assets/pseudo/models/item/raw_graphite.json
 ae1c585aaa9d3ee461aba0ae44878840af3ecc36 assets/pseudo/models/item/refined_graphite.json
 70f5a1651a813634d316d177f3f9b6b002c47e23 assets/pseudo/models/item/sculk_fruit.json
 05b93af3937cda0baa6a268408828b80cbc4f108 assets/pseudo/models/item/sculk_tome.json
-42a991cf4a5c3a9f04d003fc338ce3034acc8a21 assets/pseudo/models/item/toolbox.json
+737309091f85bf79c1f7f665c52ec050e5aefc00 assets/pseudo/models/item/thistle.json

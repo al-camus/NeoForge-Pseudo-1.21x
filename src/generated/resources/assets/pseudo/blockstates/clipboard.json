@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "pseudo:block/clipboard",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pseudo:block/clipboard"
+    },
+    "facing=south": {
+      "model": "pseudo:block/clipboard",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pseudo:block/clipboard",
+      "y": 270
+    }
+  }
+}

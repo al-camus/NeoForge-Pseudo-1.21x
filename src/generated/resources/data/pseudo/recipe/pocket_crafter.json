@@ -10,9 +10,9 @@
     }
   },
   "pattern": [
-    "MMM",
+    " M ",
     "MCM",
-    "MMM"
+    " M "
   ],
   "result": {
     "count": 1,

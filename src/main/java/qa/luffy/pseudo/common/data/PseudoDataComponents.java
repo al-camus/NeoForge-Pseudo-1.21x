@@ -8,18 +8,42 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import qa.luffy.pseudo.common.Pseudo;
+import qa.luffy.pseudo.common.data.clipboard.ClipboardContent;
 
 import java.util.function.UnaryOperator;
 
 public class PseudoDataComponents {
-    public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES = DeferredRegister.createDataComponents(Pseudo.MODID);
+    public static final DeferredRegister.DataComponents DATA_COMPONENT_TYPES =
+            DeferredRegister.createDataComponents(Pseudo.MODID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ENERGY = register("energy", builder -> builder.persistent(Codec.INT));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STORED_XP = register("stored_xp", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT).cacheEncoding());
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAXIMUM_XP = register("max_xp", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ENERGY =
+            register("energy", builder -> builder.persistent(Codec.INT));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STORED_XP =
+            register("stored_xp", builder -> builder
+                    .persistent(ExtraCodecs.NON_NEGATIVE_INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .cacheEncoding()
+            );
 
-    private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAXIMUM_XP =
+            register("max_xp", builder -> builder
+                    .persistent(ExtraCodecs.POSITIVE_INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .cacheEncoding()
+            );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ClipboardContent>> CLIPBOARD_CONTENT =
+            register("clipboard_content", builder -> builder
+                    .persistent(ClipboardContent.CODEC)
+                    .networkSynchronized(ClipboardContent.STREAM_CODEC)
+                    .cacheEncoding()
+            );
+
+    private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(
+            String name,
+            UnaryOperator<DataComponentType.Builder<T>> builderOperator
+    ) {
         return DATA_COMPONENT_TYPES.register(name, () -> builderOperator.apply(DataComponentType.builder()).build());
     }
 

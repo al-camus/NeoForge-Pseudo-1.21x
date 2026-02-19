@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pseudo:mesh_lamp_inverted"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:mesh_lamp"
+  }
+}

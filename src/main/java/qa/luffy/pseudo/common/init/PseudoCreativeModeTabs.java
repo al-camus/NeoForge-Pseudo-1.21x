@@ -16,11 +16,14 @@ import java.util.function.Supplier;
 public class PseudoCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Pseudo.MODID);
 
-    public static final Supplier<CreativeModeTab> PSEUDO_ITEMS_TAB = CREATIVE_MODE_TABS.register("pseudo_items_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_items_tab")).icon(() -> new ItemStack(PseudoItems.RAW_GRAPHITE.get())).displayItems((pParameters, pOutput) -> {
+    public static final Supplier<CreativeModeTab> PSEUDO_ITEMS_TAB = CREATIVE_MODE_TABS.register("pseudo_items_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_items_tab")).icon(() -> new ItemStack(PseudoItems.POCKET_CRAFTER.get())).displayItems((pParameters, pOutput) -> {
         //simple items
+        pOutput.accept(PseudoItems.COAL_DUST.get());
         pOutput.accept(PseudoItems.RAW_GRAPHITE);
         pOutput.accept(PseudoItems.GRAPHITE_DUST);
         pOutput.accept(PseudoItems.REFINED_GRAPHITE);
+        pOutput.accept(PseudoItems.CARBON_FILAMENT.get());
+        pOutput.accept(PseudoItems.CARBON_FIBER.get());
         pOutput.accept(PseudoItems.GRAPHENE_SHEET);
         pOutput.accept(PseudoItems.GRAPHENE_MESH);
         pOutput.accept(PseudoItems.MESH_GEAR);
@@ -36,7 +39,8 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoItems.MESH_MITTS);
         //advanced-craftable
         pOutput.accept(PseudoItems.ENDER_KNAPSACK);
-        pOutput.accept(PseudoItems.TOOLBOX);
+        pOutput.accept(PseudoBlocks.TOOLBOX_BLOCK);
+        pOutput.accept(PseudoItems.CLIPBOARD);
         pOutput.accept(PseudoItems.POCKET_CRAFTER);
         pOutput.accept(PseudoItems.MESH_HORSE_ARMOR);
         pOutput.accept(PseudoItems.MESH_HELMET);
@@ -51,7 +55,7 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoItems.SLINGSHOT);
     }).build());
 
-    public static final Supplier<CreativeModeTab> PSEUDO_BLOCKS_TAB = CREATIVE_MODE_TABS.register("pseudo_blocks_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_blocks_tab")).icon(() -> new ItemStack(PseudoBlocks.RAW_GRAPHITE_BLOCK)).withTabsBefore(ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "pseudo_items_tab")).displayItems((pParameters, pOutput) -> {
+    public static final Supplier<CreativeModeTab> PSEUDO_BLOCKS_TAB = CREATIVE_MODE_TABS.register("pseudo_blocks_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pseudo.pseudo_blocks_tab")).icon(() -> new ItemStack(PseudoBlocks.MESH_CRATE)).withTabsBefore(ResourceLocation.fromNamespaceAndPath(Pseudo.MODID, "pseudo_items_tab")).displayItems((pParameters, pOutput) -> {
         //simple blocks
         pOutput.accept(PseudoBlocks.NETHER_GRAPHITE_ORE);
         pOutput.accept(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE);
@@ -71,6 +75,7 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoBlocks.MESH_SLAB);
         pOutput.accept(PseudoBlocks.MESH_LAMP);
         pOutput.accept(PseudoBlocks.MESH_LAMP_INVERTED);
+        pOutput.accept(PseudoBlocks.MESH_CRATE);
         pOutput.accept(PseudoBlocks.LED);
         pOutput.accept(PseudoBlocks.MESH_FENCE);
         pOutput.accept(PseudoBlocks.MESH_FENCE_GATE);

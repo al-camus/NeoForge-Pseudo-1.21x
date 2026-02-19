@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_refined_graphite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pseudo:refined_graphite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pseudo:carbon_filament_from_refined_graphite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_refined_graphite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pseudo:carbon_filament_from_refined_graphite"
+    ]
+  }
+}

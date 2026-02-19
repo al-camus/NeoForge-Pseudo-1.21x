@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +18,6 @@ import qa.luffy.pseudo.common.menu.PocketCrafterMenu;
 
 public class PocketCrafterItem extends Item {
 
-    // 3×3 crafting grid only
     public static final int SLOTS = 9;
 
     public PocketCrafterItem(Properties props) {
@@ -34,9 +34,42 @@ public class PocketCrafterItem extends Item {
     }
 
     public static void setStoredItems(ItemStack stack, NonNullList<ItemStack> items) {
-        // Expect items.size() == SLOTS
         ItemContainerContents contents = ItemContainerContents.fromItems(items);
         stack.set(DataComponents.CONTAINER, contents);
+    }
+
+    /**
+     * Finds the first Pocket Crafter stack in the player's inventory in this order:
+     * hotbar (0-8) -> main inventory (9-35) -> offhand.
+     */
+    public static ItemStack findFirstPocketCrafter(Player player) {
+        return findFirstPocketCrafter(player.getInventory());
+    }
+
+    /**
+     * Same as {@link #findFirstPocketCrafter(Player)} but takes an Inventory.
+     */
+    public static ItemStack findFirstPocketCrafter(Inventory inv) {
+        for (int i = 0; i < 9; i++) {
+            ItemStack s = inv.getItem(i);
+            if (!s.isEmpty() && s.getItem() instanceof PocketCrafterItem) {
+                return s;
+            }
+        }
+
+        for (int i = 9; i < 36; i++) {
+            ItemStack s = inv.getItem(i);
+            if (!s.isEmpty() && s.getItem() instanceof PocketCrafterItem) {
+                return s;
+            }
+        }
+
+        ItemStack offhand = inv.getItem(40);
+        if (!offhand.isEmpty() && offhand.getItem() instanceof PocketCrafterItem) {
+            return offhand;
+        }
+
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -45,8 +78,7 @@ public class PocketCrafterItem extends Item {
 
         if (!level.isClientSide) {
             MenuProvider provider = new SimpleMenuProvider(
-                    (containerId, playerInv, ply) ->
-                            new PocketCrafterMenu(containerId, playerInv, stack),
+                    (containerId, playerInv, ply) -> new PocketCrafterMenu(containerId, playerInv, stack),
                     Component.translatable("container.pseudo.pocket_crafter")
             );
             player.openMenu(provider);

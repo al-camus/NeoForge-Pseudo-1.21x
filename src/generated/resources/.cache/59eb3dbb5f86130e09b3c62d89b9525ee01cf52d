@@ -1,5 +1,6 @@
-// 1.21	2025-12-10T19:07:42.0169834	Loot Tables
+// 1.21	2026-02-18T20:24:42.1634778	Loot Tables
 d014bf668cfec0addbff9fb5bc057050e78e0b0e data/pseudo/loot_table/blocks/capacitor.json
+8b71ca6aafae68bec7d3829565c5c0fdeb846830 data/pseudo/loot_table/blocks/clipboard.json
 af1b23c382a17054c18bd335f6e1438f8b23087f data/pseudo/loot_table/blocks/deepslate_graphite_ore.json
 cbfcc2cda01d01faae47cdf043c33f265e7614f4 data/pseudo/loot_table/blocks/golden_carrot_crop.json
 019810c5eeffa074ee0418b6c25a2fca9b131097 data/pseudo/loot_table/blocks/graphene_sheet_block.json
@@ -12,7 +13,7 @@ eef6b363723e5aaa8b75cfd90739bd9feb6e872e data/pseudo/loot_table/blocks/led.json
 13779c7a6c0da2cde61f16d57890880c099bbf09 data/pseudo/loot_table/blocks/mesh_block.json
 9aedf0ab297cf7f0cb5ddf89395f4947af2380be data/pseudo/loot_table/blocks/mesh_button.json
 ca82962e69ed8089dfab52a5b044064d65ed6aa9 data/pseudo/loot_table/blocks/mesh_crate.json
-5f9e1427124f2ed19739d2b08541f1d8513b517a data/pseudo/loot_table/blocks/mesh_door.json
+7af7adac7820037d867ac856293e67b16b763d22 data/pseudo/loot_table/blocks/mesh_door.json
 31abac38f573b2de038dbcb1898139089365aaa8 data/pseudo/loot_table/blocks/mesh_fence.json
 b26e3f0203a856c6f972cf1aab1ee5d9803b8300 data/pseudo/loot_table/blocks/mesh_fence_gate.json
 bf4dd0e908792f37b5383517d1ba798f44671ded data/pseudo/loot_table/blocks/mesh_lamp.json
@@ -23,11 +24,14 @@ bef556e13133f96f26cd43d4abae64967ecfde37 data/pseudo/loot_table/blocks/mesh_stai
 73a4a41105f5ce6546a1e9bc05642d504b3bbcc0 data/pseudo/loot_table/blocks/mesh_trapdoor.json
 d736216dc6679c83af104ad467607fb6f096e141 data/pseudo/loot_table/blocks/mesh_wall.json
 153f3bc3056f39984862bfe36e4abefac54735e5 data/pseudo/loot_table/blocks/nether_graphite_ore.json
+423b814c1b1d68b2611d97cc10a955df278a7a21 data/pseudo/loot_table/blocks/potted_thistle.json
 8e89f7576c79928bdf62fc41aa984e9b1178e5a3 data/pseudo/loot_table/blocks/raw_graphite_block.json
 ba62498dba283c254d79c2b4b019a99008d1ae79 data/pseudo/loot_table/blocks/refined_graphite_block.json
 d17bd59f5061111da7b9bd94f3b7ed0123fd2dfd data/pseudo/loot_table/blocks/refined_graphite_brick.json
 0869c510e1265f11447999cb2be5748fca847177 data/pseudo/loot_table/blocks/refined_graphite_slab.json
 7328a6f59bc1bad16b6684eb5a186ecdffaaa8ed data/pseudo/loot_table/blocks/refined_graphite_stairs.json
+32c3c39344cb0cde8075a1d08ffde4f896da6c74 data/pseudo/loot_table/blocks/thistle.json
+27ad7b2f34b2a14a8bab13b1432d8a87f5dd8526 data/pseudo/loot_table/blocks/toolbox.json
 05438e34f75dc55583a838335645a099fc339920 data/pseudo/loot_table/chests/additions/ancient_city_sculk_extras.json
 f9938fbad4f7d033af363d2b9a33564e716b6cae data/pseudo/loot_table/chests/additions/bastion_graphite_extras.json
 d162b69df85cf58dc989b7176a73354d457d7f83 data/pseudo/loot_table/chests/additions/buried_weapons_extras.json

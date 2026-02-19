@@ -6,10 +6,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -26,85 +28,108 @@ import java.util.List;
 
 public class MeshChainsawItem extends DiggerItem implements EnergyStorageItem {
 
-    public MeshChainsawItem(Tier pTier, TagKey<Block> blocks, Item.Properties pProperties) {
-        super(pTier, blocks, pProperties);
+    private static final int CAPACITY = 32_000;
+    private static final int ENERGY_PER_BLOCK = 50;
+    private static final int ENERGY_RIGHT_CLICK_BREAK = 100;
+
+    public MeshChainsawItem(Tier tier, TagKey<Block> blocks, Properties props) {
+        super(tier, blocks, props);
+    }
+
+    private static boolean canSaw(BlockState state) {
+        return !state.is(PseudoTags.Blocks.CHAINSAW_MINEABLE);
+    }
+
+    private static boolean hasEnergy(IEnergyStorage energy, int cost) {
+        return energy != null && energy.extractEnergy(cost, true) >= cost;
+    }
+
+    private static void spendEnergy(IEnergyStorage energy, int cost) {
+        if (energy != null) energy.extractEnergy(cost, false);
     }
 
     @Override
-    public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
-        if(!level.isClientSide()) {
-            if(level.getBlockState(pos).is(PseudoTags.Blocks.CHAINSAW_MINEABLE)) {
-                IEnergyStorage energy = getEnergy(player.getMainHandItem());
-                if (player.isCreative()) return true;
-                else if (energy != null && energy.getEnergyStored() >= 200) {
-                    getEnergy(player.getMainHandItem()).extractEnergy(200, false);
-                    return true;
-                }
-            }
-        }
-        return false;
+    public boolean canAttackBlock(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player) {
+        if (canSaw(state)) return false;
+        if (player.isCreative()) return true;
+
+        IEnergyStorage energy = getEnergy(player.getMainHandItem());
+        return hasEnergy(energy, ENERGY_PER_BLOCK);
     }
 
     @Override
-    public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
+    public boolean mineBlock(@NotNull ItemStack stack, @NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity miner) {
         Tool tool = stack.get(DataComponents.TOOL);
+        if (tool == null) return false;
+
+        if (level.isClientSide) return true;
+        if (!(miner instanceof Player player)) return true;
+
+        if (canSaw(state)) return false;
+        if (player.isCreative()) return true;
+
+        if (state.getDestroySpeed(level, pos) == 0.0F) return true;
+
         IEnergyStorage energy = getEnergy(stack);
-        if (tool == null || energy.getEnergyStored() < 50) {
-            return false;
-        } else {
-            if (!level.isClientSide && energy.getEnergyStored() >= 50 && state.getDestroySpeed(level, pos) != 0.0F && tool.damagePerBlock() > 0) {
-                getEnergy(stack).extractEnergy(50, false);
-            }
+        if (!hasEnergy(energy, ENERGY_PER_BLOCK)) return false;
 
-            return true;
-        }
-    }
-
-    @Override
-    public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        Level level = pContext.getLevel();
-
-        if(!level.isClientSide()) {
-            if(level.getBlockState(pContext.getClickedPos()).is(PseudoTags.Blocks.CHAINSAW_MINEABLE)) {
-                IEnergyStorage energy = getEnergy(pContext.getItemInHand());
-                if (pContext.getPlayer().isCreative()) level.destroyBlock(pContext.getClickedPos(), true, pContext.getPlayer());
-                else if (energy != null && energy.getEnergyStored() >= 100) {
-                    level.destroyBlock(pContext.getClickedPos(), true, pContext.getPlayer());
-                    getEnergy(pContext.getItemInHand()).extractEnergy(100, false);
-                }
-                return InteractionResult.CONSUME;
-            }
-        }
-
-        return InteractionResult.PASS;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        IEnergyStorage energy = getEnergy(stack);
-        tooltipComponents.add(Component.literal(energy.getEnergyStored() + "/" + energy.getMaxEnergyStored() + " FE"));
-    }
-
-    @Override
-    public boolean isBarVisible(ItemStack stack) {
+        spendEnergy(energy, ENERGY_PER_BLOCK);
+        player.getInventory().setChanged();
         return true;
     }
 
     @Override
-    public int getBarColor(ItemStack stack) {
-        return FastColor.ARGB32.color(51,153,255);
+    public @NotNull InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+
+        if (canSaw(state)) return InteractionResult.PASS;
+
+        Player player = context.getPlayer();
+        if (player == null) return InteractionResult.PASS;
+
+        if (level.isClientSide) return InteractionResult.SUCCESS;
+
+        if (player.isCreative()) {
+            level.destroyBlock(pos, true, player);
+            return InteractionResult.CONSUME;
+        }
+
+        IEnergyStorage energy = getEnergy(context.getItemInHand());
+        if (!hasEnergy(energy, ENERGY_RIGHT_CLICK_BREAK)) return InteractionResult.PASS;
+
+        level.destroyBlock(pos, true, player);
+        spendEnergy(energy, ENERGY_RIGHT_CLICK_BREAK);
+        player.getInventory().setChanged();
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public int getBarWidth(ItemStack stack) {
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
         IEnergyStorage energy = getEnergy(stack);
-        return Math.round(((float) energy.getEnergyStored() / energy.getMaxEnergyStored())*13f);
+        tooltip.add(Component.literal(energy.getEnergyStored() + "/" + energy.getMaxEnergyStored() + " FE"));
+    }
+
+    @Override
+    public boolean isBarVisible(@NotNull ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public int getBarColor(@NotNull ItemStack stack) {
+        return FastColor.ARGB32.color(51, 153, 255);
+    }
+
+    @Override
+    public int getBarWidth(@NotNull ItemStack stack) {
+        IEnergyStorage energy = getEnergy(stack);
+        return Math.round(((float) energy.getEnergyStored() / energy.getMaxEnergyStored()) * 13f);
     }
 
     @Override
     public ComponentEnergyStorage getEnergy(ItemStack stack) {
-        return new ComponentEnergyStorage(stack, PseudoDataComponents.ENERGY.get(), 32000);
+        return new ComponentEnergyStorage(stack, PseudoDataComponents.ENERGY.get(), CAPACITY);
     }
-
 }

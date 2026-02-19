@@ -1,4 +1,3 @@
-// qa.luffy.pseudo.common.menu.MeshCrateMenu
 package qa.luffy.pseudo.common.menu;
 
 import net.minecraft.core.BlockPos;
@@ -8,18 +7,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.MeshCrateBlockEntity;
-import qa.luffy.pseudo.common.item.PocketCrafterItem;
-import qa.luffy.pseudo.common.item.ToolboxItem;
+import qa.luffy.pseudo.common.util.ContainerItemGuards;
 
 public class MeshCrateMenu extends AbstractContainerMenu {
 
@@ -37,19 +31,23 @@ public class MeshCrateMenu extends AbstractContainerMenu {
         super(PseudoMenus.MESH_CRATE_MENU_TYPE.get(), containerId);
         this.crate = crate;
 
-        // --- Crate inventory (9x9), same as GOLD shulker: x=12+col*18, y=18+row*18
+        // --- Crate inventory (9x9)
         int index = 0;
         for (int row = 0; row < CRATE_ROWS; ++row) {
             for (int col = 0; col < CRATE_COLUMNS; ++col) {
                 int x = 12 + col * 18;
                 int y = 18 + row * 18;
-                this.addSlot(new SlotItemHandler(crate.getItems(), index++, x, y));
+
+                this.addSlot(new SlotItemHandler(crate.getItems(), index++, x, y) {
+                    @Override
+                    public boolean mayPlace(@NotNull ItemStack stack) {
+                        return !ContainerItemGuards.isBlockedContainerItem(stack);
+                    }
+                });
             }
         }
 
         // --- Player inventory + hotbar ---
-
-        // ALIGN with crate grid horizontally: same X start as crate (12)
         int leftCol = 12;
 
         // player inventory (3x9)
@@ -87,51 +85,12 @@ public class MeshCrateMenu extends AbstractContainerMenu {
         return crate;
     }
 
-
-    private static boolean isBlockedContainerItem(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return false;
-        }
-
-        Item item = stack.getItem();
-
-        // Your container items
-        switch (item) {
-            case PocketCrafterItem pocketCrafterItem -> {
-                return true;
-            }
-            case ToolboxItem toolboxItem -> {
-                return true;
-            }
-
-            // Mesh Crate block item and all shulker boxes
-            case BlockItem blockItem -> {
-                if (blockItem.getBlock() == PseudoBlocks.MESH_CRATE.get()) {
-                    return true;
-                }
-                if (blockItem.getBlock() instanceof ShulkerBoxBlock) {
-                    return true;
-                }
-            }
-            default -> {
-            }
-        }
-
-        return false;
-    }
-
     @Override
     public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
-        // Prevent interacting with *any* container item (crafter, toolbox, mesh crate, shulker)
-        // while THIS menu is open.
         if (slotId >= 0 && slotId < this.slots.size()) {
             Slot slot = this.slots.get(slotId);
-            if (slot.hasItem()) {
-                ItemStack stack = slot.getItem();
-                if (isBlockedContainerItem(stack)) {
-                    // Completely ignore the click for these items
-                    return;
-                }
+            if (slot.hasItem() && ContainerItemGuards.isBlockedContainerItem(slot.getItem())) {
+                return;
             }
         }
         super.clicked(slotId, dragType, clickType, player);
@@ -151,32 +110,32 @@ public class MeshCrateMenu extends AbstractContainerMenu {
 
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
-        ItemStack original = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
+        if (!slot.hasItem()) return ItemStack.EMPTY;
 
-        if (slot.hasItem()) {
-            ItemStack stackInSlot = slot.getItem();
-            original = stackInSlot.copy();
+        ItemStack stackInSlot = slot.getItem();
+        ItemStack original = stackInSlot.copy();
 
-            int crateEnd = CRATE_SLOT_COUNT; // 0..80 = crate
+        int crateEnd = CRATE_SLOT_COUNT; // 0..80 = crate
 
-            if (index < crateEnd) {
-                // crate -> player
-                if (!this.moveItemStackTo(stackInSlot, crateEnd, this.slots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else {
-                // player -> crate
-                if (!this.moveItemStackTo(stackInSlot, 0, crateEnd, false)) {
-                    return ItemStack.EMPTY;
-                }
+        if (index < crateEnd) {
+            // crate -> player
+            if (!this.moveItemStackTo(stackInSlot, crateEnd, this.slots.size(), true)) {
+                return ItemStack.EMPTY;
             }
+        } else {
+            // player -> crate
+            if (ContainerItemGuards.isBlockedContainerItem(stackInSlot)) return ItemStack.EMPTY;
 
-            if (stackInSlot.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
+            if (!this.moveItemStackTo(stackInSlot, 0, crateEnd, false)) {
+                return ItemStack.EMPTY;
             }
+        }
+
+        if (stackInSlot.isEmpty()) {
+            slot.set(ItemStack.EMPTY);
+        } else {
+            slot.setChanged();
         }
 
         return original;

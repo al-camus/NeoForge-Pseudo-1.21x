@@ -17,12 +17,15 @@ public class PseudoCustomRecipes {
     public static final DeferredRegister<RecipeType<?>> TYPES =
             DeferredRegister.create(Registries.RECIPE_TYPE, Pseudo.MODID);
 
+    public static final Supplier<RecipeSerializer<CapacitorRecipe>> CAPACITOR_SERIALIZER =
+            SERIALIZERS.register("energizing", CapacitorRecipe.Serializer::new);
 
-    public static final Supplier<RecipeSerializer<CapacitorRecipe>> CAPACITOR_SERIALIZER = SERIALIZERS.register(
-            "energizing", CapacitorRecipe.Serializer::new);
-    public static final Supplier<RecipeType<CapacitorRecipe>> CAPACITOR_TYPE = TYPES.register("energizing",
-            () -> RecipeType.simple(Pseudo.resource("energizing")));
+    public static final Supplier<RecipeType<CapacitorRecipe>> CAPACITOR_TYPE =
+            TYPES.register("energizing", () -> RecipeType.simple(Pseudo.resource("energizing")));
 
+    // NEW: mesh crate crafting (copies shulker contents)
+    public static final Supplier<RecipeSerializer<MeshCrateCopyRecipe>> MESH_CRATE_COPY_SERIALIZER =
+            SERIALIZERS.register("mesh_crate_copy", MeshCrateCopyRecipe.Serializer::new);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

@@ -1,11 +1,11 @@
-// 1.21	2024-10-19T05:04:42.4556507	Tags for minecraft:block mod id pseudo
+// 1.21	2026-02-09T18:42:33.2882474	Tags for minecraft:block mod id pseudo
 8442cf93a77884b31c60a63bd78ad8a6e4c539f1 data/minecraft/tags/block/fences.json
 9bb9b31d23498adfeb6a1ceab41963cb3e4dcf15 data/minecraft/tags/block/fence_gates.json
 050f92b475545973c1c965259427347b2c773323 data/minecraft/tags/block/mineable/pickaxe.json
 31436a92c96857cac1774a1ab5210aaae9aa3211 data/minecraft/tags/block/needs_stone_tool.json
 e5b6bb0fbcc82706f117f22819e7cd7bd5b8b6dd data/minecraft/tags/block/walls.json
-a249c46329a41538f49a564e1f14338aaf1be5a0 data/pseudo/tags/block/incorrect_for_mesh_tool.json.json
-fa78725871a0ded510a6e030fa49b9beccd69e34 data/pseudo/tags/block/incorrect_for_mole_tool.json.json
+a249c46329a41538f49a564e1f14338aaf1be5a0 data/pseudo/tags/block/incorrect_for_mesh_tool.json
+fa78725871a0ded510a6e030fa49b9beccd69e34 data/pseudo/tags/block/incorrect_for_mole_tool.json
 6a7072dd6d559b49f0918d6c0d6dc9869231dc87 data/pseudo/tags/block/mineable/chainsaw.json
 c2f6fb7224bd1e2fdb87249751113c4d66dbc21f data/pseudo/tags/block/mineable/drill.json
 82362cfbd1836db13c7e9d36c8712821e795ac55 data/pseudo/tags/block/mineable/mesh_mitts.json

@@ -1,7 +1,34 @@
 {
   "variants": {
-    "": {
+    "facing=east,waterlogged=false": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
       "model": "pseudo:block/mesh_crate"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "pseudo:block/mesh_crate"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "pseudo:block/mesh_crate",
+      "y": 270
     }
   }
 }

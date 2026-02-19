@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made by Lucid with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
@@ -425,7 +426,7 @@
 	],
 	"display": {
 		"thirdperson_lefthand": {
-			"scale": [1, 1, 1]
+			"scale": [-1, 1, 1]
 		},
 		"firstperson_righthand": {
 			"rotation": [38.77, 6.27, 16.86],
@@ -434,12 +435,12 @@
 		"firstperson_lefthand": {
 			"rotation": [38.77, 6.27, 16.86],
 			"translation": [0, 4.5, 3.25],
-			"scale": [1, 1, 1]
+			"scale": [-1, 1, 1]
 		},
 		"gui": {
-			"rotation": [63.8, -45.87, -52.77],
-			"translation": [1.25, -2.5, -4],
-			"scale": [1.72461, 1.72461, 1.72461]
+			"rotation": [62, -45.87, -52.77],
+			"translation": [0.5, -2, -4],
+			"scale": [1.17, 1.17, 1.17]
 		},
 		"head": {
 			"translation": [0, 10.5, 0]
@@ -448,6 +449,9 @@
 			"rotation": [49.75, 27.43, -154.91],
 			"translation": [2.5, -2.25, -4],
 			"scale": [1.8125, 1.8125, 1.8125]
+		},
+		"on_shelf": {
+			"rotation": [87, 0, 0]
 		}
 	},
 	"groups": [
