@@ -10,6 +10,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.PacketDistributor; // <- ADD THIS
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.Pseudo;
 import qa.luffy.pseudo.common.item.PocketCrafterItem;
@@ -28,6 +29,10 @@ public record OpenPocketCrafterPayload() implements CustomPacketPayload {
     @Override
     public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
+    }
+
+    public static void sendToServer() {
+        PacketDistributor.sendToServer(INSTANCE);
     }
 
     public static void handle(OpenPocketCrafterPayload payload, IPayloadContext context) {

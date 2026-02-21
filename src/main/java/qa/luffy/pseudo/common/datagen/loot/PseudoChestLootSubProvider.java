@@ -39,6 +39,7 @@ public class PseudoChestLootSubProvider implements LootTableSubProvider {
         out.accept(PseudoStructureLootTables.SEA_EXTRAS,
                 LootTable.lootTable()
                         .withPool(rareSingle(PseudoItems.WIND_KNOTS.get(), 1, 1))
+                        .withPool(rareSingle(PseudoItems.MOTHER_SEA_MUSIC_DISC.get(), 1, 1))
         );
 
         // --- ender_knapsack_extras: ender_knapsack (end city, rare 1–1) ---

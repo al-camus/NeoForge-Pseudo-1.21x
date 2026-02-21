@@ -20,11 +20,13 @@ import qa.luffy.pseudo.common.block.PseudoBlocks;
 import qa.luffy.pseudo.common.block.entity.CapacitorBlockEntity;
 import qa.luffy.pseudo.common.block.entity.PseudoBlockEntities;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
+import qa.luffy.pseudo.common.effect.PseudoEffects;
 import qa.luffy.pseudo.common.init.PseudoArmorMaterials;
 import qa.luffy.pseudo.common.init.PseudoCreativeModeTabs;
 import qa.luffy.pseudo.common.item.PseudoItems;
 import qa.luffy.pseudo.common.menu.PseudoMenus;
 import qa.luffy.pseudo.common.recipe.PseudoCustomRecipes;
+import qa.luffy.pseudo.common.sound.PseudoSounds;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 @Mod(Pseudo.MODID)
@@ -45,6 +47,10 @@ public class Pseudo {
         PseudoItems.register(modEventBus);
         PseudoBlocks.register(modEventBus);
         PseudoBlockEntities.register(modEventBus);
+
+        PseudoSounds.register(modEventBus);
+
+        PseudoEffects.register(modEventBus);
 
         PseudoArmorMaterials.register(modEventBus);
 

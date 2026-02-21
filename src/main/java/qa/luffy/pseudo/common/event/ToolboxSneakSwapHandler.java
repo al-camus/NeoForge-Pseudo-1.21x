@@ -1,4 +1,4 @@
-package qa.luffy.pseudo.common.event.event;
+package qa.luffy.pseudo.common.event;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

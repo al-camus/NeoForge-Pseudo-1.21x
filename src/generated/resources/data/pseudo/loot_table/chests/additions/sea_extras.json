@@ -14,6 +14,20 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "pseudo:mother_sea_music_disc"
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 4
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "pseudo:chests/additions/sea_extras"

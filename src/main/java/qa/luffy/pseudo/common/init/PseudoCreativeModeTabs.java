@@ -48,6 +48,7 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoItems.MESH_LEGGINGS);
         pOutput.accept(PseudoItems.MESH_BOOTS);
         //advanced-findable
+        pOutput.accept(PseudoItems.MOTHER_SEA_MUSIC_DISC);
         pOutput.accept(PseudoItems.WIND_KNOTS);
         pOutput.accept(PseudoItems.SCULK_FRUIT);
         pOutput.accept(PseudoItems.SCULK_TOME);
@@ -60,6 +61,7 @@ public class PseudoCreativeModeTabs {
         pOutput.accept(PseudoBlocks.NETHER_GRAPHITE_ORE);
         pOutput.accept(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE);
         pOutput.accept(PseudoBlocks.RAW_GRAPHITE_BLOCK);
+        pOutput.accept(PseudoBlocks.COAL_DUST_BLOCK);
         pOutput.accept(PseudoBlocks.GRAPHITE_DUST_BLOCK);
         pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_BLOCK);
         pOutput.accept(PseudoBlocks.REFINED_GRAPHITE_STAIRS);

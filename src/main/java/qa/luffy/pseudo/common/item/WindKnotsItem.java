@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.init.PseudoTooltips;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class WindKnotsItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, @NotNull InteractionHand hand) {
         var range = 5;
         var entities = level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range, 0.5, range));
         var items = level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(range, 0.5, range));
@@ -40,15 +41,15 @@ public class WindKnotsItem extends Item {
         for (var livingEntity : entities) {
             if (livingEntity == player){
                 if (player.isShiftKeyDown() & !player.onGround()){
-                    player.push(0, 5, 0);
+                    player.push(0, 2, 0);
                 }
             }
             if (livingEntity != player && !player.isAlliedTo(livingEntity)) {
-                this.gust(4f, player, livingEntity);
+                this.gust(2f, player, livingEntity);
             }
         }
         for (var itemEntity : items) {
-            this.gust(2f, player, itemEntity);
+            this.gust(3f, player, itemEntity);
         }
         for (var projectileEntity : projectiles) {
             this.gust(4f, player, projectileEntity);
@@ -61,18 +62,18 @@ public class WindKnotsItem extends Item {
             player.getItemInHand(hand).hurtAndBreak(1, (LivingEntity) player, EquipmentSlot.MAINHAND);
         else if (hand.name().equals("OFF_HAND"))
             player.getItemInHand(hand).hurtAndBreak(1, (LivingEntity) player, EquipmentSlot.OFFHAND);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WIND_CHARGE_BURST, SoundSource.WEATHER, 2F, 0.4F);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BREEZE_IDLE_AIR, SoundSource.WEATHER, 2F, 0.4F);
         player.getCooldowns().addCooldown(this, 20);
         return InteractionResultHolder.pass(player.getItemInHand(hand));
     }
 
     @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
+    public boolean hasCraftingRemainingItem(@NotNull ItemStack stack) {
         return true;
     }
 
     @Override
-    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+    public @NotNull ItemStack getCraftingRemainingItem(ItemStack stack) {
         var copy = stack.copy();
 
         copy.setCount(1);
@@ -87,7 +88,7 @@ public class WindKnotsItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag advanced) {
+    public void appendHoverText(ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag advanced) {
         var damage = stack.getMaxDamage() - stack.getDamageValue();
 
         if (damage == 1) {
@@ -98,7 +99,7 @@ public class WindKnotsItem extends Item {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
+    public boolean isFoil(@NotNull ItemStack stack) {
         return true;
     }
 

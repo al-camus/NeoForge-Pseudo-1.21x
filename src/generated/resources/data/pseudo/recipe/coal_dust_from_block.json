@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "pseudo:coal_dust",
   "ingredients": [
     {
-      "item": "pseudo:carbon_fiber"
-    },
-    {
-      "item": "pseudo:led"
+      "item": "pseudo:coal_dust_block"
     }
   ],
   "result": {
-    "count": 1,
-    "id": "pseudo:mesh_lamp"
+    "count": 9,
+    "id": "pseudo:coal_dust"
   }
 }

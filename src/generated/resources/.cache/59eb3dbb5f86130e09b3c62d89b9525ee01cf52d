@@ -1,6 +1,7 @@
-// 1.21	2026-02-18T20:24:42.1634778	Loot Tables
+// 1.21	2026-02-21T13:03:46.7599985	Loot Tables
 d014bf668cfec0addbff9fb5bc057050e78e0b0e data/pseudo/loot_table/blocks/capacitor.json
 8b71ca6aafae68bec7d3829565c5c0fdeb846830 data/pseudo/loot_table/blocks/clipboard.json
+eff025ddb5c88e7d9785f15ca5eaf32877b9cef4 data/pseudo/loot_table/blocks/coal_dust_block.json
 af1b23c382a17054c18bd335f6e1438f8b23087f data/pseudo/loot_table/blocks/deepslate_graphite_ore.json
 cbfcc2cda01d01faae47cdf043c33f265e7614f4 data/pseudo/loot_table/blocks/golden_carrot_crop.json
 019810c5eeffa074ee0418b6c25a2fca9b131097 data/pseudo/loot_table/blocks/graphene_sheet_block.json
@@ -42,6 +43,6 @@ e7e685b9ccc7cbb3b0c1a34511991fb3053fe0e4 data/pseudo/loot_table/chests/additions
 287cfe58a1f1f438131b4292c6afe8cfffa23875 data/pseudo/loot_table/chests/additions/nether_fortress_graphite_extras.json
 818c15aee0f33643c7bfc4300eb82decca0676d9 data/pseudo/loot_table/chests/additions/pillager_outpost_extras.json
 385bf0237db728b7add147bf4503d66226102c00 data/pseudo/loot_table/chests/additions/ruined_portal_extras.json
-e602e5dc2e5c6b45bb85c807a9ed42d3efa47874 data/pseudo/loot_table/chests/additions/sea_extras.json
+3774a6229303beaab3821dc3008e9c3f1173e904 data/pseudo/loot_table/chests/additions/sea_extras.json
 ff0bb7df468674bd8046d0fe6a99a42d1a52e8ff data/pseudo/loot_table/chests/additions/stronghold_extras.json
 ffc331940fb3318bdaa110ba570147ea62cc975c data/pseudo/loot_table/chests/additions/woodland_mansion_extras.json

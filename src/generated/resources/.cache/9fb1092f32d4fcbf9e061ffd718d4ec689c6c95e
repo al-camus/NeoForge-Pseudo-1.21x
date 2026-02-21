@@ -1,4 +1,4 @@
-// 1.21	2026-02-08T06:12:51.5284762	Recipes
+// 1.21	2026-02-21T13:03:46.7599985	Recipes
 1a3ffabf792fb9abaf5927f4efb04f7541c05ef1 data/pseudo/advancement/recipes/building_blocks/mesh_slab.json
 ec352e1348801167c2057be4a4113968fff7e9e0 data/pseudo/advancement/recipes/building_blocks/mesh_stairs.json
 9bc30e6bff0bb60d35a68a61a4405d4c559e921f data/pseudo/advancement/recipes/building_blocks/mesh_wall.json
@@ -9,6 +9,9 @@ afcc5050de28a50b1d5bcb673fbf32587606651e data/pseudo/advancement/recipes/misc/ca
 1de063c11dd2c6aae1a9ecd5a7b039883a87d284 data/pseudo/advancement/recipes/misc/carbon_filament_from_refined_graphite.json
 aa726ff950456467cf8f017641a4cf320b3dfbe4 data/pseudo/advancement/recipes/misc/chainsaw_base_left.json
 cdd55e0d14d317b8abc308b77c8cf4510953d139 data/pseudo/advancement/recipes/misc/chainsaw_base_right.json
+17993a1f38ba56cb985f99976be1ea5751c7312b data/pseudo/advancement/recipes/misc/clipboard.json
+1568a8c2d1e1415dee9af43297e0728494ec4e26 data/pseudo/advancement/recipes/misc/coal_dust_block.json
+f7b166542cbf5b56440c1cce1e9ac7d22ccb7d3d data/pseudo/advancement/recipes/misc/coal_dust_from_block.json
 49872e06305378360eb6676e6478f6c552dae84b data/pseudo/advancement/recipes/misc/drill_base_left.json
 fabbfd87ba8ba96c11a9eaf79307becafdaa71e4 data/pseudo/advancement/recipes/misc/drill_base_right.json
 dc36383098b3b2a55ef1a084fafb87e11cd7e86f data/pseudo/advancement/recipes/misc/ender_knapsack.json
@@ -80,6 +83,9 @@ f8250a3d98c21eb5ce74fab14974435051159545 data/pseudo/advancement/recipes/red_dye
 e01dc21c3a223ccbe0b54fb6186cff783b941a37 data/pseudo/recipe/chainsaw_base_right.json
 43cabb063807dd0faff814467244eaaaee162388 data/pseudo/recipe/charcoal_energizing.json
 53af3325df06ea664a8755534315b442019dd5c7 data/pseudo/recipe/charcoal_lower_output_energizing.json
+2738dfc5f89ad3f33f81107ffc83380cf9fae835 data/pseudo/recipe/clipboard.json
+eff77d48f091fb67134077099b8ea7806d506be0 data/pseudo/recipe/coal_dust_block.json
+c34b9a9a2b4743a3ee39dcdaf54986ebd5ab6a81 data/pseudo/recipe/coal_dust_from_block.json
 6f49bfba8ff6e9ca2beba3e49a9dfcf5f834bdef data/pseudo/recipe/drill_base_left.json
 8824dcdeac0c5f1e51ff5fcddfe8058c78379595 data/pseudo/recipe/drill_base_right.json
 9323c11e1bc1d90f829f2a7a4f33d366cef836b7 data/pseudo/recipe/ender_knapsack.json
@@ -108,7 +114,7 @@ e6cd158dfdd5d6e021e6870fefda8bc1898c3f0e data/pseudo/recipe/mesh_gear.json
 8ac92c39b5b033889ab5aef7ffb14058327aa549 data/pseudo/recipe/mesh_helmet.json
 e8bc62ff53423086ae809ac1fbcd8c0f2bafbaa4 data/pseudo/recipe/mesh_horse_armor_left.json
 791d704a50c0199f2356ff1fae1347c82aaf809e data/pseudo/recipe/mesh_horse_armor_right.json
-dddf20e6a6d1212508cd3a553722614ecee9d104 data/pseudo/recipe/mesh_lamp.json
+0a5c678924c34d3151e47060b402b8569b0725dd data/pseudo/recipe/mesh_lamp.json
 10a1187dc0d3afd06861504f01d65b98029651df data/pseudo/recipe/mesh_lamp_from_inverted.json
 9aa5c8e7bd7a939e7d330840629769e0849265cc data/pseudo/recipe/mesh_leggings.json
 c8d18ca6e27af80b707dc0fcdec133d9e3fe8c75 data/pseudo/recipe/mesh_mitts_left.json
@@ -119,7 +125,7 @@ f1ffbdc20f4b7705bbabcbfe7fc29458baa4d34f data/pseudo/recipe/mesh_pressure_plate.
 623d832a9b6349775f5cc9e8dcb806932dc2a8ef data/pseudo/recipe/mesh_wall.json
 73675dca10595c5c1d981fe72bc611c3465cced3 data/pseudo/recipe/mole_mitts_left.json
 617a21a71db8d6702339dd095862132cf0778932 data/pseudo/recipe/mole_mitts_right.json
-dfa3754c47511162fcd12c8562619da60a4796c4 data/pseudo/recipe/pocket_crafter.json
+c9654820e67e36916395c3c4e32e4be34ae21ba1 data/pseudo/recipe/pocket_crafter.json
 e42b5a1df7dc95bb355c0cbbcb53ecc02f93e280 data/pseudo/recipe/raw_graphite_block.json
 ed4e618f41131bc6b94d19dfbecb73980ace0c28 data/pseudo/recipe/raw_graphite_block_from_blasting_coal_block.json
 b99f18d544bef041ecf37efb7f35dc11c88a8aff data/pseudo/recipe/raw_graphite_from_blasting_charcoal.json

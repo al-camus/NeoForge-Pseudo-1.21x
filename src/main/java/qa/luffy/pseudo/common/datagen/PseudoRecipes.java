@@ -373,6 +373,7 @@ public class PseudoRecipes extends RecipeProvider {
                 .save(recipeOutput, Pseudo.resource("led"));
 
         nineBlockStorageRecipe(recipeOutput, PseudoItems.RAW_GRAPHITE, "raw_graphite_from_block", PseudoBlocks.RAW_GRAPHITE_BLOCK, "raw_graphite_block");
+        nineBlockStorageRecipe(recipeOutput, PseudoItems.COAL_DUST, "coal_dust_from_block", PseudoBlocks.COAL_DUST_BLOCK, "coal_dust_block");
         nineBlockStorageRecipe(recipeOutput, PseudoItems.GRAPHITE_DUST, "graphite_dust_from_block", PseudoBlocks.GRAPHITE_DUST_BLOCK, "graphite_dust_block");
         nineBlockStorageRecipe(recipeOutput, PseudoItems.REFINED_GRAPHITE, "refined_graphite_from_block", PseudoBlocks.REFINED_GRAPHITE_BLOCK, "refined_graphite_block");
         nineBlockStorageRecipe(recipeOutput, PseudoItems.GRAPHENE_SHEET, "graphene_sheet_from_block", PseudoBlocks.GRAPHENE_SHEET_BLOCK, "graphene_sheet_block");

@@ -1,0 +1,53 @@
+{
+  "mother_sea": {
+    "sounds": [
+      {
+        "name": "pseudo:mother_sea",
+        "stream": true
+      }
+    ]
+  },
+  "chainsaw_mine": {
+   "subtitle": "sounds.pseudo.chainsaw_mine",
+    "sounds": [
+      "pseudo:chainsaw_mine"
+    ]
+  },
+  "chainsaw_fail": {
+    "subtitle": "sounds.pseudo.chainsaw_fail",
+    "sounds": [
+      "pseudo:chainsaw_fail"
+    ]
+  },
+  "mesh_step": {
+    "subtitle": "sounds.pseudo.mesh_step",
+    "sounds": [
+      "pseudo:mesh_step"
+    ]
+  },
+
+  "graphene_mesh_break": {
+    "subtitle": "sounds.pseudo.mesh_break",
+    "sounds": [
+      { "name": "minecraft:block.snow.break", "type": "event" }
+    ]
+  },
+  "graphene_mesh_place": {
+    "subtitle": "sounds.pseudo.mesh_place",
+    "sounds": [
+      { "name": "minecraft:block.snow.place", "type": "event" }
+    ]
+  },
+  "graphene_mesh_hit": {
+    "subtitle": "sounds.pseudo.mesh_hit",
+    "sounds": [
+      { "name": "minecraft:block.snow.hit", "type": "event" }
+    ]
+  },
+  "graphene_mesh_fall": {
+    "subtitle": "sounds.pseudo.mesh_fall",
+    "sounds": [
+      { "name": "minecraft:block.snow.fall", "type": "event" }
+    ]
+  }
+}

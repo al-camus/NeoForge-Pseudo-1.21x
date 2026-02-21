@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pseudo:coal_dust_block",
+  "key": {
+    "#": {
+      "item": "pseudo:coal_dust"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pseudo:coal_dust_block"
+  }
+}

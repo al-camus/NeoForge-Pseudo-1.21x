@@ -58,8 +58,13 @@ public class PseudoItemModels extends ItemModelProvider {
         basicItem(PseudoItems.IRON_CHAINSAW_HEAD.get());
         basicItem(PseudoItems.ENDER_KNAPSACK.get());
         basicItem(PseudoItems.MESH_HORSE_ARMOR.get());
+        basicItem(PseudoItems.WARMING_STONE.get());
+        basicItem(PseudoItems.MOTHER_SEA_MUSIC_DISC.get());
         basicItem(PseudoItems.SCULK_FRUIT.get());
         basicItem(PseudoItems.SCULK_TOME.get());
+
+        // NEW: weapon-style (handheld parent)
+        handheldItem(PseudoItems.CRIMSON_DAGGER);
 
         trimmedArmorItem(PseudoItems.MESH_HELMET);
         trimmedArmorItem(PseudoItems.MESH_CHESTPLATE);
@@ -78,6 +83,12 @@ public class PseudoItemModels extends ItemModelProvider {
 
         withExistingParent("clipboard", mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/clipboard"));
+    }
+
+    private void handheldItem(DeferredItem<Item> itemDeferredItem) {
+        String name = itemDeferredItem.getId().getPath();
+        withExistingParent(name, mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + name));
     }
 
     private void trimmedArmorItem(DeferredItem<Item> itemDeferredItem) {
