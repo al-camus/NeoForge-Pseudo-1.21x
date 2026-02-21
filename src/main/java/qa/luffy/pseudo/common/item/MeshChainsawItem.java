@@ -3,6 +3,7 @@ package qa.luffy.pseudo.common.item;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionResult;
@@ -22,6 +23,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import qa.luffy.pseudo.common.data.PseudoDataComponents;
 import qa.luffy.pseudo.common.init.PseudoTags;
+import qa.luffy.pseudo.common.sound.PseudoSounds;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
 
 import java.util.List;
@@ -84,24 +86,34 @@ public class MeshChainsawItem extends DiggerItem implements EnergyStorageItem {
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
 
-        if (canSaw(state)) return InteractionResult.PASS;
-
         Player player = context.getPlayer();
+
         if (player == null) return InteractionResult.PASS;
+
+        if (canSaw(state)){
+            context.getLevel().playSound(null, player.blockPosition(), PseudoSounds.CHAINSAW_FAIL.get(), SoundSource.PLAYERS, 1f, 1f);
+            return InteractionResult.PASS;
+        }
 
         if (level.isClientSide) return InteractionResult.SUCCESS;
 
         if (player.isCreative()) {
             level.destroyBlock(pos, true, player);
+            context.getLevel().playSound(null, player.blockPosition(), PseudoSounds.CHAINSAW_MINE.get(), SoundSource.PLAYERS, 1f, 1f);
             return InteractionResult.CONSUME;
         }
 
         IEnergyStorage energy = getEnergy(context.getItemInHand());
-        if (!hasEnergy(energy, ENERGY_RIGHT_CLICK_BREAK)) return InteractionResult.PASS;
+        if (!hasEnergy(energy, ENERGY_RIGHT_CLICK_BREAK)) {
+            context.getLevel().playSound(null, player.blockPosition(), PseudoSounds.CHAINSAW_FAIL.get(), SoundSource.PLAYERS, 1f, 1f);
+            return InteractionResult.PASS;
+        }
 
         level.destroyBlock(pos, true, player);
         spendEnergy(energy, ENERGY_RIGHT_CLICK_BREAK);
         player.getInventory().setChanged();
+
+        context.getLevel().playSound(null, player.blockPosition(), PseudoSounds.CHAINSAW_MINE.get(), SoundSource.PLAYERS, 1f, 1f);
         return InteractionResult.CONSUME;
     }
 

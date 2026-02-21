@@ -27,6 +27,10 @@
   "item.pseudo.mesh_boots": "Mesh Boots",
   "item.pseudo.mesh_horse_armor": "Mesh Horse Armor",
 
+  "item.pseudo.mother_sea_music_disc": "Mother Sea Music Disc",
+  "item.pseudo.mother_sea_music_disc.desc": "Barely Cloudy - Mother Sea",
+
+  "item.pseudo.warming_stone": "Warming Stone",
   "item.pseudo.wind_knots": "Wind Knots",
   "item.pseudo.sculk_fruit": "Sculk Fruit",
   "item.pseudo.sculk_tome": "Sculk Tome",
@@ -36,6 +40,7 @@
   "block.pseudo.deepslate_graphite_ore": "Deepslate Graphite Ore",
   "block.pseudo.nether_graphite_ore": "Nether Graphite Ore",
   "block.pseudo.raw_graphite_block": "Block of Raw Graphite",
+  "block.pseudo.coal_dust_block": "Block of Coal Dust",
   "block.pseudo.graphite_dust_block": "Block of Graphite Dust",
   "block.pseudo.refined_graphite_block": "Block of Refined Graphite",
   "block.pseudo.refined_graphite_stairs": "Refined Graphite Stairs",
@@ -75,6 +80,17 @@
 
   "itemGroup.pseudo.pseudo_items_tab": "Pseudo Items",
   "itemGroup.pseudo.pseudo_blocks_tab": "Pseudo Blocks",
+
+  "effect.pseudo.bleeding": "Bleeding",
+  "effect.pseudo.warming": "Warming",
+
+  "sounds.pseudo.chainsaw_mine": "Chainsaw Cutting",
+  "sounds.pseudo.chainsaw_fail": "Chainsaw Idles",
+  "sounds.pseudo.mesh_step": "Footsteps on Graphene",
+  "sounds.pseudo.mesh_break": "Graphene Broken",
+  "sounds.pseudo.mesh_place": "Graphene Placed",
+  "sounds.pseudo.mesh_hit": "Graphene Hit",
+  "sounds.pseudo.mesh_fall": "Fall on Graphene",
 
   "tooltip.pseudo.hold_shift_for_info": "Hold §eSHIFT §r§7for info",
   "tooltip.pseudo.uses_left": "%s Uses Left",

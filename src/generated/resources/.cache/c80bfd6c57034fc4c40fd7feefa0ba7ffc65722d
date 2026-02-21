@@ -1,6 +1,7 @@
-// 1.21	2026-02-18T20:24:42.1634778	Block States: pseudo
+// 1.21	2026-02-21T13:03:46.7599985	Block States: pseudo
 d9b36e7b7f28fc8922df6e9dae21739dbbac7843 assets/pseudo/blockstates/capacitor.json
 0e59243068d9b3161ceec3f7e3e81d7eee29fc04 assets/pseudo/blockstates/clipboard.json
+417e012df7cb65850fd19921dd08181017b35226 assets/pseudo/blockstates/coal_dust_block.json
 2efd172a6779dde72f77de585b61b83ce704db42 assets/pseudo/blockstates/deepslate_graphite_ore.json
 c75f4c093cc32c551c5f6ee5e53cf5ee4708fdb8 assets/pseudo/blockstates/golden_carrot_crop.json
 ff2ed0f0a1195c9a165cb4669e59c62e804058cc assets/pseudo/blockstates/graphene_sheet_block.json
@@ -32,6 +33,7 @@ fbc3f0a8e91be3c149face6b3d8a08f991aec9be assets/pseudo/blockstates/potted_thistl
 dc3d8f9a80cba7f6ca8226822e1559ed981b898a assets/pseudo/blockstates/thistle.json
 7b40ba9aeebcd9a8d0d9f3f4aa02622d9905f66b assets/pseudo/blockstates/toolbox.json
 8f6c585cb6d4eadd41b802a0861ea54578d7b509 assets/pseudo/models/block/capacitor.json
+a025c457b2d25dadcd810173e19cedacff0f81bb assets/pseudo/models/block/coal_dust_block.json
 b87c883ecda6e5e1ce5c37af1c14fa0eea3c1ff6 assets/pseudo/models/block/deepslate_graphite_ore.json
 d6fd1b524fea8c08c9116dd8eacf0449921f49a9 assets/pseudo/models/block/golden_carrot_crop_stage0.json
 0df6fbe62be5dd2bb564f6c7256db82e004f9e87 assets/pseudo/models/block/golden_carrot_crop_stage1.json
@@ -93,6 +95,7 @@ c3de0ea194f323949961f14af2708ae566558b0a assets/pseudo/models/block/refined_grap
 f5d3d70c324d088da1f8352ef7b101efdee8c6a0 assets/pseudo/models/block/refined_graphite_stairs_outer.json
 42f0306ead9cb7b01ec545fa2f04e57ea0c1152f assets/pseudo/models/block/thistle.json
 5284327a32245e41e9c5aa10d77c335635f529d5 assets/pseudo/models/item/capacitor.json
+c4dfa4d0dd112082c0d55b7c99a6f6d8bda4afa5 assets/pseudo/models/item/coal_dust_block.json
 7a203e6e92bd4c334af57b64d25be79674a756ca assets/pseudo/models/item/deepslate_graphite_ore.json
 a51ae14e91fc38044dfe61bb3d81cfb90c8825e5 assets/pseudo/models/item/graphene_sheet_block.json
 bb037884526c99f96fd44e83965bc87854a0854b assets/pseudo/models/item/graphene_sheet_slab.json

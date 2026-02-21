@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pseudo:block/coal_dust_block"
+    }
+  }
+}

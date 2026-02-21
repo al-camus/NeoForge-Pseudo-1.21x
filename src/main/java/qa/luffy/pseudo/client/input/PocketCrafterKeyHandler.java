@@ -21,7 +21,7 @@ public final class PocketCrafterKeyHandler {
         if (mc.screen != null) return;
 
         while (PseudoKeyMappings.OPEN_POCKET_CRAFTER.consumeClick()) {
-            PacketDistributor.sendToServer(OpenPocketCrafterPayload.INSTANCE);
+            OpenPocketCrafterPayload.sendToServer();
         }
     }
 }

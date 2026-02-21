@@ -36,6 +36,7 @@ public class PseudoBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(PseudoBlocks.RAW_GRAPHITE_BLOCK.get());
+        dropSelf(PseudoBlocks.COAL_DUST_BLOCK.get());
         dropSelf(PseudoBlocks.GRAPHITE_DUST_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_BLOCK.get());
         dropSelf(PseudoBlocks.REFINED_GRAPHITE_STAIRS.get());

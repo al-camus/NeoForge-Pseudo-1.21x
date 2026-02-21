@@ -24,6 +24,7 @@ public class PseudoBlockStates extends BlockStateProvider {
         blockWithItem(PseudoBlocks.DEEPSLATE_GRAPHITE_ORE);
         blockWithItem(PseudoBlocks.NETHER_GRAPHITE_ORE);
         blockWithItem(PseudoBlocks.RAW_GRAPHITE_BLOCK);
+        blockWithItem(PseudoBlocks.COAL_DUST_BLOCK);
         blockWithItem(PseudoBlocks.GRAPHITE_DUST_BLOCK);
         blockWithItem(PseudoBlocks.REFINED_GRAPHITE_BLOCK);
         blockWithItem(PseudoBlocks.REFINED_GRAPHITE_BRICK);
@@ -159,14 +160,15 @@ public class PseudoBlockStates extends BlockStateProvider {
         return models;
     }
 
-    private void blockWithItem(DeferredBlock<Block> deferredBlock) {
+    private <T extends Block> void blockWithItem(DeferredBlock<T> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
 
-    private void blockItem(DeferredBlock<Block> deferredBlock) {
+    private <T extends Block> void blockItem(DeferredBlock<T> deferredBlock) {
         simpleBlockItem(
                 deferredBlock.get(),
                 new ModelFile.UncheckedModelFile("pseudo:block/" + deferredBlock.getId().getPath())
         );
     }
+
 }

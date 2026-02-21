@@ -1,9 +1,10 @@
-// 1.21	2026-02-18T20:24:42.1527328	Item Models: pseudo
+// 1.21	2026-02-21T16:10:51.5451193	Item Models: pseudo
 9814d32dc1d52683ae3367c61ee97e76e523f0cf assets/pseudo/models/item/carbon_fiber.json
 56d97d161a2e59d315448c824cd54a0de963d532 assets/pseudo/models/item/carbon_filament.json
 053f7a970644396d02787833e475eb8692fffd6d assets/pseudo/models/item/chainsaw_base.json
 d85d40b9b6065454ec73b39f33b9cc3682a3bd28 assets/pseudo/models/item/clipboard.json
 cdc155a4e9322ca5cbe45b2338a1cf85f6564938 assets/pseudo/models/item/coal_dust.json
+549fc85b36875b83cfc01262667f6931cfc80ef4 assets/pseudo/models/item/crimson_dagger.json
 427958764a6c0f2468ff3ae032af925a51f26aa5 assets/pseudo/models/item/drill_base.json
 150c170c0870de4aa253f5d7f199b1423503d123 assets/pseudo/models/item/ender_knapsack.json
 e60cf2bd0fb842571e930748df06ae040a22c379 assets/pseudo/models/item/graphene_mesh.json
@@ -63,8 +64,10 @@ f03e3bea783052167e87e4882d38dd6595b929c0 assets/pseudo/models/item/mesh_leggings
 cb0a5e7857c4bef64236203b3059098026869dd1 assets/pseudo/models/item/mesh_leggings_redstone_trim.json
 2df623387d8bf7fb45a696da0ddf7b584bb67fb7 assets/pseudo/models/item/mesh_trapdoor.json
 7940354ba26d8dbce5425d6355d2ec609f8b15e5 assets/pseudo/models/item/mesh_wall.json
+9741f3c0332db618378583f56645ae3cce3cf1e6 assets/pseudo/models/item/mother_sea_music_disc.json
 554a6a7b4fb3aaee246814ae84f4cc4f8cafff36 assets/pseudo/models/item/raw_graphite.json
 ae1c585aaa9d3ee461aba0ae44878840af3ecc36 assets/pseudo/models/item/refined_graphite.json
 70f5a1651a813634d316d177f3f9b6b002c47e23 assets/pseudo/models/item/sculk_fruit.json
 05b93af3937cda0baa6a268408828b80cbc4f108 assets/pseudo/models/item/sculk_tome.json
 737309091f85bf79c1f7f665c52ec050e5aefc00 assets/pseudo/models/item/thistle.json
+132543d8d099139c7094cd4227bddd298f7e987d assets/pseudo/models/item/warming_stone.json
