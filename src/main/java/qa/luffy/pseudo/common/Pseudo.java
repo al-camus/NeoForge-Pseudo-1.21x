@@ -28,6 +28,7 @@ import qa.luffy.pseudo.common.menu.PseudoMenus;
 import qa.luffy.pseudo.common.recipe.PseudoCustomRecipes;
 import qa.luffy.pseudo.common.sound.PseudoSounds;
 import qa.luffy.pseudo.common.util.energy.EnergyStorageItem;
+import qa.luffy.pseudo.common.villager.PseudoVillagers;
 
 @Mod(Pseudo.MODID)
 public class Pseudo {
@@ -47,6 +48,8 @@ public class Pseudo {
         PseudoItems.register(modEventBus);
         PseudoBlocks.register(modEventBus);
         PseudoBlockEntities.register(modEventBus);
+
+        PseudoVillagers.register(modEventBus);
 
         PseudoSounds.register(modEventBus);
 

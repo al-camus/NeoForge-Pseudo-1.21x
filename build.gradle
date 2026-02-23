@@ -19,6 +19,15 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'GeckoLib'
+                url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            }
+        }
+        filter { includeGroupAndSubgroups('software.bernie.geckolib') }
+    }
 }
 
 base {
@@ -149,6 +158,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     // localRuntime "curse.maven:lootr-361276:6269605"
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraftVersion}:${geckolibVersion}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

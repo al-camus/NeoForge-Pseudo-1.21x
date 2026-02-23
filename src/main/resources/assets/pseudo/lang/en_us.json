@@ -29,6 +29,16 @@
 
   "item.pseudo.mother_sea_music_disc": "Mother Sea Music Disc",
   "item.pseudo.mother_sea_music_disc.desc": "Barely Cloudy - Mother Sea",
+  "painting.pseudo.bosch_hell.title": "Hell",
+  "painting.pseudo.bosch_hell.author": "Hieronymus Bosch",
+  "painting.pseudo.bosch_eden.title": "Eden",
+  "painting.pseudo.bosch_eden.author": "Hieronymus Bosch",
+  "painting.pseudo.bosch_garden.title": "The Garden of Earthly Delights",
+  "painting.pseudo.bosch_garden.author": "Hieronymus Bosch",
+  "painting.pseudo.dali_rhino.title": "Rhinoceros",
+  "painting.pseudo.dali_rhino.author": "Salvador Dali",
+  "painting.pseudo.matejko_jester.title": "Stańczyk",
+  "painting.pseudo.matejko_jester.author": "Jan Matejko",
 
   "item.pseudo.warming_stone": "Warming Stone",
   "item.pseudo.wind_knots": "Wind Knots",
@@ -83,6 +93,8 @@
 
   "effect.pseudo.bleeding": "Bleeding",
   "effect.pseudo.warming": "Warming",
+
+  "entity.minecraft.villager.pseudo.scientist": "Mad Scientist",
 
   "sounds.pseudo.chainsaw_mine": "Chainsaw Cutting",
   "sounds.pseudo.chainsaw_fail": "Chainsaw Idles",

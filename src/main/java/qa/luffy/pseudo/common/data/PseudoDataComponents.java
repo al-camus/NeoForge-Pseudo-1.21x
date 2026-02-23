@@ -40,6 +40,20 @@ public class PseudoDataComponents {
                     .cacheEncoding()
             );
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Long>> CHAINSAW_ACTIVE_UNTIL =
+            register("chainsaw_active_until", builder -> builder
+                    .persistent(Codec.LONG)
+                    .networkSynchronized(ByteBufCodecs.VAR_LONG)
+                    .cacheEncoding()
+            );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Long>> MESH_DRILL_ACTIVE_UNTIL =
+            register("mesh_drill_active_until", builder -> builder
+                    .persistent(Codec.LONG)
+                    .networkSynchronized(ByteBufCodecs.VAR_LONG)
+                    .cacheEncoding()
+            );
+
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(
             String name,
             UnaryOperator<DataComponentType.Builder<T>> builderOperator

@@ -7,7 +7,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import qa.luffy.pseudo.client.init.PseudoItemProperties;
-import qa.luffy.pseudo.client.render.ber.ClipboardBER;
+import qa.luffy.pseudo.client.renderer.ber.ClipboardBER;
 import qa.luffy.pseudo.client.screen.CapacitorScreen;
 import qa.luffy.pseudo.client.screen.MeshCrateScreen;
 import qa.luffy.pseudo.client.screen.PocketCrafterScreen;
